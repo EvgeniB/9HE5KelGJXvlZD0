@@ -1,0 +1,91 @@
+extends layout
+
+block content
+
+    ul
+        each itinerary in itineraries
+            li
+                ul
+                    each day in itinerary.Days
+                        li
+                            ul
+                                each event in itinerary.Events
+                                    li
+                                        p #{event.Label}
+                                    li
+                                        ul
+                                            each type in event.Type
+                                                li
+                                                    p #{type}
+                                    li
+                                        p #{event.Time}
+                                    li
+                                        p #{event.Description}
+                                    li
+                                        p #{event.Tips}
+                                    li
+                                        p #{event.Photo}
+                                    li
+                                        p #{event.Price}
+                                    li
+                                        p #{event.Hours}
+                                    li
+                                        p #{event.Address}
+                                    li
+                                        p #{event.Phone}
+                                    li
+                                        p #{event.Website}
+                                    li
+                                        p #{event.AudioGuides}
+                                    li
+                                        p #{event.BookLink}
+                                    li
+                                        p #{event.Transportation}
+                                    li
+                                        p #{event.Reviews}
+                        li
+                            p #{day.Title}
+                        li
+                            p #{day.Date}
+                        li
+                            ul
+                                each country in day.Countries
+                                    li
+                                        p #{country}
+                        li
+                            ul
+                                each location in day.Locations
+                                    li
+                                        p #{location}
+                        li
+                            p #{day.Overnight}
+            li
+                p #{itinerary.Title}
+            li
+                p #{itinerary.Description}
+            li
+                ul
+                    each country in itinerary.Countries
+                        p #{country}
+            li
+                ul
+                    each location in itinerary.Locations
+                        p #{location}
+            li
+                ul
+                    each feature in itinerary.Featuring
+                        p #{feature}
+            li
+                p #{itinerary.DayLength}
+            li
+                p #{itinerary.NightLength}
+            li
+                ul
+                    each theme in itinerary.Theme
+                        p #{theme}
+            li
+                p #{itinerary.ImageUrl}
+            li
+                ul
+                    each user in itinerary.User
+                        p #{user}

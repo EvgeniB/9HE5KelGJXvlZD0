@@ -1,0 +1,94 @@
+extends layout
+
+block content
+
+    form(method='POST', action='/edit_itineraries')
+        ul
+            li
+                ul
+                    if Days
+                        each day in Days ? Days : ['There are no values']
+                            li
+                                //ul
+                                    each event in Events.length ? values : ['There are no values']
+                                        li
+                                            p #{event.Label}
+                                        li
+                                            ul
+                                                each type in event.Type.length ? values : ['There are no values']
+                                                    li
+                                                        p #{type}
+                                        li
+                                            p #{event.Time}
+                                        li
+                                            p #{event.Description}
+                                        li
+                                            p #{event.Tips}
+                                        li
+                                            p #{event.Photo}
+                                        li
+                                            p #{event.Price}
+                                        li
+                                            p #{event.Hours}
+                                        li
+                                            p #{event.Address}
+                                        li
+                                            p #{event.Phone}
+                                        li
+                                            p #{event.Website}
+                                        li
+                                            p #{event.AudioGuides}
+                                        li
+                                            p #{event.BookLink}
+                                        li
+                                            p #{event.Transportation}
+                                        li
+                                            p #{event.Reviews}
+                            li
+                                p #{day.Title}
+                            li
+                                p #{day.Date}
+                            li
+                                //ul
+                                    each country in day.Countries.length ? values : ['There are no values']
+                                        li
+                                            p #{country}
+                            li
+                                //ul
+                                    each location in day.Locations.length ? values : ['There are no values']
+                                        li
+                                            p #{location}
+                            li
+                                p #{day.Overnight}
+            li
+                p #{Title}
+            li
+                p #{Description}
+            li
+                //ul
+                    each country in Countries.length ? values : ['There are no values']
+                        p #{country}
+            li
+                //ul
+                    each location in Locations.length ? values : ['There are no values']
+                        p #{location}
+            li
+                //ul
+                    each feature in Featuring.length ? values : ['There are no values']
+                        p #{feature}
+            li
+                p #{DayLength}
+            li
+                p #{NightLength}
+            li
+                //ul
+                    each theme in Theme.length ? values : ['There are no values']
+                        p #{theme}
+            li
+                p #{ImageUrl}
+            li
+                //ul
+                    each user in User.length ? values : ['There are no values']
+                        p #{user}
+            input(type='Submit', value='Save')
+            input(type='Submit', value='Cancel')

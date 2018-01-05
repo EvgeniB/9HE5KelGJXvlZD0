@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    ul
+        each itinerary in itineraries
+            a(href='edit/' + itinerary._id)
+                li
+                    form(method='Post')
+                        input(type='hidden', name='todo', value='delete')
+                        p #{itinerary.Title}
+                        input(type='hidden', name='title' value=itinerary.Title)
+                        input(type='submit', value='Delete')
+    a(href='/add_itinerary')
+        button Add new

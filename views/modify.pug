@@ -1,0 +1,57 @@
+extends layout
+
+block content
+    p Modifying 'User' Collection
+    ul
+        each user in users
+            li
+                p Name: #{user.name}
+                p Username: #{user.username}
+                p Password: #{user.password}
+                p Is admin: #{user.admin}
+                p Location: #{user.location}
+                p Meta: #{user.meta}
+                p Created at: #{user.created_at}
+                p Updated at: #{user.updated_at}
+
+            form(action='/index')
+                | Name:
+                br
+                input(type='text', name='Name', value=user.name)
+                br
+                | Username:
+                br
+                input(type='text', name='Username', value=user.username)
+                br
+                | Password:
+                br
+                input(type='text', name='Password', value=user.password)
+                br
+                | Is admin:
+                br
+                input(type='text', name='IsAdmin', value=user.admin)
+                br
+                | Location:
+                br
+                input(type='text', name='Location', value=user.location)
+                br
+                | Meta:
+                br
+                input(type='text', name='Meta', value=user.meta)
+                br
+                | Created at:
+                br
+                input(type='text', name='CreatedAt', value=user.created_at)
+                br
+                | Updated at:
+                br
+                input(type='text', name='UpdatedAt', value=user.updated_at)
+                br
+
+                br
+                input(type='submit', value='Submit')
+
+
+    a(href='/add') Modify users
+        |
+        |

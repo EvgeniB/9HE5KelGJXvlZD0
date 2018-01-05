@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+      each user in users
+          li
+            p Name: #{user.name}
+            p Username: #{user.username}
+            p Password: #{user.password}
+            p Is admin: #{user.admin}
+            p Location: #{user.location}
+            p Meta: #{user.meta}
+            p Created at: #{user.created_at}
+            p Updated at: #{user.updated_at}
+
+  a(href='/add') Modify users
+    |
+    |
