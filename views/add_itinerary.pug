@@ -1,5 +1,7 @@
 extends layout
-
+block head
+    script(type='text/javascript', src='http://code.jquery.com/jquery-1.7.1.min.js')
+    script(src='/javascripts/add_itinerary.js')
 block content
 
     form(method='POST', action='/edit_itineraries')
@@ -86,11 +88,11 @@ block content
                 p Description:
                 input(type='text')
             li
-                ul
+                p Countries:
+                ul(id='countries')
                     // each country in itinerary.Countries.length ? values : ['There are no values']
-                    li
-                        p Country:
-                        input(type='text')
+                p Country:
+                button(type='button', onclick="add_li('countries')") Add
             li
                 ul
                     // each location in itinerary.Locations.length ? values : ['There are no values']

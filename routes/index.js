@@ -1,27 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
+var sess;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    sess=req.session;
 
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
     // get all the users
-    User.find({}, function(err, users) {
-        if (err) throw err;
 
-        // object of all the users
-        console.log(users);
+    var admin = sess.admin;
+    var user = sess.username;
 
-        res.render('index', { title: 'Express', users: users });
-    });
-
-
-
+    res.render('index', {admin: admin, user: user});
 });
 
 /* POST home page. */
 router.post('/', function(req, res, next) {
+    sess=req.session;
 
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
@@ -30,18 +28,23 @@ router.post('/', function(req, res, next) {
     // check if the credentials match to the user
     var usr = req.body.username;
     var pw = req.body.password;
-    if (usr && pw) {
 
-        User.find({ username: usr, password: pw }, function (err, user) {
-            if (err) throw err;
+    console.log(usr + " " + pw);
 
-            // object of all the users
-            console.log(user);
+    User.findOne({ username: usr, password: pw }, function (err, user) {
+        if (err) throw err;
 
-            res.render('index', {title: 'Express', user: user});
-        });
+        // object of all the users
+        console.log(user);
 
-    }
+        if (user) {
+            sess.admin = true;
+            sess.user = user.username;
+        }
+
+        res.render('index', { admin: true, user: user });
+    });
+    console.log("Bad");
 
 });
 
@@ -91,7 +94,21 @@ router.post('/login', function (req, res, next) {
     }
 });
 
+router.get('/logout', function(req, res) {
+    sess=req.session;
+
+    sess.admin = false;
+    sess.user = null;
+
+    res.redirect('/');
+});
+
 router.get('/admin', function(req, res, next) {
+    sess=req.session;
+
+    var admin = sess.admin;
+    var user = sess.username;
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
     var Itinerary = reqlib('/models/Itinerary.js');
@@ -102,7 +119,7 @@ router.get('/admin', function(req, res, next) {
         Itinerary.find({}, function(err, itineraries) {
             if (err) throw err;
 
-            res.render('admin', { users: users, itineraries: itineraries } );
+            res.render('admin', { users: users, itineraries: itineraries, admin: true, user: user } );
         });
     });
 });
@@ -222,11 +239,12 @@ router.post('/edit_itineraries', function(req, res, next) {
     var Itinerary = reqlib('/models/Itinerary.js');
 
     var todo = req.body.todo;
+    var id = req.body.id;
     var title = req.body.title;
     console.log(title);
 
     if (todo == 'delete') {
-        Itinerary.findOneAndRemove({ Title: title }, function(err) {
+        Itinerary.findOneAndRemove({ _id: id }, function(err) {
             if (err) throw err;
 
             console.log('Itinerary deleted!');
@@ -255,39 +273,38 @@ router.post('/edit_itineraries', function(req, res, next) {
     }
 });
 
-router.get('/edit_itinerary/:title', function(req, res, next) {
+router.get('/edit_itinerary/:id', function(req, res, next) {
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
-    var iti = req.params.title;
+    var id = req.params.id;
 
-    Itinerary.find({ Title: iti }, function(err, itinerary) {
+    Itinerary.findOne({ _id: id }, function(err, itinerary) {
         if (err) throw err;
 
-        console.log(itinerary);
+        console.log(itinerary + '\n');
+        console.log(JSON.parse(JSON.stringify(itinerary.Title)));
 
-        res.render('edit_itinerary', { Title: itinerary });
+        res.render('edit_itinerary', { itinerary: itinerary });
     });
-
-    res.render('edit_itinerary');
 });
 
-router.post('/edit_itinerary/:title', function(req, res, next) {
+router.post('/edit_itinerary/:id', function(req, res, next) {
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
     // save itinerary
-    var iti = req.params.title;
+    var id = req.params.id;
     var isAdmin = req.body.isadmin;
 
-    Itinerary.findOneAndUpdate({ Title: iti }, { isAdmin: isAdmin }, function(err, itinerary) {
+    Itinerary.findOneAndUpdate({ _id: id }, { isAdmin: isAdmin }, function(err, itinerary) {
         if (err) throw err;
 
         // we have the updated itinerary returned to us
         console.log(itinerary);
-    });
 
-    res.render('edit_itinerary');
+        res.render('edit_itinerary', { itinerary: itinerary });
+    });
 });
 
 router.get('/edit_users', function(req, res, next) {

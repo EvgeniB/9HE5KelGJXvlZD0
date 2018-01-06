@@ -3,22 +3,27 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    block head
   body
 
     ul
       li
         a(href='/') Home
       li
-        a(href='/admin') Admin Panel
-      li
         a(href='/search') Itineraries
-      li
-        a(href='/my_itineraries') My Itineraries
-      li
-        a(href='/register') Register
-      li
-        a(href='/login') Login
-
+      if admin
+        li
+          a(href='/admin') Admin Panel
+      if user
+        li
+          a(href='/my_itineraries') My Itineraries
+        li
+          a(href='/logout') Log out
+      else
+        li
+          a(href='/register') Register
+        li
+          a(href='/login') Login
 
 
 
