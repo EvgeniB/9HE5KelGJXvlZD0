@@ -141,6 +141,14 @@ router.get('/admin', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
+    sess=req.session;
+
+    res.render('register');
+});
+
+router.post('/register', function(req, res, next) {
+    sess=req.session;
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
 
@@ -148,17 +156,15 @@ router.get('/register', function(req, res, next) {
     // register new user
     var usr = req.body.username;
     var pw = req.body.password;
-    var newUser = new User({username: usr, password: pw});
-    if (usr && pw) {
+    var newUser = new User({username: usr, password: pw, admin: true });
 
-        newUser.save(function (err) {
-            if (err)
-                console.log('Error on save!')
-        });
+    newUser.save(function (err) {
+        if (err)
+            console.log('Error on save!')
+    });
 
-        res.render('register');
+    res.redirect('/');
 
-    }
 });
 
 router.get('/search', function(req, res) {

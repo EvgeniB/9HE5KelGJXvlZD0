@@ -5,13 +5,14 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     block head
   body
+    p #{_user.username}
 
     ul
       li
         a(href='/') Home
       li
         a(href='/search') Itineraries
-      if admin
+      if _user.admin
         li
           a(href='/admin') Admin Panel
       if _user
