@@ -5,17 +5,18 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     block head
   body
-    p #{_user.username}
+    if _user
+      p Welcome, #{_user.username}
 
     ul
       li
         a(href='/') Home
       li
-        a(href='/search') Itineraries
-      if _user.admin
-        li
-          a(href='/admin') Admin Panel
+        a(href='/search') Search itineraries
       if _user
+        if _user.admin
+          li
+            a(href='/admin') Admin Panel
         li
           a(href='/my_itineraries') My Itineraries
         li

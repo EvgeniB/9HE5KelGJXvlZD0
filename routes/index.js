@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
     console.log("Index GET: " + admin + " " + user);
 
-    res.render('index', {admin: admin, _user: user});
+    res.render('index', { _user: user});
 });
 
 /* POST home page. */
@@ -47,7 +47,7 @@ router.post('/', function(req, res, next) {
             sess.user = user.username;
         }
     */
-        res.render('index', { admin: sess.admin, _user: sess.user });
+        res.render('index', { _user: sess.user });
     //});
 
 });
@@ -99,7 +99,7 @@ router.post('/login', function (req, res, next) {
 
         if (user) {
             sess.admin = true;
-            sess.user = user.username;
+            sess.user = user;
 
             console.log("Admin " + sess.admin);
             console.log("User " + sess.user);
@@ -121,9 +121,9 @@ router.get('/logout', function(req, res) {
 
 router.get('/admin', function(req, res, next) {
     sess=req.session;
+    var user = sess.user;
 
     var admin = sess.admin;
-    var user = sess.username;
 
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
@@ -168,6 +168,9 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/search', function(req, res) {
+    sess=req.session;
+    var user = sess.user;
+
     console.log("Here");
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
@@ -177,14 +180,14 @@ router.get('/search', function(req, res) {
         Itinerary.find({ countries: req.body.country }).sort({DayLength: 'desc'}).exec(function(err, itineraries) {
             if (err) throw err;
 
-            res.render('search', { itineraries: itineraries } );
+            res.render('search', { itineraries: itineraries, _user: user } );
         });
     } else if(req.body.theme != 'undefined') {
         console.log("Here3");
         Itinerary.find({ countries: req.body.theme }).sort({DayLength: 'desc'}).exec(function(err, itineraries) {
             if (err) throw err;
 
-            res.render('search', { itineraries: itineraries} );
+            res.render('search', { itineraries: itineraries, _user: user } );
         });
     } else {
         Itinerary.find({}, function (err, itineraries) {
@@ -192,12 +195,15 @@ router.get('/search', function(req, res) {
             if (err) throw err;
 
             console.log(itineraries);
-            res.render('search', { itineraries: itineraries } );
+            res.render('search', { itineraries: itineraries, _user: user } );
         });
     }
 });
 
 router.get('/details/:title', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
     var title = req.params.title;
@@ -208,10 +214,13 @@ router.get('/details/:title', function(req, res, next) {
         res.render('details', { itineraries: itineraries } );
     });
 
-    res.render('details');
+    res.render('details', {_user: user });
 });
 
 router.get('/my_itineraries', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
     var usr;
@@ -224,10 +233,16 @@ router.get('/my_itineraries', function(req, res, next) {
 });
 
 router.get('/add_itinerary', function(req, res, next) {
-    res.render('add_itinerary');
+    sess=req.session;
+    var user = sess.user;
+
+    res.render('add_itinerary', { _user: user });
 });
 
 router.get('/edit/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
@@ -238,11 +253,14 @@ router.get('/edit/:id', function(req, res, next) {
 
         console.log(itinerary);
 
-        res.render('edit', { itinerary: itinerary });
+        res.render('edit', { itinerary: itinerary, _user: user });
     });
 });
 
 router.post('/edit/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
@@ -256,11 +274,14 @@ router.post('/edit/:id', function(req, res, next) {
         // we have the updated itinerary returned to us
         console.log(itinerary);
 
-        res.render('edit');
+        res.render('edit', { _user: user });
     });
 });
 
 router.get('/edit_itineraries', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
 
@@ -269,11 +290,14 @@ router.get('/edit_itineraries', function(req, res, next) {
         console.log(itineraries);
         if (err) throw err;
 
-        res.render('edit_itineraries', { itineraries: itineraries } );
+        res.render('edit_itineraries', { itineraries: itineraries, _user: user } );
     });
 });
 
 router.post('/edit_itineraries', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
 
@@ -290,7 +314,7 @@ router.post('/edit_itineraries', function(req, res, next) {
             Itinerary.find({}, function (err, itineraries) {
                 if (err) throw err;
 
-                res.render('edit_itineraries', {itineraries: itineraries});
+                res.render('edit_itineraries', {itineraries: itineraries, _user: user });
             });
         });
     } else {
@@ -313,6 +337,9 @@ router.post('/edit_itineraries', function(req, res, next) {
 });
 
 router.get('/edit_itinerary/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
@@ -324,11 +351,14 @@ router.get('/edit_itinerary/:id', function(req, res, next) {
         console.log(itinerary + '\n');
         console.log(JSON.parse(JSON.stringify(itinerary.Title)));
 
-        res.render('edit_itinerary', { itinerary: itinerary });
+        res.render('edit_itinerary', { itinerary: itinerary, _user: user });
     });
 });
 
 router.post('/edit_itinerary/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
@@ -342,11 +372,14 @@ router.post('/edit_itinerary/:id', function(req, res, next) {
         // we have the updated itinerary returned to us
         console.log(itinerary);
 
-        res.render('edit_itinerary', { itinerary: itinerary });
+        res.render('edit_itinerary', { itinerary: itinerary, _user: user });
     });
 });
 
 router.get('/edit_users', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
     // get all the users
@@ -354,11 +387,14 @@ router.get('/edit_users', function(req, res, next) {
     User.find({}, function(err, users) {
         if (err) throw err;
 
-        res.render('edit_users', { users: users } );
+        res.render('edit_users', { users: users, _user: user } );
     });
 });
 
 router.get('/edit_user/:username', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
 
@@ -369,13 +405,14 @@ router.get('/edit_user/:username', function(req, res, next) {
 
         console.log(user);
 
-        res.render('edit_user', { user: user });
+        res.render('edit_user', { user: user, _user: user });
     });
-
-    res.render('edit_user');
 });
 
 router.post('/edit_user/:username', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
 
@@ -390,7 +427,7 @@ router.post('/edit_user/:username', function(req, res, next) {
         console.log(user);
     });
 
-    res.render('edit_user');
+    res.render('edit_user', { _user: user });
 });
 
 module.exports = router;
