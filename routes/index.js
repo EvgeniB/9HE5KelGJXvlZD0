@@ -12,9 +12,11 @@ router.get('/', function(req, res, next) {
     // get all the users
 
     var admin = sess.admin;
-    var user = sess.username;
+    var user = sess.user;
 
-    res.render('index', {admin: admin, user: user});
+    console.log("Index GET: " + admin + " " + user);
+
+    res.render('index', {admin: admin, _user: user});
 });
 
 /* POST home page. */
@@ -29,8 +31,11 @@ router.post('/', function(req, res, next) {
     var usr = req.body.username;
     var pw = req.body.password;
 
-    console.log(usr + " " + pw);
-
+    //console.log(usr + " " + pw);
+    console.log("Sess " + sess);
+    //console.log(sess.admin);
+    //console.log(sess.user);
+    /*
     User.findOne({ username: usr, password: pw }, function (err, user) {
         if (err) throw err;
 
@@ -41,10 +46,9 @@ router.post('/', function(req, res, next) {
             sess.admin = true;
             sess.user = user.username;
         }
-
-        res.render('index', { admin: true, user: user });
-    });
-    console.log("Bad");
+    */
+        res.render('index', { admin: sess.admin, _user: sess.user });
+    //});
 
 });
 
@@ -69,29 +73,41 @@ router.get('/add', function(req, res, next) {
 
 
 router.get('/login', function (req, res) {
+    sess=req.session;
+
     var fn = require('./login');
     fn.get_login(req, res);
 });
 
 router.post('/login', function (req, res, next) {
+    sess=req.session;
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
 
-
-    // register new user
     var usr = req.body.username;
     var pw = req.body.password;
-    var newUser = new User({username: usr, password: pw});
-    if (usr && pw) {
 
-        newUser.save(function (err) {
-            if (err)
-                console.log('Error on save!')
-        });
+    //console.log(usr + " " + pw);
+    console.log("Login POST METHOD");
 
-        res.render('login', {title: 'Express', user: user});
+    User.findOne({ username: usr, password: pw }, function (err, user) {
+        if (err) throw err;
 
-    }
+        // object of all the users
+        console.log("User: " + user);
+
+        if (user) {
+            sess.admin = true;
+            sess.user = user.username;
+
+            console.log("Admin " + sess.admin);
+            console.log("User " + sess.user);
+        }
+
+        //res.render('login', {title: 'Express', user: user});
+        res.redirect('/');
+    });
 });
 
 router.get('/logout', function(req, res) {
@@ -119,13 +135,30 @@ router.get('/admin', function(req, res, next) {
         Itinerary.find({}, function(err, itineraries) {
             if (err) throw err;
 
-            res.render('admin', { users: users, itineraries: itineraries, admin: true, user: user } );
+            res.render('admin', { users: users, itineraries: itineraries, admin: true, _user: user } );
         });
     });
 });
 
 router.get('/register', function(req, res, next) {
-    res.render('register');
+    var reqlib = require('app-root-path').require;
+    var User = reqlib('/models/User.js');
+
+
+    // register new user
+    var usr = req.body.username;
+    var pw = req.body.password;
+    var newUser = new User({username: usr, password: pw});
+    if (usr && pw) {
+
+        newUser.save(function (err) {
+            if (err)
+                console.log('Error on save!')
+        });
+
+        res.render('register');
+
+    }
 });
 
 router.get('/search', function(req, res) {
