@@ -159,6 +159,7 @@ router.post('/register', function(req, res, next) {
     var newUser = new User({username: usr, password: pw, admin: true });
 
     newUser.save(function (err) {
+        console.log("error: " + err);
         if (err)
             console.log('Error on save!')
     });
