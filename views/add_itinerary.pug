@@ -4,7 +4,7 @@ block head
     script(src='/javascripts/add_itinerary.js')
 block content
 
-    form(method='POST', action='/edit_itineraries')
+    form(method='POST', action='/add_itinerary')
         ul
             li
                 ul
@@ -86,7 +86,7 @@ block content
                 input(type='text', name='title', value='')
             li
                 p Description:
-                input(type='text')
+                input(type='text', name='description', value='')
             li
                 p Countries:
                 ul(id='countries')
@@ -119,7 +119,7 @@ block content
                         input(type='text')
             li
                 p Image Url:
-                input(type='text')
+                input(type='text', name='imageurl', value='')
             li
                 ul
                     //each user in itinerary.User.length ? values : ['There are no values']
@@ -128,5 +128,5 @@ block content
                         input(type='text')
             br
             input(type='submit', value='Save')
-            a(href='edit_itineraries')
+            a(href='/edit_itineraries')
                 input(type='button', value='Cancel')

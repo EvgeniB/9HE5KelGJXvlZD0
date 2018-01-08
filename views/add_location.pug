@@ -1,0 +1,13 @@
+extends layout
+block head
+    //script(type='text/javascript', src='http://code.jquery.com/jquery-1.7.1.min.js')
+    //script(src='/javascripts/add_itinerary.js')
+block content
+
+    form(method='POST', action='/add_location')
+        p Name:
+        input(type='text', name='name', value='')
+        br
+        input(type='submit', value='Save')
+        a(href='/edit_locations')
+            input(type='button', value='Cancel')

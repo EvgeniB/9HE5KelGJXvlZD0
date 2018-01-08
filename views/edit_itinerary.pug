@@ -2,7 +2,8 @@ extends layout
 
 block content
 
-    form(method='POST', action='/edit_itineraries')
+    form(method='POST')
+        // , action='/edit_itineraries'
         ul
             li
                 ul
@@ -84,7 +85,7 @@ block content
                 input(type='text', name='title', value=itinerary.Title)
             li
                 p Description:
-                input(type='text')
+                input(type='text', name='description', value=itinerary.Description)
             li
                 ul
                     // each country in itinerary.Countries.length ? values : ['There are no values']
@@ -117,7 +118,7 @@ block content
                         input(type='text')
             li
                 p Image Url:
-                input(type='text')
+                input(type='text', name='imageurl', value=itinerary.ImageUrl)
             li
                 ul
                     //each user in itinerary.User.length ? values : ['There are no values']
@@ -126,5 +127,5 @@ block content
                         input(type='text')
             br
             input(type='submit', value='Save')
-            a(href='edit_itineraries')
+            a(href='/edit_itineraries')
                 input(type='button', value='Cancel')

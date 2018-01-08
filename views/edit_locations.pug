@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    ul
+        each location in locations ? locations : []
+            a(href='edit_location/' + location._id)
+                li
+                    form(method='Post')
+                        input(type='hidden', name='todo', value='delete')
+                        p #{location.Name}
+                        input(type='hidden', name='id' value=location._id)
+                        input(type='submit', value='Delete')
+    a(href='/add_location')
+        button Add new
+
+

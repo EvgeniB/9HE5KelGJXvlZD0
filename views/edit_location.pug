@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+    form(method='POST')
+        br
+        p Name:
+        input(type='text', name='name', value=location.Name)
+        br
+        input(type='submit', value='Save')
+        a(href='/edit_locations')
+            input(type='button', value='Cancel')

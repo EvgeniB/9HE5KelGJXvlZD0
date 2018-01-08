@@ -60,11 +60,12 @@ block content
                         li
                             p #{day.Overnight}
             li
-                p #{itinerary.Title}
+                p Title: #{itinerary.Title}
             li
-                p #{itinerary.Description}
+                p Description: #{itinerary.Description}
             li
                 ul
+                    p Countries
                     each country in itinerary.Countries
                         p #{country}
             li
@@ -84,7 +85,8 @@ block content
                     each theme in itinerary.Theme
                         p #{theme}
             li
-                p #{itinerary.ImageUrl}
+                p Image Url: #{itinerary.ImageUrl}
+                img(src=itinerary.ImageUrl)
             li
                 ul
                     each user in itinerary.User

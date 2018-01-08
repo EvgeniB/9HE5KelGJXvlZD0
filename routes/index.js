@@ -239,6 +239,30 @@ router.get('/add_itinerary', function(req, res, next) {
     res.render('add_itinerary', { _user: user });
 });
 
+router.post('/add_itinerary', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Itinerary = reqlib('/models/Itinerary.js');
+
+    var todo = req.body.todo;
+    var id = req.body.id;
+    var title = req.body.title ? req.body.title : "";
+    var description = req.body.description ? req.body.description : "";
+    var imageurl = req.body.imageurl ? req.body.imageurl : "";
+
+    var new_it = new Itinerary({ Title: title, Description: description, ImageUrl: imageurl });
+    console.log(new_it);
+
+    new_it.save(function (err) {
+        if (err)
+            console.log('Error on save!')
+
+            res.redirect('/edit_itineraries');
+    });
+});
+
 router.get('/edit/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
@@ -303,7 +327,9 @@ router.post('/edit_itineraries', function(req, res, next) {
 
     var todo = req.body.todo;
     var id = req.body.id;
-    var title = req.body.title;
+    var title = req.body.title ? req.body.title : "";
+    var description = req.body.description ? req.body.description : "";
+    var imageurl = req.body.imageurl ? req.body.imageurl : "";
     console.log(title);
 
     if (todo == 'delete') {
@@ -318,21 +344,14 @@ router.post('/edit_itineraries', function(req, res, next) {
             });
         });
     } else {
+        Itinerary.findOneAndUpdate({ _id: id }, { Title: title, Description: description, ImageUrl: imageurl }, function(err, itinerary) {
+            if (err) throw err;
 
-        var new_it = new Itinerary({ Title: title });
+            // we have the updated itinerary returned to us
+            console.log(itinerary);
 
-        new_it.save(function (err) {
-            if (err)
-                console.log('Error on save!')
-
-            Itinerary.find({}, function (err, itineraries) {
-                if (err) throw err;
-                console.log(itineraries);
-
-                res.render('edit_itineraries', {itineraries: itineraries});
-            });
+            res.render('edit_itinerary', { itinerary: itinerary, _user: user });
         });
-
     }
 });
 
@@ -364,15 +383,20 @@ router.post('/edit_itinerary/:id', function(req, res, next) {
 
     // save itinerary
     var id = req.params.id;
-    var isAdmin = req.body.isadmin;
+    //var id = req.body.id;
+    var title = req.body.title ? req.body.title : "";
+    var description = req.body.description ? req.body.description : "";
+    var imageurl = req.body.imageurl ? req.body.imageurl : "";
 
-    Itinerary.findOneAndUpdate({ _id: id }, { isAdmin: isAdmin }, function(err, itinerary) {
+    console.log("description: " + description);
+
+    Itinerary.findOneAndUpdate({ _id: id }, { Title: title, Description: description, ImageUrl: imageurl }, function(err, itinerary) {
         if (err) throw err;
 
         // we have the updated itinerary returned to us
         console.log(itinerary);
 
-        res.render('edit_itinerary', { itinerary: itinerary, _user: user });
+        res.redirect('/edit_itineraries');
     });
 });
 
@@ -428,6 +452,268 @@ router.post('/edit_user/:username', function(req, res, next) {
     });
 
     res.render('edit_user', { _user: user });
+});
+
+router.get('/add_country', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    res.render('add_country', { _user: user });
+});
+
+router.post('/add_country', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Country = reqlib('/models/Country.js');
+
+    var name = req.body.name ? req.body.name : "";
+
+    var new_country = new Country({ Name: name });
+    console.log("New country: " + new_country);
+
+    new_country.save(function (err) {
+        if (err)
+            console.log('Error on save!')
+
+        res.redirect('/edit_countries');
+    });
+});
+
+router.get('/edit_countries', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Country = reqlib('/models/Country.js');
+
+    Country.find({}, function(err, countries) {
+
+        console.log(countries);
+        if (err) throw err;
+
+        res.render('edit_countries', { countries: countries, _user: user } );
+    });
+});
+
+router.post('/edit_countries', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Country = reqlib('/models/Country.js');
+
+    var todo = req.body.todo;
+    var id = req.body.id;
+    var name = req.body.name ? req.body.name : "";
+    console.log(name);
+
+    if (todo == 'delete') {
+        Country.findOneAndRemove({_id: id}, function (err) {
+            if (err) throw err;
+
+            console.log('Country deleted!');
+            Country.find({}, function (err, countries) {
+                if (err) throw err;
+
+                res.render('edit_countries', {countries: countries, _user: user});
+            });
+        });
+    }
+});
+
+router.get('/edit_country/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Country= reqlib('/models/Country.js');
+
+    var id = req.params.id;
+
+    Country.findOne({ _id: id }, function(err, country) {
+        if (err) throw err;
+
+        res.render('edit_country', { country: country, _user: user });
+    });
+});
+
+router.post('/edit_country/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Country= reqlib('/models/Country.js');
+
+    // save itinerary
+    var id = req.params.id;
+    //var id = req.body.id;
+    var name = req.body.name ? req.body.name : "";
+
+    Country.findOneAndUpdate({ _id: id }, { Name: name}, function(err, country) {
+        if (err) throw err;
+
+        // we have the updated itinerary returned to us
+        console.log(country);
+
+        res.redirect('/edit_countries');
+    });
+});
+
+router.get('/add_location', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    res.render('add_location', { _user: user });
+});
+
+router.post('/add_location', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Location = reqlib('/models/Location.js');
+
+    var name = req.body.name ? req.body.name : "";
+    var country = req.body.country ? req.body.country : "";
+
+    var new_location = new Location({ Name: name }); //, Country: country
+    console.log("New location: " + new_location);
+
+    new_location.save(function (err) {
+        if (err)
+            console.log('Error on save!')
+
+        res.redirect('/edit_locations');
+    });
+});
+
+router.get('/edit_locations', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Location = reqlib('/models/Location.js');
+
+    Location.find({}, function(err, locations) {
+
+        console.log(locations);
+        if (err) throw err;
+
+        res.render('edit_locations', { locations: locations, _user: user } );
+    });
+});
+
+router.post('/edit_locations', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Location = reqlib('/models/Location.js');
+
+    var todo = req.body.todo;
+    var id = req.body.id;
+    var name = req.body.name ? req.body.name : "";
+    console.log(name);
+
+    if (todo == 'delete') {
+        Location.findOneAndRemove({_id: id}, function (err) {
+            if (err) throw err;
+
+            console.log('Country deleted!');
+            Location.find({}, function (err, locations) {
+                if (err) throw err;
+
+                res.render('edit_locations', {locations: locations, _user: user});
+            });
+        });
+    }
+});
+
+router.get('/edit_location/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Location= reqlib('/models/Location.js');
+
+    var id = req.params.id;
+
+    Location.findOne({ _id: id }, function(err, location) {
+        if (err) throw err;
+
+        res.render('edit_location', { location: location, _user: user });
+    });
+});
+
+router.post('/edit_location/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Location= reqlib('/models/Location.js');
+
+    // save itinerary
+    var id = req.params.id;
+    //var id = req.body.id;
+    var name = req.body.name ? req.body.name : "";
+
+    Location.findOneAndUpdate({ _id: id }, { Name: name}, function(err, location) {
+        if (err) throw err;
+
+        // we have the updated itinerary returned to us
+        console.log(location);
+
+        res.redirect('/edit_locations');
+    });
+});
+
+router.get('/add_feature', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    res.render('add_feature', { _user: user });
+});
+
+router.post('/add_itinerary', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Itinerary = reqlib('/models/Itinerary.js');
+
+    var todo = req.body.todo;
+    var id = req.body.id;
+    var title = req.body.title ? req.body.title : "";
+    var description = req.body.description ? req.body.description : "";
+    var imageurl = req.body.imageurl ? req.body.imageurl : "";
+
+    var new_it = new Itinerary({ Title: title, Description: description, ImageUrl: imageurl });
+    console.log(new_it);
+
+    new_it.save(function (err) {
+        if (err)
+            console.log('Error on save!')
+
+        res.redirect('/edit_features');
+    });
+});
+
+router.get('/edit_features', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var Feature = reqlib('/models/Feature.js');
+
+    Feature.find({}, function(err, features) {
+
+        console.log(features);
+        if (err) throw err;
+
+        res.render('edit_itineraries', { itineraries: features, _user: user } );
+    });
 });
 
 module.exports = router;

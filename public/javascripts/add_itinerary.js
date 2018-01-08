@@ -9,6 +9,14 @@ function guid() {
 }
 
 function add_li(elem) {
+
+    /*select name="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+        </select>
+    */
     var name = guid();
     var e = '<li id='+name+'><input type="text" value="" />' +
         '<button type="button" onclick="delete_li(\''+ name +'\')">Delete</button>' +

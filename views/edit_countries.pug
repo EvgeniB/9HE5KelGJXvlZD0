@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    ul
+        each country in countries ? countries : []
+            a(href='edit_country/' + country._id)
+                li
+                    form(method='Post')
+                        input(type='hidden', name='todo', value='delete')
+                        p #{country.Name}
+                        input(type='hidden', name='id' value=country._id)
+                        input(type='submit', value='Delete')
+    a(href='/add_country')
+        button Add new
+
+
