@@ -88,7 +88,7 @@ router.post('/login', function (req, res, next) {
     var usr = req.body.username;
     var pw = req.body.password;
 
-    //console.log(usr + " " + pw);
+    console.log(usr + " " + pw);
     console.log("Login POST METHOD");
 
     User.findOne({ username: usr, password: pw }, function (err, user) {
