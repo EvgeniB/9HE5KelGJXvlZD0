@@ -156,6 +156,9 @@ router.post('/register', function(req, res, next) {
     // register new user
     var usr = req.body.username;
     var pw = req.body.password;
+
+    console.log(usr + " " + pw + " LOGIN POST");
+
     var newUser = new User({username: usr, password: pw, admin: true });
 
     newUser.save(function (err) {
