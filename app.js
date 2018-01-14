@@ -52,6 +52,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//app.listen(process.env.PORT || 3000);
 
 ///
 //Import the mongoose module
@@ -65,14 +66,15 @@ var fs = require('fs')
 fs.readFile(filename, 'utf8', function(err, data) {
     if (err) throw err;
 
-    mongoDB = data;
+    mongoDB = String(data);
+    console.log(mongoDB);
 
     mongoose.connect(mongoDB);//, {
     //useMongoClient: true
 //});
 // Get Mongoose to use the global promise library
-    mongoose.Promise = global.Promise;
-//Get the default connection
+    //mongoose.Promise = global.Promise; what is this for?
+// Get the default connection
     var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
