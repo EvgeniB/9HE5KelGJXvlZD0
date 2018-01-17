@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    ul
+        each event_type in event_types ? event_types : []
+            a(href='edit_event_type/' + event_type._id)
+                li
+                    form(method='Post')
+                        input(type='hidden', name='todo', value='delete')
+                        p #{event_type.Name}
+                        input(type='hidden', name='id' value=event_type._id)
+                        input(type='submit', value='Delete')
+    a(href='/add_event_type')
+        button Add new
+
+
