@@ -2,8 +2,15 @@ extends layout
 
 block content
 
+    input(type='text', value='')
+    input(type='submit', value="Search")
+    select
+        option By country
+        option By theme
     ul
         each itinerary in itineraries
+            a
+                button More
             li
                 ul
                     each day in itinerary.Days

@@ -240,7 +240,17 @@ router.get('/add_itinerary', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
-    res.render('add_itinerary', { _user: user });
+    var reqlib = require('app-root-path').require;
+    var Country = reqlib('/models/Country.js');
+
+    var reqlib = require('app-root-path').require;
+    var Location = reqlib('/models/Location.js');
+
+    Country.find({}, function(err, countries) {
+        Location.find({}, function(err, locations) {
+            res.render('add_itinerary', { _user: user, countries: countries, locations: locations });
+        });
+    });
 });
 
 router.post('/add_itinerary', function(req, res, next) {
@@ -254,9 +264,13 @@ router.post('/add_itinerary', function(req, res, next) {
     var id = req.body.id;
     var title = req.body.title ? req.body.title : "";
     var description = req.body.description ? req.body.description : "";
+
+    var countries = req.body.countries;
+    console.log("countries: " + countries);
+
     var imageurl = req.body.imageurl ? req.body.imageurl : "";
 
-    var new_it = new Itinerary({ Title: title, Description: description, ImageUrl: imageurl });
+    var new_it = new Itinerary({ Title: title, Description: description, Countries: countries, ImageUrl: imageurl });
     console.log(new_it);
 
     new_it.save(function (err) {
@@ -673,50 +687,112 @@ router.post('/edit_location/:id', function(req, res, next) {
     });
 });
 
-router.get('/add_feature', function(req, res, next) {
+router.get('/add_event_type', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
-    res.render('add_feature', { _user: user });
+    res.render('add_event_type', { _user: user });
 });
 
-router.post('/add_itinerary', function(req, res, next) {
+router.post('/add_event_type', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
     var reqlib = require('app-root-path').require;
-    var Itinerary = reqlib('/models/Itinerary.js');
+    var EventType = reqlib('/models/EventType.js');
 
-    var todo = req.body.todo;
-    var id = req.body.id;
-    var title = req.body.title ? req.body.title : "";
-    var description = req.body.description ? req.body.description : "";
-    var imageurl = req.body.imageurl ? req.body.imageurl : "";
+    var name = req.body.name ? req.body.name : "";
 
-    var new_it = new Itinerary({ Title: title, Description: description, ImageUrl: imageurl });
-    console.log(new_it);
+    var new_event_type = new EventType({ Name: name }); //, Country: country
+    console.log("New event_type: " + new_event_type);
 
-    new_it.save(function (err) {
+    new_event_type.save(function (err) {
         if (err)
             console.log('Error on save!')
 
-        res.redirect('/edit_features');
+        res.redirect('/edit_event_types');
     });
 });
 
-router.get('/edit_features', function(req, res, next) {
+router.get('/edit_event_types', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
     var reqlib = require('app-root-path').require;
-    var Feature = reqlib('/models/Feature.js');
+    var EventType = reqlib('/models/EventType.js');
 
-    Feature.find({}, function(err, features) {
+    EventType.find({}, function(err, event_types) {
 
-        console.log(features);
+        console.log(event_types);
         if (err) throw err;
 
-        res.render('edit_itineraries', { itineraries: features, _user: user } );
+        res.render('edit_event_types', { event_types: event_types, _user: user } );
+    });
+});
+
+router.post('/edit_event_types', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var EventType = reqlib('/models/EventType.js');
+
+    var todo = req.body.todo;
+    var id = req.body.id;
+    var name = req.body.name ? req.body.name : "";
+    console.log(name);
+
+    if (todo == 'delete') {
+        EventType.findOneAndRemove({_id: id}, function (err) {
+            if (err) throw err;
+
+            console.log('Event type deleted!');
+            EventType.find({}, function (err, event_types) {
+                if (err) throw err;
+
+                res.render('edit_event_types', {event_types: event_types, _user: user});
+            });
+        });
+    }
+});
+
+router.get('/edit_event_type/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var EventType= reqlib('/models/EventType.js');
+
+    var id = req.params.id;
+
+    EventType.findOne({ _id: id }, function(err, event_type) {
+        if (err) throw err;
+
+        console.log("edit_event_type.get, EventType: " + event_type);
+
+        res.render('edit_event_type', { event_type: event_type, _user: user });
+    });
+});
+
+router.post('/edit_event_type/:id', function(req, res, next) {
+    sess=req.session;
+    var user = sess.user;
+
+    var reqlib = require('app-root-path').require;
+    var EventType= reqlib('/models/EventType.js');
+
+    // save itinerary
+    var id = req.params.id;
+    //var id = req.body.id;
+    var name = req.body.name ? req.body.name : "";
+
+    EventType.findOneAndUpdate({ _id: id }, { Name: name}, function(err, event_type) {
+        if (err) throw err;
+
+        // we have the updated itinerary returned to us
+        console.log(event_type);
+
+        res.redirect('/edit_event_types');
     });
 });
 

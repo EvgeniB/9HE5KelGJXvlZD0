@@ -1,5 +1,7 @@
 extends layout
 block head
+    script.
+        var cs = "#{countries}";
     script(type='text/javascript', src='http://code.jquery.com/jquery-1.7.1.min.js')
     script(src='/javascripts/add_itinerary.js')
 block content
@@ -89,12 +91,20 @@ block content
                 input(type='text', name='description', value='')
             li
                 p Countries:
-                ul(id='countries')
+                //ul(id='countries_list')
                     // each country in itinerary.Countries.length ? values : ['There are no values']
-                p Country:
-                button(type='button', onclick="add_li('countries')") Add
+                //p Country:
+                //button(type='button', onclick="add_li('countries')") Add
+                //div(hidden='')
+                select(name='countries', multiple='')
+                    each country in countries
+                        option(value=country._id) #{country.Name}
             li
-                ul
+                p Locations
+                select(name='locations', multiple='')
+                    each location in locations
+                        option(value=location._id) #{location.Name}
+                //ul
                     // each location in itinerary.Locations.length ? values : ['There are no values']
                     li
                         p Location:
