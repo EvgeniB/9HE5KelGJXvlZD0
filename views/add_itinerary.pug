@@ -7,6 +7,7 @@ block head
 block content
 
     form(method='POST', action='/add_itinerary')
+        input(type='hidden', name='itinerary', value='')
         ul
             li
                 ul
@@ -144,6 +145,7 @@ block content
                         p User:
                         input(type='text')
             br
+            //input(type='button', value='Save', onclick='make_itinerary()')
             input(type='submit', value='Save')
             a(href='/edit_itineraries')
                 input(type='button', value='Cancel')

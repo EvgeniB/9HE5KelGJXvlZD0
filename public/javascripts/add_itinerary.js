@@ -76,3 +76,10 @@ function delete_event(element) {
     var element = $(element);
     element.parent().remove();
 }
+
+function make_itinerary() {
+
+
+
+    $("form").submit();
+}

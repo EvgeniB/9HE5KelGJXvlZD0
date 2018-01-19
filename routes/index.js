@@ -413,6 +413,25 @@ router.post('/add_itinerary', function(req, res, next) {
 
     var todo = req.body.todo;
     var id = req.body.id;
+
+    var num_days = req.body.days_n;
+    var num_events = req.body.events_n;
+
+    var days = [];var events = [];
+
+    for(i=0;i<num_days;i++) {
+        for(j=0;j<num_events;j++) {
+            var a = 1;
+            var name = 'a';
+
+            document.write(eval(name)); // 1
+
+            days.push();
+        }
+    }
+
+
+
     var title = req.body.title ? req.body.title : "";
     var description = req.body.description ? req.body.description : "";
 
