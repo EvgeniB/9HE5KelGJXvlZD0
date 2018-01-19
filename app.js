@@ -31,6 +31,63 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+
+
+
+
+
+
+
+
+//Import the mongoose module
+var mongoDB = 'mongodb://127.0.0.1/my_database';
+
+var mongoose = require('mongoose');
+
+//Set up default mongoose connection
+var fs = require('fs')
+    , filename = 'db.cfg';
+fs.readFile(filename, 'utf8', function(err, data) {
+    if (err) throw err;
+
+    mongoDB = String(data);
+    console.log("Before connecting to mongoDB");
+
+    console.log("The port we are using is " + process.env.PORT);
+
+    mongoose.connect(mongoDB);//, {
+    require('./models/User');
+    require('./models/Itinerary');
+    require('./models/Country');
+    require('./models/Location');
+
+
+
+
+    //useMongoClient: true
+//});
+// Get Mongoose to use the global promise library
+    //mongoose.Promise = global.Promise; what is this for?
+// Get the default connection
+    //var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+    //db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+///
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
 app.use('/', index);
 app.use('/users', users);
 
@@ -55,34 +112,5 @@ app.use(function(err, req, res, next) {
 //app.listen(process.env.PORT || 3000);
 
 ///
-//Import the mongoose module
-var mongoDB = 'mongodb://127.0.0.1/my_database';
-
-var mongoose = require('mongoose');
-
-//Set up default mongoose connection
-var fs = require('fs')
-    , filename = 'db.cfg';
-fs.readFile(filename, 'utf8', function(err, data) {
-    if (err) throw err;
-
-    mongoDB = String(data);
-    console.log(mongoDB);
-
-    mongoose.connect(mongoDB);//, {
-    //useMongoClient: true
-//});
-// Get Mongoose to use the global promise library
-    //mongoose.Promise = global.Promise; what is this for?
-// Get the default connection
-    var db = mongoose.connection;
-
-//Bind connection to error event (to get notification of connection errors)
-    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-///
-
-
-
-});
 
 module.exports = app;

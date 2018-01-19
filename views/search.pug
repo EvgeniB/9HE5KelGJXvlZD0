@@ -8,93 +8,97 @@ block content
         option By country
         option By theme
     ul
-        each itinerary in itineraries
-            a
-                button More
-            li
-                ul
-                    each day in itinerary.Days
-                        li
-                            ul
-                                each event in itinerary.Events
-                                    li
-                                        p #{event.Label}
-                                    li
-                                        ul
-                                            each type in event.Type
-                                                li
-                                                    p #{type}
-                                    li
-                                        p #{event.Time}
-                                    li
-                                        p #{event.Description}
-                                    li
-                                        p #{event.Tips}
-                                    li
-                                        p #{event.Photo}
-                                    li
-                                        p #{event.Price}
-                                    li
-                                        p #{event.Hours}
-                                    li
-                                        p #{event.Address}
-                                    li
-                                        p #{event.Phone}
-                                    li
-                                        p #{event.Website}
-                                    li
-                                        p #{event.AudioGuides}
-                                    li
-                                        p #{event.BookLink}
-                                    li
-                                        p #{event.Transportation}
-                                    li
-                                        p #{event.Reviews}
-                        li
-                            p #{day.Title}
-                        li
-                            p #{day.Date}
-                        li
-                            ul
-                                each country in day.Countries
-                                    li
-                                        p #{country}
-                        li
-                            ul
-                                each location in day.Locations
-                                    li
-                                        p #{location}
-                        li
-                            p #{day.Overnight}
-            li
-                p Title: #{itinerary.Title}
-            li
-                p Description: #{itinerary.Description}
-            li
-                ul
-                    p Countries
-                    each country in itinerary.Countries
-                        p #{country}
-            li
-                ul
-                    each location in itinerary.Locations
-                        p #{location}
-            li
-                ul
-                    each feature in itinerary.Featuring
-                        p #{feature}
-            li
-                p #{itinerary.DayLength}
-            li
-                p #{itinerary.NightLength}
-            li
-                ul
-                    each theme in itinerary.Theme
-                        p #{theme}
-            li
-                p Image Url: #{itinerary.ImageUrl}
-                img(src=itinerary.ImageUrl)
-            li
-                ul
-                    each user in itinerary.User
-                        p #{user}
+        each itinerary in itineraries ? itineraries : []
+            form(method="post")
+                input(type="hidden", name="type", value="save")
+                input(type="hidden", name="id", value=itinerary._id)
+                a
+                    button More
+                input(type="submit", value="Save")
+                li
+                    ul
+                        each day in itinerary.Days
+                            li
+                                ul
+                                    each event in itinerary.Events
+                                        li
+                                            p #{event.Label}
+                                        li
+                                            ul
+                                                each type in event.Type
+                                                    li
+                                                        p #{type}
+                                        li
+                                            p #{event.Time}
+                                        li
+                                            p #{event.Description}
+                                        li
+                                            p #{event.Tips}
+                                        li
+                                            p #{event.Photo}
+                                        li
+                                            p #{event.Price}
+                                        li
+                                            p #{event.Hours}
+                                        li
+                                            p #{event.Address}
+                                        li
+                                            p #{event.Phone}
+                                        li
+                                            p #{event.Website}
+                                        li
+                                            p #{event.AudioGuides}
+                                        li
+                                            p #{event.BookLink}
+                                        li
+                                            p #{event.Transportation}
+                                        li
+                                            p #{event.Reviews}
+                            li
+                                p #{day.Title}
+                            li
+                                p #{day.Date}
+                            li
+                                ul
+                                    each country in day.Countries
+                                        li
+                                            p #{country}
+                            li
+                                ul
+                                    each location in day.Locations
+                                        li
+                                            p #{location}
+                            li
+                                p #{day.Overnight}
+                li
+                    p Title: #{itinerary.Title}
+                li
+                    p Description: #{itinerary.Description}
+                li
+                    ul
+                        p Countries
+                        each country in itinerary.Countries
+                            p #{country.Name}
+                li
+                    ul
+                        each location in itinerary.Locations
+                            p #{location.Name}
+                li
+                    ul
+                        each feature in itinerary.Featuring
+                            p #{feature}
+                li
+                    p #{itinerary.DayLength}
+                li
+                    p #{itinerary.NightLength}
+                li
+                    ul
+                        each theme in itinerary.Theme
+                            p #{theme}
+                li
+                    p Image Url: #{itinerary.ImageUrl}
+                    img(src=itinerary.ImageUrl)
+                li
+                    ul
+                        each user in itinerary.User
+                            p #{user}

@@ -44,3 +44,35 @@ function add_li(elem) {
 function delete_li(elem) {
     $('#'+elem).remove();
 }
+
+function add_day() {
+    var d_n_input = $("#days_n");
+    //alert(d_n_input.val());
+    var d = $("#stock_day").clone();//.insertAfter("#days_list ul:last");
+    d.attr("id", "day" + d_n_input.val());
+    d_n_input.val(Number(d_n_input.val()) + 1);
+    //alert($(d));
+    //$("#days_list ul").append('<li>dfs</li>');
+    $("#days_list").append(d);
+}
+
+function delete_day(element) {
+    var element = $(element);
+    element.parent().remove();
+}
+
+function add_event() {
+    var d_n_input = $("#events_n");
+    //alert(d_n_input.val());
+    var d = $("#stock_event").clone();//.insertAfter("#days_list ul:last");
+    d.attr("id", "event" + d_n_input.val());
+    d_n_input.val(Number(d_n_input.val()) + 1);
+    //alert($(d));
+    //$("#days_list ul").append('<li>dfs</li>');
+    $("#events_list").append(d);
+}
+
+function delete_event(element) {
+    var element = $(element);
+    element.parent().remove();
+}

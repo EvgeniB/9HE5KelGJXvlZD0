@@ -15,5 +15,13 @@ var userSchema = new Schema({
 // we need to create a model using it
 var User = mongoose.model('User', userSchema);
 
+//testing this
+//var exports = module.exports = {};
+
 // make this available to our users in our Node applications
 module.exports = User;
+
+//exports.User = User;
+
+//make userSchema available for population
+//exports.userSchema = userSchema;

@@ -30,7 +30,7 @@ var itinerarySchema = new Schema({
     }],
     Title: String,
     Description: String,
-    Countries: [Schema.Types.ObjectId],
+    Countries: [{ type: Schema.Types.ObjectId, ref: 'Country' }], //This is how to link collections
     Locations: [Schema.Types.ObjectId],
     Featuring: [Schema.Types.ObjectId],
     DayLength: Number,
@@ -46,3 +46,5 @@ var Itinerary = mongoose.model('Itinerary', itinerarySchema);
 
 // make this available to our users in our Node applications
 module.exports = Itinerary;
+
+//exports.Itinerary = Itinerary;

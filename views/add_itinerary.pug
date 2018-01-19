@@ -11,7 +11,12 @@ block content
             li
                 ul
                     // each day in itinerary.Days.length ? itinerary.Days : ['There are no values']
-                    li
+                    p Days:
+                    input(type='text', id='days_n', value='0')
+                    ul(id='days_list')
+                            // each country in itinerary.Countries.length ? values : ['There are no values']
+                    button(type='button', onclick="add_day()") Add
+                    //li
                         ul
                             // each event in itinerary.Events.length ? values : ['There are no values']
                             li
@@ -62,27 +67,29 @@ block content
                             li
                                 p Reviews:
                                 input(type='text')
-                    li
-                        p Title:
-                        input(type='text')
-                    li
-                        p Date:
-                        input(type='text')
-                    li
-                        ul
-                            // each country in day.Countries.length ? values : ['There are no values']
-                            li
-                                p Country:
-                                input(type='text')
-                    li
-                        ul
-                            // each location in day.Locations.length ? values : ['There are no values']
-                            li
-                                p Location:
-                                input(type='text')
-                    li
-                        p Overnight:
-                        input(type='text')
+
+
+                        li
+                            p Title:
+                            input(type='text')
+                        li
+                            p Date:
+                            input(type='text')
+                        li
+                            ul
+                                // each country in day.Countries.length ? values : ['There are no values']
+                                li
+                                    p Country:
+                                    input(type='text')
+                        li
+                            ul
+                                // each location in day.Locations.length ? values : ['There are no values']
+                                li
+                                    p Location:
+                                    input(type='text')
+                        li
+                            p Overnight:
+                            input(type='text')
             li
                 p Title:
                 input(type='text', name='title', value='')
@@ -140,3 +147,89 @@ block content
             input(type='submit', value='Save')
             a(href='/edit_itineraries')
                 input(type='button', value='Cancel')
+
+    div(hidden='')
+        li(id="stock_day")
+            button(onclick='delete_day(this)', type='button') Delete
+            ul
+                li
+                    p Events:
+                    input(type='text', id='events_n', value='0')
+                    ul(id='events_list')
+                        // each country in itinerary.Countries.length ? values : ['There are no values']
+                    button(type='button', onclick="add_event()") Add
+                li
+                    p Title:
+                    input(type='text')
+                li
+                    p Date:
+                    input(type='text')
+                li
+                    ul
+                        // each country in day.Countries.length ? values : ['There are no values']
+                        li
+                            p Country:
+                            input(type='text')
+                li
+                    ul
+                        // each location in day.Locations.length ? values : ['There are no values']
+                        li
+                            p Location:
+                            input(type='text')
+                li
+                    p Overnight:
+                    input(type='text')
+
+    div(hidden='')
+        li(id="stock_event")
+            button(onclick='delete_event(this)', type='button') Delete
+            ul
+                // each event in itinerary.Events.length ? values : ['There are no values']
+                li
+                    p Label:
+                    input(type='text')
+                li
+                    ul
+                        //each type in event.Type.length ? values : ['There are no values']
+                        li
+                            p Type:
+                            input(type='text')
+                li
+                    p Time:
+                    input(type='text')
+                li
+                    p Description:
+                    input(type='text')
+                li
+                    p Tips:
+                    input(type='text')
+                li
+                    p Photo:
+                    input(type='text')
+                li
+                    p Price:
+                    input(type='text')
+                li
+                    p Hours:
+                    input(type='text')
+                li
+                    p Address:
+                    input(type='text')
+                li
+                    p Phone:
+                    input(type='text')
+                li
+                    p Website:
+                    input(type='text')
+                li
+                    p AudioGuides:
+                    input(type='text')
+                li
+                    p BookLink:
+                    input(type='text')
+                li
+                    p Transportation:
+                    input(type='text')
+                li
+                    p Reviews:
+                    input(type='text')

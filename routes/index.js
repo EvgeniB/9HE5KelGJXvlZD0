@@ -123,6 +123,8 @@ router.get('/admin', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var admin = sess.admin;
 
     var reqlib = require('app-root-path').require;
@@ -171,14 +173,19 @@ router.post('/register', function(req, res, next) {
 
 });
 
-router.get('/search', function(req, res) {
+router.get('/search', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    //checkAdmin(user, res);
+
     console.log("Here");
     var reqlib = require('app-root-path').require;
-    var Itinerary = reqlib('/models/Itinerary.js');
+    //var Itinerary = reqlib('/models/Itinerary.js');
+    var mongoose = require('mongoose');
+    var Itinerary = mongoose.model('Itinerary');
 
+    /*
     if (req.body.country != 'undefined') {
         console.log("Here2");
         Itinerary.find({ countries: req.body.country }).sort({DayLength: 'desc'}).exec(function(err, itineraries) {
@@ -194,19 +201,145 @@ router.get('/search', function(req, res) {
             res.render('search', { itineraries: itineraries, _user: user } );
         });
     } else {
-        Itinerary.find({}, function (err, itineraries) {
+
+*/
+
+//This is how to get schema
+    var itinerarySchema = require('mongoose').model('Itinerary').schema;
+        //console.log(itinerarySchema);
+
+    //This is how to populate using mongoose models
+    Itinerary.find()
+        .populate([{path: 'Countries', model: 'Country'}])
+        .populate([{path: 'Locations', model: 'Location'}])
+        .exec(function (err, itineraries) {
+            // callback
+            console.log("callback");
+            console.log(itineraries);
+
+            res.render('search', { itineraries: itineraries, _user: user } );
+        });
+
+        //Itinerary.itinerarySchema.
+        //find({}).
+        //populate('Countries').
+        //exec(function (err, itineraries) {
+         //   if (err) return handleError(err);
+         //   console.log('The itineraries are %s', user.saved_itineraries);
+
+            //res.render('search', { itineraries: itineraries, _user: user } );
+
+        //});
+
+
+
+
+
+/*
+            Itinerary.find({}, function (err, itineraries) {
             console.log("Here4");
             if (err) throw err;
 
             console.log(itineraries);
             res.render('search', { itineraries: itineraries, _user: user } );
         });
+
+            */
+  //  }
+});
+
+router.post('/search', function(req, res, next) {
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://heroku_4mvmv68l:ocg3ckt1oo1hqndkbtee0n322c@ds111895.mlab.com:11895/heroku_4mvmv68l');
+    sess = req.session;
+    var user = sess.user;
+    console.log("!!!!!!!!!!!!!!!" + user._id);
+
+    var type = req.body.type;
+
+    var reqlib = require('app-root-path').require;
+    var User = reqlib('/models/User.js');
+    var User = mongoose.model('User');
+
+    var id = mongoose.Types.ObjectId('5a477de455534d156c5fa58c');
+    User.findById( '5a477de455534d156c5fa58c' ).exec(function(err, user_) {
+        console.log("USERUSER: " + user_);
+    });
+
+
+    if(type=='save') {
+
+        var mongoose = require('mongoose');
+        var Itinerary = mongoose.model('Itinerary');
+        //var User = mongoose.model('User');
+        var reqlib = require('app-root-path').require;
+        var User = reqlib('/models/User.js');
+
+        var id = req.body.id;
+
+        Itinerary.findById(id).exec(
+            function(err, doc) {
+                var d1 = doc;
+                delete d1._id;
+                var d2 = d1.save(function(err) {
+                    //if (err) throw err;
+                    if (err) {
+                        return console.log("error: " + err);
+                    }
+                    console.log(user + " " + user._id);
+
+                    User.find({}).exec(function(err, users) {
+                    //User.findOne({ _id : user._id }).exec(function(err, user_) {//, function(err, user_) {
+                        //if (err) throw err;
+                        if (err) {
+                            return console.log("error: " + err);
+                        }
+                        console.log(users);
+
+                        var u;
+                        for(i=0;i<users.length;i++) {
+                            if (users[i]._id == user._id)
+                                u = i;
+                        }
+
+
+
+                        users[u].saved_itineraries.push(d2);
+
+                        User.findByIdAndUpdate(user._id, { saved_itineraries: users[u].saved_itineraries }, function(err, a) {
+                            if (err) throw err;
+
+                            // we have the updated user returned to us
+                            console.log(a);
+
+
+                            Itinerary.find({}, function(err, itineraries) {
+                                if (err) {
+                                    return console.log("error: " + err);
+                                }
+                                res.render('search', { itineraries: [], _user: user } );
+                            });
+                        });
+
+
+
+                    });
+
+
+                });
+            }
+        );
     }
+
+        res.render('search', { itineraries: [], _user: user } );
+
 });
 
 router.get('/details/:title', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
@@ -225,20 +358,36 @@ router.get('/my_itineraries', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
+    var User = reqlib('/models/User.js');
     var usr;
 
-    Itinerary.find({ User: usr }, function(err, itineraries) {
-        if (err) throw err;
+    //Itinerary.find({ User: usr }, function(err, itineraries) {
+        //if (err) throw err;
 
-        res.render('my_itineraries', { itineraries: itineraries } );
+        //populating itineraries belonging to the user
+
+    User.
+    findOne({ _id: user._id }).
+    populate('saved_itineraries').
+    exec(function (err, itineraries) {
+        if (err) return handleError(err);
+        console.log('The itineraries are %s', user.saved_itineraries);
+
+        res.render('my_itineraries', { itineraries: itineraries, _user: user } );
     });
+
+    //});
 });
 
 router.get('/add_itinerary', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    //checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Country = reqlib('/models/Country.js');
@@ -256,6 +405,8 @@ router.get('/add_itinerary', function(req, res, next) {
 router.post('/add_itinerary', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
@@ -285,6 +436,8 @@ router.get('/edit/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
@@ -302,6 +455,8 @@ router.get('/edit/:id', function(req, res, next) {
 router.post('/edit/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
@@ -324,6 +479,8 @@ router.get('/edit_itineraries', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
 
@@ -339,6 +496,8 @@ router.get('/edit_itineraries', function(req, res, next) {
 router.post('/edit_itineraries', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Itinerary = reqlib('/models/Itinerary.js');
@@ -377,6 +536,8 @@ router.get('/edit_itinerary/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
 
@@ -395,6 +556,8 @@ router.get('/edit_itinerary/:id', function(req, res, next) {
 router.post('/edit_itinerary/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Itinerary= reqlib('/models/Itinerary.js');
@@ -422,6 +585,8 @@ router.get('/edit_users', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
     // get all the users
@@ -436,6 +601,8 @@ router.get('/edit_users', function(req, res, next) {
 router.get('/edit_user/:username', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
@@ -454,6 +621,8 @@ router.get('/edit_user/:username', function(req, res, next) {
 router.post('/edit_user/:username', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var User = reqlib('/models/User.js');
@@ -483,6 +652,8 @@ router.post('/add_country', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Country = reqlib('/models/Country.js');
 
@@ -503,6 +674,8 @@ router.get('/edit_countries', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Country = reqlib('/models/Country.js');
 
@@ -518,6 +691,8 @@ router.get('/edit_countries', function(req, res, next) {
 router.post('/edit_countries', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Country = reqlib('/models/Country.js');
@@ -545,6 +720,8 @@ router.get('/edit_country/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Country= reqlib('/models/Country.js');
 
@@ -560,6 +737,8 @@ router.get('/edit_country/:id', function(req, res, next) {
 router.post('/edit_country/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Country= reqlib('/models/Country.js');
@@ -583,12 +762,16 @@ router.get('/add_location', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     res.render('add_location', { _user: user });
 });
 
 router.post('/add_location', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Location = reqlib('/models/Location.js');
@@ -611,6 +794,8 @@ router.get('/edit_locations', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Location = reqlib('/models/Location.js');
 
@@ -626,6 +811,8 @@ router.get('/edit_locations', function(req, res, next) {
 router.post('/edit_locations', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Location = reqlib('/models/Location.js');
@@ -653,6 +840,8 @@ router.get('/edit_location/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var Location= reqlib('/models/Location.js');
 
@@ -668,6 +857,8 @@ router.get('/edit_location/:id', function(req, res, next) {
 router.post('/edit_location/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var Location= reqlib('/models/Location.js');
@@ -691,12 +882,16 @@ router.get('/add_event_type', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     res.render('add_event_type', { _user: user });
 });
 
 router.post('/add_event_type', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var EventType = reqlib('/models/EventType.js');
@@ -718,6 +913,8 @@ router.get('/edit_event_types', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var EventType = reqlib('/models/EventType.js');
 
@@ -733,6 +930,8 @@ router.get('/edit_event_types', function(req, res, next) {
 router.post('/edit_event_types', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
+
+    checkAdmin(user, res);
 
     var reqlib = require('app-root-path').require;
     var EventType = reqlib('/models/EventType.js');
@@ -760,6 +959,8 @@ router.get('/edit_event_type/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var EventType= reqlib('/models/EventType.js');
 
@@ -778,6 +979,8 @@ router.post('/edit_event_type/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
 
+    checkAdmin(user, res);
+
     var reqlib = require('app-root-path').require;
     var EventType= reqlib('/models/EventType.js');
 
@@ -795,5 +998,13 @@ router.post('/edit_event_type/:id', function(req, res, next) {
         res.redirect('/edit_event_types');
     });
 });
+
+var checkAdmin = function(user, res) {
+    console.log("current user: " + user);
+    if (user == undefined)
+        res.redirect("/");
+    if (!user.admin)
+        res.redirect("/");
+}
 
 module.exports = router;
