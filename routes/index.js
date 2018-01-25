@@ -7,8 +7,8 @@ var sess;
 router.get('/', function(req, res, next) {
     sess=req.session;
 
-    var reqlib = require('app-root-path').require;
-    var User = reqlib('/models/User.js');
+    //var reqlib = require('app-root-path').require;
+    //var User = reqlib('/models/User.js');
     // get all the users
 
     var admin = sess.admin;
@@ -71,12 +71,13 @@ router.get('/add', function(req, res, next) {
 
 });
 
-
-router.get('/login', function (req, res) {
+/*
+router.get('/login', function (req, res, next) {
     sess=req.session;
 
     var fn = require('./login');
     fn.get_login(req, res);
+    //return next();
 });
 
 router.post('/login', function (req, res, next) {
@@ -109,8 +110,9 @@ router.post('/login', function (req, res, next) {
         res.redirect('/');
     });
 });
+*/
 
-router.get('/logout', function(req, res) {
+router.get('/logout', function(req, res, next) {
     sess=req.session;
 
     sess.admin = false;

@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var index = require('./routes/index');
+var login = require('./routes/login');
 var users = require('./routes/users');
 
 var app = express();
@@ -53,8 +54,9 @@ fs.readFile(filename, 'utf8', function(err, data) {
     mongoDB = String(data);
     console.log("Before connecting to mongoDB");
 
-    console.log("The port we are using is " + process.env.PORT);
+    //console.log("The port we are using is " + process.env.PORT);
 
+    mongoDB = 'mongodb://127.0.0.1/my_database';
     mongoose.connect(mongoDB);//, {
     require('./models/User');
     require('./models/Itinerary');
@@ -89,6 +91,7 @@ fs.readFile(filename, 'utf8', function(err, data) {
 
 
 app.use('/', index);
+app.use('/login', login);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
