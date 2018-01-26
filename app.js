@@ -52,12 +52,12 @@ var fs = require('fs')
 fs.readFile(filename, 'utf8', function(err, data) {
     if (err) throw err;
 
-    mongoDB = String(data);
+    if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
+        mongoDB = String(data);
     console.log("Before connecting to mongoDB");
 
     //console.log("The port we are using is " + process.env.PORT);
 
-    //mongoDB = 'mongodb://127.0.0.1/my_database';
     mongoose.connect(mongoDB);//, {
     require('./models/User');
     require('./models/Itinerary');
