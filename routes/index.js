@@ -110,7 +110,7 @@ router.post('/login', function (req, res, next) {
         res.redirect('/');
     });
 });
-*/
+
 
 router.get('/logout', function(req, res, next) {
     sess=req.session;
@@ -120,6 +120,7 @@ router.get('/logout', function(req, res, next) {
 
     res.redirect('/');
 });
+*/
 
 router.get('/admin', function(req, res, next) {
     sess=req.session;
