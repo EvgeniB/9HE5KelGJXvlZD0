@@ -1,19 +1,43 @@
 var express = require('express');
 var router = express.Router();
 
+router.get('/', function(req, res, next) {
+    var sess=req.session;
+    var user = sess.user;
 
-router.get('/my_itineraries', function(req, res, next) {
-    var reqlib = require('app-root-path').require;
-    var Itinerary = reqlib('/models/Itinerary.js');
-    var usr;
+    require('./helpers/account_system').checkAdmin(user, res);
 
-    Itinerary.find({ User: usr }, function(err, itineraries) {
-        if (err) throw err;
+    var mongoose = require('mongoose');
 
-        res.render('my_itineraries', { itineraries: itineraries } );
+    //var ItinerarySchema = mongoose.model('Itinerary').schema;
+    //var Itinerary = mongoose.model('Itinerary', ItinerarySchema, 'Itinerary');
+
+    var UserSchema = mongoose.model('User').schema;
+    var User = mongoose.model('User', UserSchema, 'User');
+    //var usr;
+
+    //Itinerary.find({ User: usr }, function(err, itineraries) {
+    //if (err) throw err;
+
+    //populating itineraries belonging to the user
+
+    User.
+    findOne({ _id: user._id }).
+    //populate('saved_itineraries').
+    populate({ path: 'saved_itineraries', model: 'Itinerary' }).
+    exec(function (err, usr) {
+        if (err || !usr) {
+            console.log("Error populating user itineraries: " + err);
+            next(err);
+        } else {
+            console.log('User object: ' + usr);
+            console.log('The itineraries are %s', usr.saved_itineraries);
+
+            res.render('my_itineraries', {usr: usr, _user: user});
+        }
     });
 
-    res.render('my_itineraries');
+    //});
 });
 
 module.exports = router;

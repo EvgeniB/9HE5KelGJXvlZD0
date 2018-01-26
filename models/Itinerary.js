@@ -42,7 +42,7 @@ var itinerarySchema = new Schema({
 
 // the schema is useless so far
 // we need to create a model using it
-var Itinerary = mongoose.model('Itinerary', itinerarySchema);
+var Itinerary = mongoose.model('Itinerary', itinerarySchema, 'Itinerary');
 
 // make this available to our users in our Node applications
 module.exports = Itinerary;

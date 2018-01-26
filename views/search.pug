@@ -10,11 +10,15 @@ block content
     ul
         each itinerary in itineraries ? itineraries : []
             form(method="post")
-                input(type="hidden", name="type", value="save")
+                if locals._user
+                    input(type="hidden", name="type", value="save")
                 input(type="hidden", name="id", value=itinerary._id)
                 a
                     button More
-                input(type="submit", value="Save")
+                if locals._user
+                    input(type="submit", value="Save")
+                li
+                    p #{itinerary._id}
                 li
                     ul
                         each day in itinerary.Days

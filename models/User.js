@@ -8,12 +8,12 @@ var userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     admin: Boolean,
-    saved_itineraries : [Schema.Types.ObjectId]
+    saved_itineraries : [{ type: mongoose.Schema.ObjectId, ref: 'Itinerary', unique: true }]
 });
 
 // the schema is useless so far
 // we need to create a model using it
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema, 'User');
 
 //testing this
 //var exports = module.exports = {};
