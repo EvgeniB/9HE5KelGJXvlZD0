@@ -57,7 +57,7 @@ fs.readFile(filename, 'utf8', function(err, data) {
 
     //console.log("The port we are using is " + process.env.PORT);
 
-    mongoDB = 'mongodb://127.0.0.1/my_database';
+    //mongoDB = 'mongodb://127.0.0.1/my_database';
     mongoose.connect(mongoDB);//, {
     require('./models/User');
     require('./models/Itinerary');
