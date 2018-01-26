@@ -8,7 +8,7 @@ var userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     admin: Boolean,
-    saved_itineraries : [{ type: mongoose.Schema.ObjectId, ref: 'Itinerary', unique: true }]
+    saved_itineraries : [{ type: mongoose.Schema.ObjectId, ref: 'Itinerary' }]
 });
 
 // the schema is useless so far
