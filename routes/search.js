@@ -109,7 +109,9 @@ router.post('/', function(req, res, next) {
                 } else {
                     // Found itinerary
                     var d1 = doc;
-                    delete d1._id;
+                    //delete d1._id; // Doesn't work
+                    d1._id = mongoose.Types.ObjectId();
+                    d1.isNew = true;
                     d1.save(function (err, d2) {
                         //if (err) throw err;
                         if (err) {
