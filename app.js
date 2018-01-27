@@ -15,6 +15,7 @@ var my_itineraries = require('./routes/my_itineraries');
 var edit_users = require('./routes/edit_users');
 var add_user = require('./routes/add_user');
 var edit_user = require('./routes/edit_user');
+var view_itinerary = require('./routes/view_itinerary');
 var users = require('./routes/users');
 
 var app = express();
@@ -104,6 +105,7 @@ app.use('/my_itineraries', my_itineraries);
 app.use('/edit_users', edit_users);
 app.use('/add_user', add_user);
 app.use('/edit_user/', edit_user);
+app.use('/view_itinerary/', view_itinerary);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
