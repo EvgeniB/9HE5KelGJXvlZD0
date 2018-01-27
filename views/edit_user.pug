@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+    form(method='POST')
+        br
+        p Name:
+        input(type='text', name='name', value=mongo_user.name)
+        br
+        p Username:
+        input(type='text', name='username', value=mongo_user.username)
+        br
+        p Password:
+        input(type='text', name='password', value=mongo_user.password)
+        br
+        p Is admin
+        input(type='checkbox', name='isAdmin', checked=(mongo_user.admin ? "checked" : undefined))
+        input(type='submit', value='Save')
+        a(href='/edit_users')
+            input(type='button', value='Cancel')

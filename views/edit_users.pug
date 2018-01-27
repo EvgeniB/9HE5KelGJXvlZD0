@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    ul
+        each mongo_user in mongo_users ? mongo_users : []
+            a(href='edit_user/' + mongo_user._id)
+                li
+                    form(method='Post')
+                        input(type='hidden', name='todo', value='delete')
+                        p #{mongo_user.name}
+                        p #{mongo_user.username}
+                        p #{mongo_user._id}
+                        p admin: #{mongo_user.admin}
+                        input(type='hidden', name='id' value=mongo_user._id)
+                        input(type='submit', value='Delete')
+    a(href='/add_user')
+        button Add new
+
+

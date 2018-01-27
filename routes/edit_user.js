@@ -1,39 +1,58 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/edit_user/:username', function(req, res, next) {
-    var reqlib = require('app-root-path').require;
-    var User = reqlib('/models/User.js');
+router.get('/:username', function(req, res, next) {
+    var sess=req.session;
+    var user = sess.user;
+
+    require('./helpers/account_system').checkAdmin(user, res);
+
+    var mongoose = require('mongoose');
+    var UserSchema = mongoose.model('User').schema;
+    var User = mongoose.model('User', UserSchema, 'User');
 
     var usr = req.params.username;
 
-    User.find({ username: usr }, function(err, user) {
+    User.find({ username: usr }, function(err, mongo_user) {
         if (err) throw err;
 
-        console.log(user);
-
-        res.render('edit_user', { user: user });
+        console.log("User being edited: " + mongo_user);
+        res.render('edit_user', { mongo_user: mongo_user, _user: user });
     });
-
-    res.render('edit_user');
 });
 
-router.post('/edit_user/:username', function(req, res, next) {
-    var reqlib = require('app-root-path').require;
-    var User = reqlib('/models/User.js');
+router.post('/:username', function(req, res, next) {
+    var sess=req.session;
+    var user = sess.user;
+
+    require('./helpers/account_system').checkAdmin(user, res);
+
+    var mongoose = require('mongoose');
+    var UserSchema = mongoose.model('User').schema;
+    var User = mongoose.model('User', UserSchema, 'User');
 
     // save user
-    var usr = req.params.username;
-    var isAdmin = req.body.isadmin;
+    var id = req.params.username;
 
-    User.findOneAndUpdate({ username: usr }, { isAdmin: isAdmin }, function(err, user) {
-        if (err) throw err;
+    var name = req.body.name ? req.body.name : "";
+    var username = req.body.username ? req.body.username : "";
+    var password = req.body.password ? req.body.password : "";
+    var isAdmin = req.body.isAdmin ? true : false;//req.body.isAdmin ? (req.body.isAdmin ? true : false) : "";
 
-        // we have the updated user returned to us
-        console.log(user);
+    User.findOneAndUpdate({ _id: id }, { name: name, username: username, password: password, admin: isAdmin }, function(err, mongo_user) {
+        if (err) {
+
+
+        next(err);
+        }
+        else {
+            // we have the updated user returned to us
+            console.log("Updated user: " + mongo_user);
+            res.redirect('/edit_users');
+            //res.render('edit_user', { mongo_user: mongo_user, _user: user });
+        }
     });
 
-    res.render('edit_user');
 });
 
 module.exports = router;

@@ -12,6 +12,9 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var search = require('./routes/search');
 var my_itineraries = require('./routes/my_itineraries');
+var edit_users = require('./routes/edit_users');
+var add_user = require('./routes/add_user');
+var edit_user = require('./routes/edit_user');
 var users = require('./routes/users');
 
 var app = express();
@@ -98,6 +101,9 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/search', search);
 app.use('/my_itineraries', my_itineraries);
+app.use('/edit_users', edit_users);
+app.use('/add_user', add_user);
+app.use('/edit_user/', edit_user);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

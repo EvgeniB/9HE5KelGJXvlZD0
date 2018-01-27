@@ -413,66 +413,6 @@ router.post('/edit_itinerary/:id', function(req, res, next) {
     });
 });
 
-router.get('/edit_users', function(req, res, next) {
-    sess=req.session;
-    var user = sess.user;
-
-    checkAdmin(user, res);
-
-    var reqlib = require('app-root-path').require;
-    var User = reqlib('/models/User.js');
-    // get all the users
-
-    User.find({}, function(err, users) {
-        if (err) throw err;
-
-        res.render('edit_users', { users: users, _user: user } );
-    });
-});
-
-router.get('/edit_user/:username', function(req, res, next) {
-    sess=req.session;
-    var user = sess.user;
-
-    checkAdmin(user, res);
-
-    var reqlib = require('app-root-path').require;
-    var User = reqlib('/models/User.js');
-
-    var usr = req.params.username;
-
-    User.find({ username: usr }, function(err, user) {
-        if (err) throw err;
-
-        console.log(user);
-
-        res.render('edit_user', { user: user, _user: user });
-    });
-});
-
-router.post('/edit_user/:username', function(req, res, next) {
-    sess=req.session;
-    var user = sess.user;
-
-    checkAdmin(user, res);
-
-    var reqlib = require('app-root-path').require;
-    var User = reqlib('/models/User.js');
-
-    // save user
-    var usr = req.params.username;
-    var isAdmin = req.body.isadmin;
-
-    User.findOneAndUpdate({ username: usr }, { isAdmin: isAdmin }, function(err, user) {
-        if (err) throw err;
-
-        // we have the updated user returned to us
-        console.log(user);
-    });
-
-    res.render('edit_user', { _user: user });
-});
-
 router.get('/add_country', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
