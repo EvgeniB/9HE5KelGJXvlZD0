@@ -5,7 +5,7 @@ router.get('/', function(req, res, next) {
     var sess=req.session;
     var user = sess.user;
 
-    //require('./helpers/account_system').checkAdmin(user, res);
+    require('./helpers/account_system').checkAdmin(user, res);
 
     res.render('add_user', { _user: user });
 });
@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
     var sess=req.session;
     var user = sess.user;
 
-    //require('./helpers/account_system').checkAdmin(user, res);
+    require('./helpers/account_system').checkAdmin(user, res);
 
     var mongoose = require('mongoose');
     var UserSchema = mongoose.model('User').schema;

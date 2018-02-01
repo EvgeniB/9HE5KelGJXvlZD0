@@ -24,14 +24,14 @@ var itinerarySchema = new Schema({
         }],
         Title: String,
         Date: Date,
-        Countries: [Schema.Types.ObjectId],
-        Locations: [Schema.Types.ObjectId],
+        Day_Countries: [Schema.Types.ObjectId],
+        Day_Locations: [Schema.Types.ObjectId],
         Overnight: String
     }],
     Title: String,
     Description: String,
     Countries: [{ type: Schema.Types.ObjectId, ref: 'Country' }], //This is how to link collections
-    Locations: [Schema.Types.ObjectId],
+    Locations: [{ type: Schema.Types.ObjectId, ref: 'Location'}],
     Featuring: [Schema.Types.ObjectId],
     DayLength: Number,
     NightLength: Number,

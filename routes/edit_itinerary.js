@@ -1,40 +1,68 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/edit_itinerary/:title', function(req, res, next) {
-    var reqlib = require('app-root-path').require;
-    var Itinerary= reqlib('/models/Itinerary.js');
+router.get('/:id', function(req, res, next) {
+    var sess=req.session;
+    var user = sess.user;
 
-    var iti = req.params.title;
+    require('./helpers/account_system').checkAdmin(user, res);
 
-    Itinerary.find({ Title: iti }, function(err, itinerary) {
+    var mongoose = require('mongoose');
+    var ItinerarySchema = mongoose.model('Itinerary').schema;
+    var Itinerary = mongoose.model('Itinerary', ItinerarySchema, 'Itinerary');
+
+    var CountrySchema = mongoose.model('Country').schema;
+    var Country = mongoose.model('Country', CountrySchema, 'Country');
+
+    var LocationSchema = mongoose.model('Location').schema;
+    var Location = mongoose.model('Location', LocationSchema, 'Location');
+
+    var id = req.params.id;
+
+    Itinerary.findOne({ _id: id }, function(err, itinerary) {
         if (err) throw err;
 
-        console.log(itinerary);
+        //console.log(itinerary + '\n');
+        //console.log(JSON.parse(JSON.stringify(itinerary.Title)));
 
-        res.render('edit_itinerary', { Title: itinerary });
+        Country.find({}, function(err, countries) {
+
+            //console.log('countries: ' + countries);
+
+            Location.find({}, function(err, locations) {
+
+                res.render('add_itinerary', { itinerary: itinerary, countries: countries, locations: locations, _user: user });
+
+            });
+
+        });
     });
-
-    res.render('edit_itinerary');
 });
 
-router.post('/edit_itinerary/:title', function(req, res, next) {
-    var reqlib = require('app-root-path').require;
-    var Itinerary= reqlib('/models/Itinerary.js');
+router.post('/:id', function(req, res, next) {
+    var sess=req.session;
+    var user = sess.user;
+
+    require('./helpers/account_system').checkAdmin(user, res);
+
+    var mongoose = require('mongoose');
+    var ItinerarySchema = mongoose.model('Itinerary').schema;
+    var Itinerary = mongoose.model('Itinerary', ItinerarySchema, 'Itinerary');
 
     // save itinerary
-    var iti = req.params.title;
-    var isAdmin = req.body.isadmin;
+    var itinerary = JSON.parse(req.body.itinerary);
 
-    Itinerary.findOneAndUpdate({ Title: iti }, { isAdmin: isAdmin }, function(err, itinerary) {
+    var id = req.params.id;
+    //Itinerary.findOneAndUpdate({ _id: id }, { Days: itinerary.Days, Title: itinerary.Title, Description: itinerary.Description, DayLength: itinerary.DayLength,
+    //    NightLength: itinerary.NightLength, ImageUrl: itinerary.ImageUrl }, function(err, itinerary) {
+    Itinerary.findOneAndUpdate({ _id: id }, itinerary , function(err, itinerary) {
         if (err) throw err;
 
         // we have the updated itinerary returned to us
-        console.log(itinerary);
+        //console.log(itinerary);
+
+        res.redirect('/edit_itineraries');
     });
-
-    res.render('edit_itinerary');
 });
-
 
 module.exports = router;

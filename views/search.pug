@@ -19,20 +19,21 @@ block content
                     input(type="submit", value="Save")
                 a(href='../view_itinerary/' + itinerary._id)
                     li
-                        p #{itinerary._id}
+                        p Itinerary #{itinerary}
                     li
                         ul
-                            each day in itinerary.Days
+                            each index, day in itinerary.Days ? itinerary.Days : []
                                 li
+                                    p Day #{index + 1}
                                     ul
-                                        each event in itinerary.Events
+                                        each event in itinerary.Events ? itinerary.Events : []
                                             li
-                                                p #{event.Label}
+                                                p Event Label: #{event.Label}
                                             li
                                                 ul
                                                     each type in event.Type
                                                         li
-                                                            p #{type}
+                                                            p Event Type: #{type}
                                             li
                                                 p #{event.Time}
                                             li
@@ -60,28 +61,30 @@ block content
                                             li
                                                 p #{event.Reviews}
                                 li
-                                    p #{day.Title}
+                                    p Day Title: #{day.Title}
                                 li
-                                    p #{day.Date}
-                                li
-                                    ul
-                                        each country in day.Countries
-                                            li
-                                                p #{country}
+                                    p Date Date: #{day.Date}
                                 li
                                     ul
-                                        each location in day.Locations
-                                            li
-                                                p #{location}
+                                        if day.Countries
+                                            each country in day.Countries
+                                                li
+                                                    p Date Country: #{country}
                                 li
-                                    p #{day.Overnight}
+                                    ul
+                                        if day.Locations
+                                            each location in day.Locations
+                                                li
+                                                    p Day Location #{location}
+                                li
+                                    p Day Overnight #{day.Overnight}
                     li
                         p Title: #{itinerary.Title}
                     li
                         p Description: #{itinerary.Description}
                     li
                         ul
-                            p Countries
+                            p Countries #{itinerary.Countries}
                             each country in itinerary.Countries
                                 p #{country.Name}
                     li
@@ -93,9 +96,9 @@ block content
                             each feature in itinerary.Featuring
                                 p #{feature}
                     li
-                        p #{itinerary.DayLength}
+                        p Day Length: #{itinerary.DayLength}
                     li
-                        p #{itinerary.NightLength}
+                        p Night Length: #{itinerary.NightLength}
                     li
                         ul
                             each theme in itinerary.Theme

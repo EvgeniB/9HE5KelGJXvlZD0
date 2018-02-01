@@ -5,7 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var session = require('express-session');
+//var session = require('express-session');
+//var MemoryStore = require('memorystore')(session)
+var cookieSession = require('cookie-session');
 
 var index = require('./routes/index');
 var login = require('./routes/login');
@@ -15,10 +17,19 @@ var my_itineraries = require('./routes/my_itineraries');
 var edit_users = require('./routes/edit_users');
 var add_user = require('./routes/add_user');
 var edit_user = require('./routes/edit_user');
+var add_itinerary = require('./routes/add_itinerary');
+var edit_itinerary = require('./routes/edit_itinerary');
 var view_itinerary = require('./routes/view_itinerary');
+var add_country = require('./routes/add_country');
+var edit_countries = require('./routes/edit_countries');
+var add_location = require('./routes/add_location');
+var edit_locations = require('./routes/edit_locations');
 var users = require('./routes/users');
 
 var app = express();
+
+// setting port
+//app.set('port', process.env.PORT || 3001);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,13 +43,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
 app.use(session({
     resave: false,
     saveUninitialized: true,
-    secret: 'secret',
+    secret: 'secret', store: new MemoryStore(), expires: new Date(Date.now() + (30 * 86400 * 1000)), //store: new MemoryStore(),
     cookie: { secure: false }
 }));
+*/
+app.use(cookieSession({
+    name: 'session',
+    keys: ['secret'],
 
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 
 
@@ -105,7 +124,13 @@ app.use('/my_itineraries', my_itineraries);
 app.use('/edit_users', edit_users);
 app.use('/add_user', add_user);
 app.use('/edit_user/', edit_user);
+app.use('/add_itinerary', add_itinerary);
+app.use('/edit_itinerary', edit_itinerary);
 app.use('/view_itinerary/', view_itinerary);
+app.use('/add_country', add_country);
+app.use('/edit_countries', edit_countries);
+app.use('/add_location', add_location);
+app.use('/edit_locations', edit_locations);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -126,7 +151,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//app.listen(process.env.PORT || 3000);
+// make app listen on port
+//app.listen(app.get('port'));
 
 ///
 
