@@ -2,3 +2,93 @@ extends layout
 
 block content
 
+    // Main Canvas
+    .wrapper
+        .page-header.clear-filter(filter-color='orange')
+            .page-header-image(style="background-image: url('http://www.salento-italia.it/wp-content/uploads/2015/05/otranto-home.jpg');")
+            .container
+                .content-center.brand
+                    img.n-logo(src='./assets/img/now-logo.png', alt='')
+                    h1.h1-seo Travel Route
+                    h3 Less Headache, More Travel
+                    button.btn.btn-primary.btn-lg Choose your adventure
+        .main
+            .section.section-nucleo-icons
+                .container
+                    .row
+                        .col-lg-6.col-md-12
+                            h2.title What is Travel Route?
+                            h5.description
+                                | Here at Travel Route we have one mission - worry free adventures of a lifetime, for less. We believe that travellers should travel, so go out and immerse yourself in the culture, cuisine and wonders of your dream destination, while we take care of all the nitty gritty details ahead of time. All you have to do is follow. Are you in?
+                            //
+                              <div class="nucleo-container">
+                              <img src="assets/img/nucleo.svg" alt="">
+                              </div>
+                            a.btn.btn-primary.btn-round.btn-lg(href='nucleo-icons.html', target='_blank') Awesome!
+                            a.btn.btn-primary.btn-simple.btn-round.btn-lg(href='https://nucleoapp.com/?ref=1712', target='_blank') Tell me more...
+                        .col-lg-6.col-md-12
+                            img(src='http://www.opyd.com/press/wp-content/gallery/china_2/brian-opyd-travel-photography-china-li-river.jpg')
+        .section.section-tabs
+            .container
+                .row
+                    .row.text-center.mt-5
+                        .col-md-8.ml-auto.mr-auto
+                            h2 How does it work?
+                            h5.description
+                                | Did you know? The average person spends up to 22 hours researching their destination and planning before their trip?
+                                | Sounds boring, right? With Travel Route go from Eureka to Adventure in 3 super simple, easy to follow steps.
+                            br
+                    .col-md-10.col-lg-8.col-xl-4.ml-auto.mr-auto
+                        .card
+                            .card-body
+                                p.category Step 1: Get inspired"
+                                br
+                                .tab-content.text-center
+                                    #home.tab-pane.active(role='tabpanel')
+                                        p
+                                            | Our captivating, detailed itineraries and travel plans cater to every taste and style of travel. Whether you are planning your next romantic getaway, meeting the family overseas, looking to hike the Amalfi coast or travelling with children, simply pick the options you would like and let our itinerary magic tool build the perfect adventure. Made with love, just for you.
+                    .col-md-10.col-lg-8.col-xl-4.ml-auto.mr-auto
+                        .card
+                            .card-body
+                                p.category Step 2: "Make it your own"
+                                br
+                                .tab-content.text-center
+                                    #home.tab-pane.active(role='tabpanel')
+                                        p
+                                            | We believe that each trip should be special, and as such - we want to make it all about you. With Travel Route, you can edit any detail of the itinerary of your choice. From the places you visit and the experiences that await to the time and date of your grand adventure. You can even combine multiple different itineraries together to make your next adventure just right.
+                    .col-md-10.col-lg-8.col-xl-4.ml-auto.mr-auto
+                        .card
+                            .card-body
+                                p.category Step 3: "Go travel"
+                                br
+                                .tab-content.text-center
+                                    #home.tab-pane.active(role='tabpanel')
+                                        p
+                                            | Pack your bags, make sure your stove is off, grab your boarding passes and let's set out on an epic adventure. Travel Route will be by your side to guide you the entire time! Access your itineraries online, save them to your personal devices or print them for convenient, organized travel. So, what are you waiting for? A worry free epic trip of a lifetime awaits you!
+        // End Modal
+        footer.footer(data-background-color='black')
+            .container
+                nav
+                    ul
+                        li
+                            a(href='#')
+                                | TRAVEL ROUTE
+                        li
+                            a(href='#')
+                                | About Us
+                        li
+                            a(href='#')
+                                | Blog
+                        li
+                            a(href='#')
+                                | Itineraries
+                .copyright
+                    | ©
+                    script.
+                        document.write(new Date().getFullYear())
+                    | , Designed by
+                    a(href='#', target='_blank') Nik N
+                    | . Coded by
+                    a(href='#', target='_blank') Yauheni B
+                    | .
+    // End Main Canvas
