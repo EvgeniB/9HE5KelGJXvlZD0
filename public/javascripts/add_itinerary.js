@@ -229,7 +229,7 @@ function make_itinerary() {
 
     itinerary.Days = Days;
 
-    alert(itinerary);
+    //alert(itinerary);
     //alert(JSON.stringify(itinerary));
 
     $('#itinerary').val(JSON.stringify(itinerary));

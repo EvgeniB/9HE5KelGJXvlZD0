@@ -8,75 +8,38 @@ router.get('/', function(req, res, next) {
 
     //checkAdmin(user, res);
 
-    console.log("User: " + user);
-
-    console.log("Here");
-    var reqlib = require('app-root-path').require;
-    //var Itinerary = reqlib('/models/Itinerary.js');
     var mongoose = require('mongoose');
-
-    /*
-    if (req.body.country != 'undefined') {
-        console.log("Here2");
-        Itinerary.find({ countries: req.body.country }).sort({DayLength: 'desc'}).exec(function(err, itineraries) {
-            if (err) throw err;
-
-            res.render('search', { itineraries: itineraries, _user: user } );
-        });
-    } else if(req.body.theme != 'undefined') {
-        console.log("Here3");
-        Itinerary.find({ countries: req.body.theme }).sort({DayLength: 'desc'}).exec(function(err, itineraries) {
-            if (err) throw err;
-
-            res.render('search', { itineraries: itineraries, _user: user } );
-        });
-    } else {
-
-*/
-
-//This is how to get schema
+    //This is how to get schema
     var itinerarySchema = require('mongoose').model('Itinerary').schema;
     var Itinerary = mongoose.model('Itinerary', itinerarySchema, 'Itinerary');
-    //console.log(itinerarySchema);
 
-    //This is how to populate using mongoose models
-    Itinerary.find()
-        .populate([{path: 'Countries', model: 'Country'}])
-        .populate([{path: 'Locations', model: 'Location'}])
-        .exec(function (err, itineraries) {
-            // callback
-            console.log("callback");
-            console.log(itineraries);
+    var countrySchema = require('mongoose').model('Country').schema;
+    var Country = mongoose.model('Country', countrySchema, 'Country');
 
-            res.render('search', { itineraries: itineraries, _user: user } );
-        });
+    var countries = {};
+    var country_name = req.query.country;
 
-    //Itinerary.itinerarySchema.
-    //find({}).
-    //populate('Countries').
-    //exec(function (err, itineraries) {
-    //   if (err) return handleError(err);
-    //   console.log('The itineraries are %s', user.saved_itineraries);
+    Country.findOne({ Name: country_name }, function(err, country) {
+        if (err)
+            next(err);
+        else {
+            if (country) {
+                countries = { Countries : country._id };
+            }
 
-    //res.render('search', { itineraries: itineraries, _user: user } );
+            //This is how to populate using mongoose models
+            Itinerary.find(countries)
+                .populate([{path: 'Countries', model: 'Country'}])
+                .populate([{path: 'Locations', model: 'Location'}])
+                .exec(function (err, itineraries) {
+                    // callback
+                    console.log("callback");
+                    console.log(itineraries);
 
-    //});
-
-
-
-
-
-    /*
-                Itinerary.find({}, function (err, itineraries) {
-                console.log("Here4");
-                if (err) throw err;
-
-                console.log(itineraries);
-                res.render('search', { itineraries: itineraries, _user: user } );
-            });
-
-                */
-    //  }
+                    res.render('search', {itineraries: itineraries, _user: user});
+                });
+        }
+    })
 });
 
 router.post('/', function(req, res, next) {
@@ -161,6 +124,14 @@ router.post('/', function(req, res, next) {
             }
         );
     }
+    else
+    if (type == 'search') {
+        var text = req.body.search_field;
+
+        res.redirect('/search?country=' + text);
+    }
+    else
+        res.redirect('/search');
 
     //res.render('search', { itineraries: [], _user: user } );
 

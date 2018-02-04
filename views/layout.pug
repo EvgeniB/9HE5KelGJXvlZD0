@@ -11,8 +11,8 @@ html
     link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700,200', rel='stylesheet')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css')
     // CSS Files
-    link(href='./assets/css/bootstrap.min.css', rel='stylesheet')
-    link(href='./assets/css/now-ui-kit.css?v=1.1.0', rel='stylesheet')
+    link(href='/assets/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/assets/css/now-ui-kit.css?v=1.1.0', rel='stylesheet')
 
     //title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -84,9 +84,12 @@ html
     // End Navbar
     // Main Canvas
     .wrapper
-     .main
+      block wrapper
+      .main
+        block content
+
     // End Main Canvas
 
 
 
-    block content
+

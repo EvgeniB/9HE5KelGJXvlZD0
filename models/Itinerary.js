@@ -32,12 +32,10 @@ var itinerarySchema = new Schema({
     Description: String,
     Countries: [{ type: Schema.Types.ObjectId, ref: 'Country' }], //This is how to link collections
     Locations: [{ type: Schema.Types.ObjectId, ref: 'Location'}],
-    Featuring: [Schema.Types.ObjectId],
     DayLength: Number,
     NightLength: Number,
     Theme: [Schema.Types.ObjectId],
-    ImageUrl: String,
-    User: [Schema.Types.ObjectId]
+    ImageUrl: String
 });
 
 // the schema is useless so far

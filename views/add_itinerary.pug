@@ -1,5 +1,5 @@
 extends layout
-block head
+append head
     script.
         var cs = "#{countries}";
     script(type='text/javascript', src='http://code.jquery.com/jquery-1.7.1.min.js')
@@ -8,7 +8,8 @@ block content
 
     form(method='POST')
         input(type='hidden', id='itinerary', name='itinerary', value='')
-        p Id: #{itinerary._id}
+        if itinerary
+            p Id: #{itinerary._id}
         p Days:
         if itinerary
             if itinerary.Days
@@ -18,11 +19,14 @@ block content
         else
             - var n = '0'
         input(type='text', id='days_n', value=n)
-        p itinerary: #{itinerary}
+        if itinerary
+            p itinerary: #{itinerary}
         ul(id='days_list')
-            p itinerary.Days: #{itinerary.Days}
-            if itinerary.Days
-                each index, day in itinerary.Days.length ? itinerary.Days : []
+            if itinerary
+                if itinerary.Days
+                    p itinerary.Days: #{itinerary.Days}
+            if itinerary
+                each index, day in itinerary.Days ? itinerary.Days : []
                     //each country in itinerary.Countries.length ? values : ['There are no values']
                     li
                         button(onclick='delete_day(this)', type='button') Delete
@@ -129,13 +133,22 @@ block content
         button(type='button', onclick="add_day()") Add
         li
             p Title:
-            input(type='text', id='title', name='title', value=itinerary.Title)
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Title
+            input(type='text', id='title', name='title', value=t)
         li
             p Description:
-            input(type='text', id='description', name='description', value=itinerary.Description)
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Description
+            input(type='text', id='description', name='description', value=t)
         li
-            p Itinerary countries: #{itinerary.Countries}
-            p Countries: #{countries}
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Countries
+            //p Itinerary countries: #{t}
+            //p Countries: #{countries}
             div(id='country_list')
                 if countries
                     each country in countries ? countries : []
@@ -145,12 +158,18 @@ block content
                             if itinerary
                                 if itinerary.Countries
                                     each c in itinerary.Countries
-                                        if country._id == c._id
+                                        //p Check going itinerary country #{ c }
+                                        if country._id.toString() == c.toString()
                                             - country_check = true
+                                            //p Check passed
+                            //p Check is #{country_check}
                             input(id=country._id, name=country._id, type="checkbox", value=country._id, checked=(country_check ? "checked" : undefined))
         li
-            p Itinerary locations: #{itinerary.locations}
-            p Locations #{locations}
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Locations
+            //p Itinerary locations: #{t}
+            //p Locations #{locations}
             div(id='location_list')
                 if locations
                     each location in locations ? locations : []
@@ -159,23 +178,15 @@ block content
                         if itinerary
                             if itinerary.locations
                                 each c in itinerary.locations
-                                    if location._id == c._id
+                                    if location._id.toString() == c.toString()
                                         - location_check = true
                         input(id=location._id, name=location._id, type="checkbox", value=location._id, checked=(location_check ? "checked" : undefined))
-            //ul
-                // each location in itinerary.Locations.length ? values : ['There are no values']
-                li
-                    p Location:
-                    input(type='text')
-        li
-            ul
-                //each feature in itinerary.Featuring.length ? values : ['There are no values']
-                li
-                    p Feature:
-                    input(type='text')
         li
             p Day Length:
-            input(type='text', id='daylength', name='daylength', value=itinerary.DayLength)
+            - var t = ''
+            if itinerary
+                - var t = itinerary.DayLength
+            input(type='text', id='daylength', name='daylength', value=t)
         li
             p Night Length:
             input(type='text')
@@ -187,13 +198,10 @@ block content
                     input(type='text')
         li
             p Image Url:
-            input(type='text', id='imageurl', name='imageurl', value=itinerary.ImageUrl)
-        li
-            ul
-                //each user in itinerary.User.length ? values : ['There are no values']
-                li
-                    p User:
-                    input(type='text')
+            - var t = ''
+            if itinerary
+                - var t = itinerary.ImageUrl
+            input(type='text', id='imageurl', name='imageurl', value=t)
         br
         //input(type='button', value='Save', onclick='make_itinerary()')
         input(type='submit', value='Save')
