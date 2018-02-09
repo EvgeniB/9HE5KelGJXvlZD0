@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
         Location.findOneAndRemove({_id: id}, function (err) {
             if (err) throw err;
 
-            console.log('Country deleted!');
+            console.log('Location deleted!');
             Location.find({}, function (err, locations) {
                 if (err) throw err;
 
