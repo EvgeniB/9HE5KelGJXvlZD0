@@ -148,7 +148,7 @@ block content
             if itinerary
                 - var t = itinerary.Countries
             //p Itinerary countries: #{t}
-            //p Countries: #{countries}
+            p Countries
             div(id='country_list')
                 if countries
                     each country in countries ? countries : []
@@ -169,7 +169,7 @@ block content
             if itinerary
                 - var t = itinerary.Locations
             //p Itinerary locations: #{t}
-            //p Locations #{locations}
+            p Locations
             div(id='location_list')
                 if locations
                     each location in locations ? locations : []
@@ -191,11 +191,22 @@ block content
             p Night Length:
             input(type='text')
         li
-            ul
-                //each theme in itinerary.Theme.length ? values : ['There are no values']
-                li
-                    p Theme:
-                    input(type='text')
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Theme
+            p Themes
+            div(id='theme_list')
+                if themes
+                    each theme in themes ? themes : []
+                        div
+                            p Country: #{theme.Name}
+                            - theme_check = false
+                            if itinerary
+                                if itinerary.Theme
+                                    each c in itinerary.Theme
+                                        if theme._id.toString() == c.toString()
+                                            - theme_check = true
+                            input(id=theme._id, name=theme._id, type="checkbox", value=theme._id, checked=(theme_check ? "checked" : undefined))
         li
             p Image Url:
             - var t = ''
@@ -204,9 +215,9 @@ block content
             input(type='text', id='imageurl', name='imageurl', value=t)
         br
         //input(type='button', value='Save', onclick='make_itinerary()')
-        input(type='submit', value='Save')
-        input(type='button', onclick='make_itinerary()', value='Make itinerary')
-        a(href='/edit_itineraries')
+        //input(type='submit', value='Save')
+        input(type='button', onclick='make_itinerary()', value='Save')
+        a(href='/' + cancel_uri)
             input(type='button', value='Cancel')
 
     div(hidden='')

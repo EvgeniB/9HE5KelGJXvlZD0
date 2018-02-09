@@ -34,7 +34,7 @@ var itinerarySchema = new Schema({
     Locations: [{ type: Schema.Types.ObjectId, ref: 'Location'}],
     DayLength: Number,
     NightLength: Number,
-    Theme: [Schema.Types.ObjectId],
+    Theme: [{ type: Schema.Types.ObjectId, ref: 'Tag'}],
     ImageUrl: String
 });
 

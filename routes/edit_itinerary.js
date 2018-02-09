@@ -17,6 +17,9 @@ router.get('/:id', function(req, res, next) {
     var LocationSchema = mongoose.model('Location').schema;
     var Location = mongoose.model('Location', LocationSchema, 'Location');
 
+    var tagSchema = mongoose.model('Tag').schema;
+    var Tag = mongoose.model('Tag', tagSchema, 'Tag');
+
     var id = req.params.id;
 
     Itinerary.findOne({ _id: id }, function(err, itinerary) {
@@ -31,7 +34,18 @@ router.get('/:id', function(req, res, next) {
 
             Location.find({}, function(err, locations) {
 
-                res.render('add_itinerary', { itinerary: itinerary, countries: countries, locations: locations, _user: user });
+                Tag.find({}, function(err, themes) {
+
+                    res.render('add_itinerary', {
+                        itinerary: itinerary,
+                        countries: countries,
+                        locations: locations,
+                        themes: themes,
+                        cancel_uri: 'edit_itineraries',
+                        _user: user
+                    });
+
+                });
 
             });
 

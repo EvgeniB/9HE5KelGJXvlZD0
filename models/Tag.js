@@ -4,12 +4,12 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var tagSchema = new Schema({
-    Title: String
+    Name: String
 });
 
 // the schema is useless so far
 // we need to create a model using it
-var Tag = mongoose.model('Tag', tagSchema);
+var Tag = mongoose.model('Tag', tagSchema, 'Tag');
 
 // make this available to our users in our Node applications
 module.exports = Tag;

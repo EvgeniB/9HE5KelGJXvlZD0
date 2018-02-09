@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    ul
+        each tag in tags ? tags : []
+            a(href='edit_tag/' + tag._id)
+                li
+                    form(method='Post')
+                        input(type='hidden', name='todo', value='delete')
+                        p #{tag.Name}
+                        input(type='hidden', name='id' value=tag._id)
+                        input(type='submit', value='Delete')
+    a(href='/add_tag')
+        button Add new
+
+

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 router.get('/', function(req, res, next) {
     var sess=req.session;
     var user = sess.user;
@@ -16,7 +15,10 @@ router.get('/', function(req, res, next) {
     var countrySchema = require('mongoose').model('Country').schema;
     var Country = mongoose.model('Country', countrySchema, 'Country');
 
-    var countries = {};
+    var tagSchema = mongoose.model('Tag').schema;
+    var Tag = mongoose.model('Tag', tagSchema, 'Tag');
+
+    var parameters = {};
     var country_name = req.query.country;
 
     Country.findOne({ Name: country_name }, function(err, country) {
@@ -24,20 +26,45 @@ router.get('/', function(req, res, next) {
             next(err);
         else {
             if (country) {
-                countries = { Countries : country._id };
+                parameters = { Countries : country._id };
             }
 
-            //This is how to populate using mongoose models
-            Itinerary.find(countries)
-                .populate([{path: 'Countries', model: 'Country'}])
-                .populate([{path: 'Locations', model: 'Location'}])
-                .exec(function (err, itineraries) {
-                    // callback
-                    console.log("callback");
-                    console.log(itineraries);
+            Tag.find({}, function(err, tags) {
+                if (err) next(err);
 
-                    res.render('search', {itineraries: itineraries, _user: user});
-                });
+                var tagname;
+
+                var themes = [];
+
+                for(var i=0;i<tags.length;i++) {
+                    tagname = req.query[tags[i].Name];
+                    if (req.query[tags[i].Name])
+                        themes.push(tags[i]._id);
+                }
+
+
+                var json_object = { $all: themes };
+                if(themes.length > 0)
+                    parameters.Theme = json_object;
+
+                console.log('parameters ' + JSON.stringify(parameters));
+
+                //The way to find itineraries given a list of Themes is as such
+                //Itinerary.find({Theme: {$all: ['item1', 'item2', ...]}, rest of parameters})
+
+                //This is how to populate using mongoose models
+                Itinerary.find(parameters)
+                    .populate([{path: 'Countries', model: 'Country'}])
+                    .populate([{path: 'Locations', model: 'Location'}])
+                    .populate([{path: 'Theme', model: 'Tag'}])
+                    .exec(function (err, itineraries) {
+                        // callback
+                        console.log("callback");
+                        console.log(itineraries);
+
+                        res.render('search', {itineraries: itineraries, tags: tags, _user: user});
+                    });
+            });
         }
     })
 });
@@ -104,21 +131,9 @@ router.post('/', function(req, res, next) {
                                     // we have the updated user returned to us
                                     console.log(a);
                                     res.redirect('/search');
-
-
-                                    //Itinerary.find({}, function (err, itineraries) {
-                                    //    if (err) {
-                                    //        return console.log("error: " + err);
-                                    //    }
-                                    //    res.render('search', {itineraries: [], _user: user});
-                                    //});
                                 }
                             });
-
-
                         });
-
-
                     });
                 }
             }
@@ -127,14 +142,29 @@ router.post('/', function(req, res, next) {
     else
     if (type == 'search') {
         var text = req.body.search_field;
+        var Tags = "";
+        var tagname = "";
 
-        res.redirect('/search?country=' + text);
+        var mongoose = require('mongoose');
+        var tagSchema = mongoose.model('Tag').schema;
+        var Tag = mongoose.model('Tag', tagSchema, 'Tag');
+
+        Tag.find({}, function(err, tags) {
+            if (err) next(err);
+
+            for(var i=0;i<tags.length;i++) {
+                tagname = req.body[tags[i].Name];
+                if (req.body[tags[i].Name])
+                    Tags += "&" + tagname + "=" + tagname;
+                //Tags.push(req.body[tags[i].Name]);
+                //console.log("Tag " + Tags[i]);
+            }
+            //console.log("Tags " + Tags);
+            res.redirect('/search?country=' + text + Tags);
+        });
     }
     else
         res.redirect('/search');
-
-    //res.render('search', { itineraries: [], _user: user } );
-
 });
 
 module.exports = router;

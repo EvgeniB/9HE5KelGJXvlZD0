@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+    form(method='POST', action='/add_tag')
+        p Name:
+        input(type='text', name='name', value='')
+        br
+        input(type='submit', value='Save')
+        a(href='/edit_tags')
+            input(type='button', value='Cancel')

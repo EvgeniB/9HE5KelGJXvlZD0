@@ -24,6 +24,9 @@ var add_country = require('./routes/add_country');
 var edit_countries = require('./routes/edit_countries');
 var add_location = require('./routes/add_location');
 var edit_locations = require('./routes/edit_locations');
+var add_tag = require('./routes/add_tag');
+var edit_tag = require('./routes/edit_tag');
+var edit_tags = require('./routes/edit_tags');
 var users = require('./routes/users');
 
 var app = express();
@@ -88,6 +91,7 @@ fs.readFile(filename, 'utf8', function(err, data) {
     require('./models/Itinerary');
     require('./models/Country');
     require('./models/Location');
+    require('./models/Tag');
 
 
 
@@ -131,6 +135,9 @@ app.use('/add_country', add_country);
 app.use('/edit_countries', edit_countries);
 app.use('/add_location', add_location);
 app.use('/edit_locations', edit_locations);
+app.use('/add_tag', add_tag);
+app.use('/edit_tag', edit_tag);
+app.use('/edit_tags', edit_tags);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

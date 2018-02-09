@@ -146,6 +146,21 @@ function make_itinerary() {
 
     itinerary.Locations = Locations;
 
+    var theme_list = $('#theme_list');
+
+    var Themes = [];
+    var Theme = '';
+
+    for(var i=0;i<theme_list.find('input').length;i++) {
+        Theme = theme_list.find('input')[i];
+
+        if (Theme.checked) {
+            Themes.push(Theme.value);
+        }
+    }
+
+    itinerary.Theme = Themes;
+
     var num_days = $('#days_list').children(1).children().length;
     var days = $('#days_list').children(1);
 
