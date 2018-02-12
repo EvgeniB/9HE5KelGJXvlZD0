@@ -14,9 +14,10 @@ router.get('/', function(req, res, next) {
     Location.find({}, function(err, locations) {
 
         console.log(locations);
-        if (err) throw err;
+        if (err) next(err);
 
         res.render('edit_locations', { locations: locations, _user: user } );
+
     });
 });
 

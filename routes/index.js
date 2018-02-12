@@ -287,48 +287,6 @@ router.post('/edit_country/:id', function(req, res, next) {
     });
 });
 
-router.get('/edit_location/:id', function(req, res, next) {
-    sess=req.session;
-    var user = sess.user;
-
-    checkAdmin(user, res);
-
-    var reqlib = require('app-root-path').require;
-    var Location= reqlib('/models/Location.js');
-
-    var id = req.params.id;
-
-    Location.findOne({ _id: id }, function(err, location) {
-        if (err) throw err;
-
-        res.render('edit_location', { location: location, _user: user });
-    });
-});
-
-router.post('/edit_location/:id', function(req, res, next) {
-    sess=req.session;
-    var user = sess.user;
-
-    checkAdmin(user, res);
-
-    var reqlib = require('app-root-path').require;
-    var Location= reqlib('/models/Location.js');
-
-    // save itinerary
-    var id = req.params.id;
-    //var id = req.body.id;
-    var name = req.body.name ? req.body.name : "";
-
-    Location.findOneAndUpdate({ _id: id }, { Name: name}, function(err, location) {
-        if (err) throw err;
-
-        // we have the updated itinerary returned to us
-        console.log(location);
-
-        res.redirect('/edit_locations');
-    });
-});
-
 router.get('/add_event_type', function(req, res, next) {
     sess=req.session;
     var user = sess.user;

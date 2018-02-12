@@ -66,12 +66,12 @@ function add_day() {
         //alert(children);
         //for(var i=0;i<children;i++) {
             //children[i].child[0].attr("id", "" + k);
-            children[1].childNodes[1].setAttribute("id", "day_title" + k);
-            children[2].childNodes[1].setAttribute("id", "day_date" + k);
+            //children[1].childNodes[1].setAttribute("id", "day_title" + k);
+            //children[2].childNodes[1].setAttribute("id", "day_date" + k);
 
             //children[3].childNodes[1].setAttribute("id", "day_country" + k);
             //children[4].childNodes[1].setAttribute("id", "day_location" + k);
-            children[5].childNodes[1].setAttribute("id", "day_overnight" + k);
+            //children[5].childNodes[1].setAttribute("id", "day_overnight" + k);
         //}
     }
 
@@ -83,23 +83,30 @@ function add_day() {
 
 function delete_day(element) {
     var element = $(element);
-    element.parent().remove();
+    element.closest('li.day').remove();
 }
 
-function add_event() {
+function add_event(element) {
     var d_n_input = $("#events_n");
     //alert(d_n_input.val());
     var d = $("#stock_event").clone();//.insertAfter("#days_list ul:last");
-    d.attr("id", "event" + d_n_input.val());
-    d_n_input.val(Number(d_n_input.val()) + 1);
+
+    //d.attr("id", "event" + d_n_input.val());
+    //d_n_input.val(Number(d_n_input.val()) + 1);
+
+
+
     //alert($(d));
     //$("#days_list ul").append('<li>dfs</li>');
-    $("#events_list").append(d);
+
+
+    //$("#events_list").append(d);
+    var event_list = $(element).closest('ul.event_list').append(d);
 }
 
 function delete_event(element) {
     var element = $(element);
-    element.parent().remove();
+    element.closest('li.event').remove();
 }
 
 function make_itinerary() {
@@ -161,8 +168,9 @@ function make_itinerary() {
 
     itinerary.Theme = Themes;
 
-    var num_days = $('#days_list').children(1).children().length;
-    var days = $('#days_list').children(1);
+    // Creating day list //
+    var num_days = $('#days_list').children().length;
+    var days = $('#days_list').children();
 
     for(var i=0;i<num_days;i++) {
         Day = {};

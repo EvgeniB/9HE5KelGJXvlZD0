@@ -24,8 +24,8 @@ var itinerarySchema = new Schema({
         }],
         Title: String,
         Date: Date,
-        Day_Countries: [Schema.Types.ObjectId],
-        Day_Locations: [Schema.Types.ObjectId],
+        Day_Countries: [{ type: Schema.Types.ObjectId, ref: 'Country' }],
+        Day_Locations: [{ type: Schema.Types.ObjectId, ref: 'Location'}],
         Overnight: String
     }],
     Title: String,

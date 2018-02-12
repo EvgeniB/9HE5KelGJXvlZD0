@@ -75,7 +75,7 @@ router.post('/:id', function(req, res, next) {
         // we have the updated itinerary returned to us
         //console.log(itinerary);
 
-        res.redirect('/edit_itineraries');
+        res.redirect('/edit_itinerary/' + id);
     });
 });
 

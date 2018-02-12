@@ -8,6 +8,11 @@ block content
         p Name:
         input(type='text', name='name', value='')
         br
+        p Country:
+        select(name='country')
+            each country in countries ? countries : []
+                option(value=country._id) #{country.Name}
+        br
         input(type='submit', value='Save')
         a(href='/edit_locations')
             input(type='button', value='Cancel')

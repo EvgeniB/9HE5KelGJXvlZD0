@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 // create a schema
 var locationSchema = new Schema({
     Name: String,
-    Country: Schema.Types.ObjectId
+    Country: { type: Schema.Types.ObjectId, ref: 'Country' }
 });
 
 // the schema is useless so far

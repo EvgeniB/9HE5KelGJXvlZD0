@@ -24,72 +24,76 @@ block content
             p itinerary: #{itinerary}
         ul(id='days_list')
             if itinerary
-                if itinerary.Days
-                    p itinerary.Days: #{itinerary.Days}
-            if itinerary
                 each index, day in itinerary.Days ? itinerary.Days : []
-                    //each country in itinerary.Countries.length ? values : ['There are no values']
-                    li
-                        button(onclick='delete_day(this)', type='button') Delete
-                        p day.Events: #{day.Events}
+                    li(class='day')
+                        // This is the day list, Day 0..1..n
                         ul
-                            if day.Events
-                                li
-                                    each event in day.Events.length ? values : []
-                                        ul
-                                            li
-                                                p Debug Event #{event}
-                                            li
-                                                p Label:
-                                                input(type='text')
-                                            li
+                            // Day detail lists
+                            li
+                                button(onclick='delete_day(this)', type='button') Delete
+                                p day.Events: #{day.Events}
+                            li
+                                ul(id='events_list', class='event_list')
+                                    // This is the event list
+                                    li
+                                        button(type='button', onclick="add_event(this)") Add
+                                    if day.Events
+                                        each event in day.Events.length ? values : []
+                                            li(class='event')
+                                                // Event 0..1...n
                                                 ul
-                                                    if event.Type
-                                                        each type in event.Type.length ? values : ['There are no values']
-                                                            li
-                                                                p Type:
-                                                                input(type='text')
-                                            li
-                                                p Time:
-                                                input(type='text')
-                                            li
-                                                p Description:
-                                                input(type='text')
-                                            li
-                                                p Tips:
-                                                input(type='text')
-                                            li
-                                                p Photo:
-                                                input(type='text')
-                                            li
-                                                p Price:
-                                                input(type='text')
-                                            li
-                                                p Hours:
-                                                input(type='text')
-                                            li
-                                                p Address:
-                                                input(type='text')
-                                            li
-                                                p Phone:
-                                                input(type='text')
-                                            li
-                                                p Website:
-                                                input(type='text')
-                                            li
-                                                p AudioGuides:
-                                                input(type='text')
-                                            li
-                                                p BookLink:
-                                                input(type='text')
-                                            li
-                                                p Transportation:
-                                                input(type='text')
-                                            li
-                                                p Reviews:
-                                                input(type='text')
-
-
+                                                    // Event details
+                                                    li
+                                                        button(onclick='delete_event(this)', type='button') Delete
+                                                    li
+                                                        p Label:
+                                                        input(class='event_label', type='text')
+                                                    li
+                                                        ul
+                                                            if event.Type
+                                                                each type in event.Type.length ? values : ['There are no values']
+                                                                    li
+                                                                        p Type:
+                                                                        input(type='text')
+                                                    li
+                                                        p Time:
+                                                        input(type='text')
+                                                    li
+                                                        p Description:
+                                                        input(type='text')
+                                                    li
+                                                        p Tips:
+                                                        input(type='text')
+                                                    li
+                                                        p Photo:
+                                                        input(type='text')
+                                                    li
+                                                        p Price:
+                                                        input(type='text')
+                                                    li
+                                                        p Hours:
+                                                        input(type='text')
+                                                    li
+                                                        p Address:
+                                                        input(type='text')
+                                                    li
+                                                        p Phone:
+                                                        input(type='text')
+                                                    li
+                                                        p Website:
+                                                        input(type='text')
+                                                    li
+                                                        p AudioGuides:
+                                                        input(type='text')
+                                                    li
+                                                        p BookLink:
+                                                        input(type='text')
+                                                    li
+                                                        p Transportation:
+                                                        input(type='text')
+                                                    li
+                                                        p Reviews:
+                                                        input(type='text')
                             li
                                 p Title:
                                 input(class='day_title', type='text', id='day_title'+index, name='day_title'+index, value=day.Title)
@@ -222,51 +226,65 @@ block content
             input(type='button', value='Cancel')
 
     div(hidden='')
-        li(id="stock_day")
-            button(onclick='delete_day(this)', type='button') Delete
+        li(id="stock_day", class='day')
+            // This is the day list, Day 0..1..n
             ul
+                // Day detail lists
                 li
-                    p Events:
-                    input(type='text', id='events_n', value='0')
-                    ul(id='events_list')
-                        // each country in itinerary.Countries.length ? values : ['There are no values']
-                    button(type='button', onclick="add_event()") Add
+                    button(onclick='delete_day(this)', type='button') Delete
+                    p day.Events
+                li
+                    ul(id='events_list', class='event_list')
+                        // This is the event list
+                        li
+                            button(type='button', onclick="add_event(this)") Add
                 li
                     p Title:
-                    input(type='text')
+                    input(class='day_title', type='text')
                 li
                     p Date:
-                    input(type='text')
+                    input(class='day_date', type='text')
                 li
-                    ul
-                        // each country in day.Countries.length ? values : ['There are no values']
-                        li
-                            p Country:
-                            input(type='text')
+                    p Itinerary countries: #{itinerary.Countries}
+                    p Countries: #{countries}
+                    div.day_countries
+                        if countries
+                            each country in countries ? countries : []
+                                div
+                                    p Country: #{country.Name}
+                                    input(id=country._id, name=country._id, type="checkbox", value=country._id)
                 li
-                    ul
-                        // each location in day.Locations.length ? values : ['There are no values']
-                        li
-                            p Location:
-                            input(type='text')
+                    p Itinerary locations: #{itinerary.locations}
+                    p Locations #{locations}
+                    div.day_locations
+                        if locations
+                            each location in locations ? locations : []
+                                div
+                                    p location: #{location.Name}
+                                    input(id=location._id, name=location._id, type="checkbox", value=location._id)
                 li
                     p Overnight:
-                    input(type='text')
+                    input(type='text', class='day_overnight')
 
     div(hidden='')
-        li(id="stock_event")
-            button(onclick='delete_event(this)', type='button') Delete
+        li(id="stock_event", class='event')
+            // Event 0..1...n
             ul
-                // each event in itinerary.Events.length ? values : ['There are no values']
+                // Event details
+                li
+                    button(onclick='delete_event(this)', type='button') Delete
+                li
+                    p Debug Event #{event}
                 li
                     p Label:
-                    input(type='text')
+                    input(class='event_label', type='text')
                 li
-                    ul
-                        //each type in event.Type.length ? values : ['There are no values']
-                        li
-                            p Type:
-                            input(type='text')
+                    //ul
+                        if event.Type
+                            each type in event.Type.length ? values : ['There are no values']
+                                li
+                                    p Type:
+                                    input(type='text')
                 li
                     p Time:
                     input(type='text')
