@@ -13,14 +13,6 @@ block content
             p Id: #{itinerary._id}
         p Days:
         if itinerary
-            if itinerary.Days
-                - var n = itinerary.Days.length
-            else
-                - var n = '0'
-        else
-            - var n = '0'
-        input(type='text', id='days_n', value=n)
-        if itinerary
             p itinerary: #{itinerary}
         ul(id='days_list')
             if itinerary
@@ -245,7 +237,6 @@ block content
                     p Date:
                     input(class='day_date', type='text')
                 li
-                    p Itinerary countries: #{itinerary.Countries}
                     p Countries: #{countries}
                     div.day_countries
                         if countries
@@ -254,7 +245,6 @@ block content
                                     p Country: #{country.Name}
                                     input(id=country._id, name=country._id, type="checkbox", value=country._id)
                 li
-                    p Itinerary locations: #{itinerary.locations}
                     p Locations #{locations}
                     div.day_locations
                         if locations

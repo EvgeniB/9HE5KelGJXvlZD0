@@ -1,84 +1,5 @@
-function guid() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-        s4() + '-' + s4() + s4() + s4();
-}
-
-function add_li(elem) {
-    /*select name="cars" multiple>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="fiat">Fiat</option>
-        <option value="audi">Audi</option>
-        </select>
-    */
-    /*
-    var name = guid();
-
-    var c = '';
-
-    if (countries) {
-        for (i = 0; i < countries.length; i++) {
-            c += 'option value="' + countries[i] + '">' + countries[i] + '</option';
-        }
-    }
-
-    var e = '<li id='+name+'><select name="countries" multiple>' +
-        c +
-        '</select>' +
-        '<button type="button" onclick="delete_li(\''+ name +'\')">Delete</button>' +
-        '</li>'; //JSON.stringify(e)
-    //alert(e); <li><input type="text" value="" /></li><button type="button" onclick="delete_li(undefined)">Delete</button><br>
-    //alert(JSON.stringify(e)); "<li><input type=\"text\" value=\"\" /></li><button type=\"button\" onclick=\"delete_li(undefined)\">Delete</button><br>"
-    $("#" + elem).append(e);
-    */
-
-    //var c = $("#countries").clone();
-    //$("#countries_list").append(c);
-}
-
-function delete_li(elem) {
-    $('#'+elem).remove();
-}
-
 function add_day() {
-    //var d_n_input = $("#days_n");
-    //alert(d_n_input.val());
-    var d = $("#stock_day").clone();//.insertAfter("#days_list ul:last");
-
-    //d.attr("id", "day" + d_n_input.val());
-    //d_n_input.val(Number(d_n_input.val()) + 1);
-
-    // have to go inside children elements and change id to "day..." followed by day number
-
-    var children = null;
-    //var num_days = $('#days_n').val();
-    //alert(num_days);
-
-    //alert("d is " + d.toString());
-    //alert("d's children " + d.children().toString());
-
-    for(var k=0;k<d_n_input.val();k++) {
-        //children = d.children(1).children();
-        //alert(children);
-        //for(var i=0;i<children;i++) {
-            //children[i].child[0].attr("id", "" + k);
-            //children[1].childNodes[1].setAttribute("id", "day_title" + k);
-            //children[2].childNodes[1].setAttribute("id", "day_date" + k);
-
-            //children[3].childNodes[1].setAttribute("id", "day_country" + k);
-            //children[4].childNodes[1].setAttribute("id", "day_location" + k);
-            //children[5].childNodes[1].setAttribute("id", "day_overnight" + k);
-        //}
-    }
-
-
-    //alert($(d));
-    //$("#days_list ul").append('<li>dfs</li>');
+    var d = $("#stock_day").clone();
     $("#days_list").append(d);
 }
 
@@ -89,19 +10,7 @@ function delete_day(element) {
 
 function add_event(element) {
     var d_n_input = $("#events_n");
-    //alert(d_n_input.val());
-    var d = $("#stock_event").clone();//.insertAfter("#days_list ul:last");
-
-    //d.attr("id", "event" + d_n_input.val());
-    //d_n_input.val(Number(d_n_input.val()) + 1);
-
-
-
-    //alert($(d));
-    //$("#days_list ul").append('<li>dfs</li>');
-
-
-    //$("#events_list").append(d);
+    var d = $("#stock_event").clone();
     var event_list = $(element).closest('ul.event_list').append(d);
 }
 
@@ -176,10 +85,6 @@ function make_itinerary() {
     for(var i=0;i<num_days;i++) {
         Day = {};
 
-        //Day.Title = $('#day_title' + i).val();
-        //Day.Date = $('day_date' + i).val();
-        //Day.Overnight = $('day_overnight' + i).val();
-
         Day.Title = days.children(i).find('input.day_title').val();
         Day.Date = days.children(i).find('input.day_date').val();
         Day.Overnight = days.children(i).find('input.day_overnight').val();
@@ -250,14 +155,9 @@ function make_itinerary() {
         Day.Events = Events;
 
         Days.push(Day);
-        //Days.push(JSON.stringify(Day));
     }
 
     itinerary.Days = Days;
-
-    //alert(itinerary);
-    //alert(JSON.stringify(itinerary));
-
     $('#itinerary').val(JSON.stringify(itinerary));
 
     $("form").submit();
