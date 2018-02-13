@@ -35,40 +35,40 @@ block content
                                     li
                                         p Day #{index + 1}
                                         ul
-                                            each event in itinerary.Events ? itinerary.Events : []
+                                            each event in day.Events ? day.Events : []
                                                 li
                                                     p Event Label: #{event.Label}
                                                 li
-                                                    ul
+                                                    //ul
                                                         each type in event.Type
                                                             li
                                                                 p Event Type: #{type}
                                                 li
-                                                    p #{event.Time}
+                                                    p Event Time: #{event.Time}
                                                 li
-                                                    p #{event.Description}
+                                                    p Event Description: #{event.Description}
                                                 li
-                                                    p #{event.Tips}
+                                                    p Event Tips: #{event.Tips}
                                                 li
-                                                    p #{event.Photo}
+                                                    p Event Photo: #{event.Photo}
                                                 li
-                                                    p #{event.Price}
+                                                    p Event Price: #{event.Price}
                                                 li
-                                                    p #{event.Hours}
+                                                    p Event Hours: #{event.Hours}
                                                 li
-                                                    p #{event.Address}
+                                                    p Event Address: #{event.Address}
                                                 li
-                                                    p #{event.Phone}
+                                                    p Event Phone: #{event.Phone}
                                                 li
-                                                    p #{event.Website}
+                                                    p Event Website: #{event.Website}
                                                 li
-                                                    p #{event.AudioGuides}
+                                                    p Event AudioGuides: #{event.AudioGuides}
                                                 li
-                                                    p #{event.BookLink}
+                                                    p Event BookLink: #{event.BookLink}
                                                 li
-                                                    p #{event.Transportation}
+                                                    p Event Transportation: #{event.Transportation}
                                                 li
-                                                    p #{event.Reviews}
+                                                    p Event Reviews: #{event.Reviews}
                                     li
                                         p Day Title: #{day.Title}
                                     li

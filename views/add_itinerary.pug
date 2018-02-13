@@ -24,7 +24,7 @@ block content
             p itinerary: #{itinerary}
         ul(id='days_list')
             if itinerary
-                each index, day in itinerary.Days ? itinerary.Days : []
+                each day, index in itinerary.Days ? itinerary.Days : []
                     li(class='day')
                         // This is the day list, Day 0..1..n
                         ul
@@ -33,12 +33,12 @@ block content
                                 button(onclick='delete_day(this)', type='button') Delete
                                 p day.Events: #{day.Events}
                             li
-                                ul(id='events_list', class='event_list')
+                                ul(id='event_list', class='event_list')
                                     // This is the event list
                                     li
                                         button(type='button', onclick="add_event(this)") Add
                                     if day.Events
-                                        each event in day.Events.length ? values : []
+                                        each event in day.Events ? day.Events : []
                                             li(class='event')
                                                 // Event 0..1...n
                                                 ul
@@ -47,7 +47,7 @@ block content
                                                         button(onclick='delete_event(this)', type='button') Delete
                                                     li
                                                         p Label:
-                                                        input(class='event_label', type='text')
+                                                        input(class='event_label', type='text', value=event.Label)
                                                     li
                                                         ul
                                                             if event.Type
@@ -57,43 +57,43 @@ block content
                                                                         input(type='text')
                                                     li
                                                         p Time:
-                                                        input(type='text')
+                                                        input(class='event_time', type='text', value=event.Time)
                                                     li
                                                         p Description:
-                                                        input(type='text')
+                                                        input(class='event_description', type='text', value=event.Description)
                                                     li
                                                         p Tips:
-                                                        input(type='text')
+                                                        input(class='event_tips', type='text', value=event.Tips)
                                                     li
                                                         p Photo:
-                                                        input(type='text')
+                                                        input(class='event_photo', type='text', value=event.Photo)
                                                     li
                                                         p Price:
-                                                        input(type='text')
+                                                        input(class='event_price', type='text', value=event.Price)
                                                     li
                                                         p Hours:
-                                                        input(type='text')
+                                                        input(class='event_hours', type='text', value=event.Hours)
                                                     li
                                                         p Address:
-                                                        input(type='text')
+                                                        input(class='event_address', type='text', value=event.Address)
                                                     li
                                                         p Phone:
-                                                        input(type='text')
+                                                        input(class='event_phone', type='text', value=event.Phone)
                                                     li
                                                         p Website:
-                                                        input(type='text')
+                                                        input(class='event_website', type='text', value=event.Website)
                                                     li
                                                         p AudioGuides:
-                                                        input(type='text')
+                                                        input(class='event_audioguides', type='text', value=event.AudioGuides)
                                                     li
                                                         p BookLink:
-                                                        input(type='text')
+                                                        input(class='event_booklink', type='text', value=event.BookLink)
                                                     li
                                                         p Transportation:
-                                                        input(type='text')
+                                                        input(class='event_transportation', type='text', value=event.Transportation)
                                                     li
                                                         p Reviews:
-                                                        input(type='text')
+                                                        input(class='event_reviews', type='text', value=event.Reviews)
                             li
                                 p Title:
                                 input(class='day_title', type='text', id='day_title'+index, name='day_title'+index, value=day.Title)

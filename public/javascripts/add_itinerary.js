@@ -46,11 +46,12 @@ function delete_li(elem) {
 }
 
 function add_day() {
-    var d_n_input = $("#days_n");
+    //var d_n_input = $("#days_n");
     //alert(d_n_input.val());
     var d = $("#stock_day").clone();//.insertAfter("#days_list ul:last");
-    d.attr("id", "day" + d_n_input.val());
-    d_n_input.val(Number(d_n_input.val()) + 1);
+
+    //d.attr("id", "day" + d_n_input.val());
+    //d_n_input.val(Number(d_n_input.val()) + 1);
 
     // have to go inside children elements and change id to "day..." followed by day number
 
@@ -62,7 +63,7 @@ function add_day() {
     //alert("d's children " + d.children().toString());
 
     for(var k=0;k<d_n_input.val();k++) {
-        children = d.children(1).children();
+        //children = d.children(1).children();
         //alert(children);
         //for(var i=0;i<children;i++) {
             //children[i].child[0].attr("id", "" + k);
@@ -218,28 +219,30 @@ function make_itinerary() {
 
         /////////////////////////////////////////////////////////////
 
-        var event_list = days.children(i).children(2);
-        var num_events = event_list.children.length;
+        var event_list = days.children(i).find('ul.event_list');
+        var num_events = event_list.children().length - 1;
 
         var Events = [];
-        var Event = {};
+        var Event;
 
         for(var j=0;j<num_events;j++) {
-            Event.Label = event_list.children(j).children(0).children(0).children(1).val();
-            Event.EventType = event_list.children(j).children(0).children(1).children(1).val();
-            Event.Type = event_list.children(j).children(0).children(2).children(1).val();
-            Event.Description = event_list.children(j).children(0).children(3).children(1).val();
-            Event.Tips = event_list.children(j).children(0).children(4).children(1).val();
-            Event.Photo = event_list.children(j).children(0).children(5).children(1).val();
-            Event.Price = event_list.children(j).children(0).children(6).children(1).val();
-            Event.Hours = event_list.children(j).children(0).children(7).children(1).val();
-            Event.Address = event_list.children(j).children(0).children(8).children(1).val();
-            Event.Phone = event_list.children(j).children(0).children(9).children(1).val();
-            Event.Website = event_list.children(j).children(0).children(10).children(1).val();
-            Event.AudioGuides = event_list.children(j).children(0).children(11).children(1).val();
-            Event.BookLink = event_list.children(j).children(0).children(12).children(1).val();
-            Event.Transportation = event_list.children(j).children(0).children(13).children(1).val();
-            Event.Reviews = event_list.children(j).children(0).children(14).children(1).val();
+            Event = {};
+
+            Event.Label = event_list.children(j).find('input.event_label').val();
+            //Event.EventType = event_list.children(j).find('input.event_eventtype').val();
+            Event.Time = event_list.children(j).find('input.event_time').val();
+            Event.Description = event_list.children(j).find('input.event_description').val();
+            Event.Tips = event_list.children(j).find('input.event_tips').val();
+            Event.Photo = event_list.children(j).find('input.event_photo').val();
+            Event.Price = event_list.children(j).find('input.event_price').val();
+            Event.Hours = event_list.children(j).find('input.event_hours').val();
+            Event.Address = event_list.children(j).find('input.event_address').val();
+            Event.Phone = event_list.children(j).find('input.event_phone').val();
+            Event.Website = event_list.children(j).find('input.event_website').val();
+            Event.AudioGuides = event_list.children(j).find('input.event_audioguides').val();
+            Event.BookLink = event_list.children(j).find('input.event_booklink').val();
+            Event.Transportation = event_list.children(j).find('input.event_transportation').val();
+            Event.Reviews = event_list.children(j).find('input.event_reviews').val();
 
             Events.push(Event);
         }

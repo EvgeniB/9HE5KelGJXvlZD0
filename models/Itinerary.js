@@ -7,17 +7,17 @@ var itinerarySchema = new Schema({
     Days: [{
         Events: [{
             Label: String,
-            Type:  [Schema.Types.ObjectId],
-            Time: Date,
+            EventType:  [Schema.Types.ObjectId],
+            Time: String, //Date
             Description: String,
             Tips: String,
             Photo: String,
             Price: String,
             Hours: String,
             Address: String,
-            Phone: Number,
+            Phone: String, //Number
             Website: String,
-            AudioGuides: Boolean,
+            AudioGuides: String, //Boolean
             BookLink: String,
             Transportation: String,
             Reviews: String
