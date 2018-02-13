@@ -10,7 +10,11 @@ block content
         p Country:
         select(name='country')
             each country in countries ? countries : []
-                option(value=country._id) #{country.Name}
+                if location
+                    if (location.Country.toString() === country._id.toString())
+                        option(value=country._id, selected="selected") #{country.Name}
+                    else
+                        option(value=country._id) #{country.Name}
         br
         input(type='submit', value='Save')
         a(href='/edit_locations')

@@ -35,7 +35,9 @@ block content
                                     li
                                         p Day #{index + 1}
                                         ul
-                                            each event in day.Events ? day.Events : []
+                                            each event, index2 in day.Events ? day.Events : []
+                                                li
+                                                    p Event #{index2}
                                                 li
                                                     p Event Label: #{event.Label}
                                                 li
