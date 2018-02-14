@@ -13,11 +13,11 @@ block content
                             each day in itinerary.Days
                                 li
                                     ul
-                                        each event in itinerary.Events
+                                        each event in day.Events
                                             li
                                                 p #{event.Label}
                                             li
-                                                ul
+                                                //ul
                                                     each type in event.Type
                                                         li
                                                             p #{type}
@@ -54,13 +54,13 @@ block content
                                 li
                                     ul
                                         p Countries
-                                        each country in day.Countries
+                                        each country in day.Countries ? day.Countries : []
                                             li
                                                 p Country #{country}
                                 li
                                     ul
                                         p Locations
-                                        each location in day.Locations
+                                        each location in day.Locations ? day.Locations : []
                                             li
                                                 p Location #{location}
                                 li
