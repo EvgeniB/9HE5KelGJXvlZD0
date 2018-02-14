@@ -93,7 +93,7 @@ block content
                                 p Date:
                                 input(class='day_date', type='text', id='day_date'+index, name='day_date'+index, value=day.Date)
                             li
-                                p Itinerary countries: #{itinerary.Countries}
+                                p Itinerary countries: #{day.Day_Countries}
                                 p Countries: #{countries}
                                 div.day_countries
                                     if countries
@@ -101,15 +101,15 @@ block content
                                             div
                                                 p Country: #{country.Name}
                                                 - country_check = false
-                                                if itinerary
-                                                    if itinerary.Countries
-                                                        each c in itinerary.Countries
+                                                if day
+                                                    if day.Day_Countries
+                                                        each c in day.Day_Countries
                                                             if country._id == c._id
                                                                 - country_check = true
                                                 input(id=country._id, name=country._id, type="checkbox", value=country._id, checked=(country_check ? "checked" : undefined),
                                                 class='list_child')
                             li
-                                p Itinerary locations: #{itinerary.locations}
+                                p Itinerary locations: #{day.Day_Locations}
                                 p Locations #{locations}
                                 div.day_locations
                                     if locations
@@ -117,9 +117,9 @@ block content
                                             div
                                                 p location: #{location.Name}
                                                 - location_check = false
-                                                if itinerary
-                                                    if itinerary.locations
-                                                        each c in itinerary.locations
+                                                if day
+                                                    if day.Day_Locations
+                                                        each c in day.Day_Locations
                                                             if location._id == c._id
                                                                 - location_check = true
                                                 input(id=location._id, name=location._id, type="checkbox", value=location._id, checked=(location_check ? "checked" : undefined),

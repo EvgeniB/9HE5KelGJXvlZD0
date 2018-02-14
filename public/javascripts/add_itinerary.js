@@ -95,7 +95,7 @@ function make_itinerary() {
         Countries = [];
         Country = '';
 
-        country_list = days.children(i).find('div.countries');
+        country_list = days.children(i).find('div.day_countries');
 
         for(var k=0;k<country_list.find('input').length;k++) {
             Country = country_list.find('input')[k];
@@ -105,14 +105,14 @@ function make_itinerary() {
             }
         }
 
-        Day.Countries = Countries;
+        Day.Day_Countries = Countries;
 
-        var location_list =  days.children(i).find('div.locations');
+        location_list =  days.children(i).find('div.day_locations');
 
-        var Locations = [];
-        var Location = '';
+        Locations = [];
+        Location = '';
 
-        for(var k=0;i<location_list.find('input').length;k++) {
+        for(var k=0;k<location_list.find('input').length;k++) {
             Location = location_list.find('input')[k];
 
             if (Location.checked) {
@@ -120,7 +120,7 @@ function make_itinerary() {
             }
         }
 
-        Day.Locations = Locations;
+        Day.Day_Locations = Locations;
 
         /////////////////////////////////////////////////////////////
 
