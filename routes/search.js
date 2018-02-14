@@ -57,8 +57,8 @@ router.get('/', function(req, res, next) {
                     .populate([{path: 'Countries', model: 'Country'}])
                     .populate([{path: 'Locations', model: 'Location'}])
                     .populate([{path: 'Theme', model: 'Tag'}])
-                    .populate([{path: 'Day_Countries', model: 'Country'}])
-                    .populate([{path: 'Day_Locations', model: 'Location'}])
+                    .populate([{path: 'Days.Day_Countries', model: 'Country'}])
+                    .populate([{path: 'Days.Day_Locations', model: 'Location'}])
                     .exec(function (err, itineraries) {
                         // callback
                         console.log("callback");

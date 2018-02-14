@@ -21,11 +21,20 @@ router.get('/', function(req, res, next) {
 
     //populating itineraries belonging to the user
 
-    User.
-    findOne({ _id: user._id }).
+    User
+    .findOne( { _id: user._id } )
     //populate('saved_itineraries').
-    populate({ path: 'saved_itineraries', model: 'Itinerary' }).
-    exec(function (err, usr) {
+    //populate({ path: 'saved_itineraries', model: 'Itinerary' }).
+
+    .populate({
+        path: 'saved_itineraries',
+        model: 'Itinerary',
+        populate: [{ path: 'Countries', model: 'Country' },
+        { path: 'Locations', model: 'Location' },
+        { path: 'Theme', model: 'Tag' },
+        { path: 'Days.Day_Countries', model: 'Country' },
+        { path: 'Days.Day_Locations', model: 'Location' }] })
+    .exec(function (err, usr) {
         if (err || !usr) {
             console.log("Error populating user itineraries: " + err);
             next(err);
