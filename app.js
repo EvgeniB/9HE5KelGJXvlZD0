@@ -30,6 +30,8 @@ var edit_tag = require('./routes/edit_tag');
 var edit_tags = require('./routes/edit_tags');
 var users = require('./routes/users');
 
+var test = require('./routes/test');
+
 var app = express();
 
 // setting port
@@ -141,6 +143,8 @@ app.use('/add_tag', add_tag);
 app.use('/edit_tag', edit_tag);
 app.use('/edit_tags', edit_tags);
 app.use('/users', users);
+
+app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
