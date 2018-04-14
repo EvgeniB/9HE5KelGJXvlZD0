@@ -31,6 +31,7 @@ var edit_tags = require('./routes/edit_tags');
 var users = require('./routes/users');
 
 var test = require('./routes/test');
+var edit_test = require('./routes/edit_test');
 
 var app = express();
 
@@ -145,6 +146,7 @@ app.use('/edit_tags', edit_tags);
 app.use('/users', users);
 
 app.use('/test', test);
+app.use('/edit_test', edit_test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

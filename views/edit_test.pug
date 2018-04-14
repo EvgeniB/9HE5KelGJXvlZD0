@@ -6,7 +6,7 @@ html(lang='en')
         meta(name='description', content='')
         meta(name='author', content='')
         title
-        link(href='/assets/css/bootstrap.min.css', rel='stylesheet')
+        link(href='/assets/test/css/bootstrap.min.css', rel='stylesheet')
         // Custom fonts for this template
         link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
@@ -14,7 +14,7 @@ html(lang='en')
         link(href='/assets/test/css/owl.carousel.min.css', rel='stylesheet')
         link(href='/assets/test/css/owl.theme.default.min.css', rel='stylesheet')
         link(href='/stylesheets/style_test.css', rel='stylesheet')
-    body(id='')
+    body.edit(id='')
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.fixed-top
             .container
@@ -59,16 +59,26 @@ html(lang='en')
                     .col-md-12
                         .wrapper_slider
                             .slider.owl-carousel.owl-theme
-                                .item(data-big_slide='/assets/img/test/background_1.jpg')
+                                .item
                                     img(src='/assets/img/test/slide_1.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/bg_2.jpg')
+                                .item
                                     img(src='/assets/img/test/slide_2.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/background_1.jpg')
+                                .item
                                     img(src='/assets/img/test/slide_3.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/bg_2.jpg')
+                                .item
                                     img(src='/assets/img/test/slide_4.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/background_1.jpg')
+                                .item
                                     img(src='/assets/img/test/slide_5.jpg', alt='')
+                .select_start_date
+                    .row
+                        .col-lg-5.col-md-12
+                            .items_in
+                                p Select start date
+                                .date_time_picker
+                                    input(type='text')
+                                    .icon_calendar
+                        .col-lg-7.col-md-12
+                            button.save Save
                 .about_travel
                     .row
                         .col-md-12.col-lg-5
@@ -139,16 +149,26 @@ html(lang='en')
                             span.spa_1.active Expand All
                             |  /
                             span.spa_2 Collapse
-                        .day.day1
+                        .day.day1.clearfix
                             .time_line
                                 p Day 1
                             .all_in_head
+                                .edit_block
+                                    .delete
+                                        img(src='/assets/img/test/basket.png', alt='')
+                                    .drag
+                                        img(src='/assets/img/test/drag.png', alt='')
                                 .head
                                     img(src='/assets/img/test/city1.jpg', alt='')
                                     h3 Arrival
                                     p Location(s): Barcelona
                                     p Overnight: Barcelona
                             .event.active
+                                .edit_block
+                                    .delete
+                                        img(src='/assets/img/test/basket_grey.png', alt='')
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .icon
                                     img(src='/assets/img/test/icon1.png', alt='')
                                 .content
@@ -189,8 +209,10 @@ html(lang='en')
                                             span Show Less
                                             i
                                                 img(src='/assets/img/test/show.png', alt='')
-                                    .clearfix
-                            .event
+                            .event.active
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .icon
                                     img(src='/assets/img/test/icon2.png', alt='')
                                 .content
@@ -198,41 +220,44 @@ html(lang='en')
                                         b Check-in
                                         br
                                         | Check-in at Stay and make yourself comfortable
-                                    .hidden_part
+                                    .hidden_part.active
+                                        p.notes
+                                            b Notes:
+                                            |  Discover medieval past of Barcelona by taking a free walking tour of Gothic Quarter. The tour will walk you trough the maze of charming narrow.
                                         table
                                             tr
-                                                td Airport:
+                                                td Lodging Name:
                                                 td CUN
                                             tr
                                                 td Confirmation #:
                                                 td HSU4A7
                                             tr
-                                                td Flight #:
-                                                td UA432
+                                                td Check in:
+                                                td
+                                                    | 12/31/1899 2:00:00 PM
+                                                    .date
                                             tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
+                                                td Check out:
+                                                td
+                                                    | 12/31/1899 11:00:00 AM
+                                                    .date
                                             tr
                                                 td Booked Through:
                                                 td Expedia
                                         a.voucher(href='', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
+                                                img(src='img/paper.png', alt='')
                                             | Sample-Voucher.pdf
                                     .bottom_row.clearfix
                                         a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
+                                        a.show_less.active(href='')
+                                            span Show Less
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
+                                                img(src='/assets/img/test/show.png', alt='')
                             .event
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .icon
                                     img(src='/assets/img/test/icon3.png', alt='')
                                 .content
@@ -273,8 +298,10 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
                             .event
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .icon
                                     img(src='/assets/img/test/icon4.png', alt='')
                                 .content
@@ -317,17 +344,31 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
-                        .day.day2
+                        .edit_events.clearfix
+                            .event_editor
+                                .event_add + Add more
+                                .event_day Days
+                                .event_event Events
+                        .day.day2.clearfix
                             .time_line
                                 p Day 2
                             .all_in_head
+                                .edit_block
+                                    .delete
+                                        img(src='/assets/img/test/basket.png', alt='')
+                                    .drag
+                                        img(src='/assets/img/test/drag.png', alt='')
                                 .head
                                     img(src='/assets/img/test/city2.jpg', alt='')
                                     h3 Barcelona: Gothic Quarter, Sagrada Familia
                                     p Location(s): Barcelona
                                     p Overnight: Barcelona
                             .event.with_go_to
+                                .edit_block
+                                    .delete
+                                        img(src='/assets/img/test/basket_grey.png', alt='')
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .time_for_timeline
                                     .hours 10:00
                                     .time_all_for 3h 50m
@@ -380,12 +421,14 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
                                 .go_to
                                     i
                                         img(src='/assets/img/test/man.png', alt='')
                                     | 0.2 km, 3 minutes
                             .event
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .time_for_timeline
                                     .hours 13:00
                                     .time_all_for 1h
@@ -429,8 +472,10 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
                             .event
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .time_for_timeline
                                     .hours 14:00
                                     .time_all_for 2h
@@ -474,8 +519,10 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
                             .event.with_go_to
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .time_for_timeline
                                     .hours 17:00
                                     .time_all_for 3h
@@ -528,12 +575,14 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
                                 .go_to
                                     i
                                         img(src='/assets/img/test/train.png', alt='')
                                     | 2.4 km, 22 minutes
                             .event.with_go_to
+                                .edit_block
+                                    .drag
+                                        img(src='img/drag_grey.png', alt='')
                                 .time_for_timeline
                                     .hours 19:00
                                     .time_all_for 1h
@@ -577,12 +626,14 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
                                 .go_to
                                     i
                                         img(src='/assets/img/test/car.png', alt='')
                                     | 2.4 km, 8 minutes
                             .event
+                                .edit_block
+                                    .drag
+                                        img(src='/assets/img/test/drag_grey.png', alt='')
                                 .time_for_timeline
                                     .hours 20:00
                                     .time_all_for 1h 30m
@@ -637,9 +688,13 @@ html(lang='en')
                                             span Show More
                                             i
                                                 img(src='/assets/img/test/hide.png', alt='')
-                                    .clearfix
+                        .edit_events.clearfix
+                            .event_editor
+                                .event_add + Add more
+                                .event_day Days
+                                .event_event Events
                         .clearfix
-                        a.save_btn(href='') Save to my itineraries & customize
+                        a.save_btn(href='') Save
         footer.clearfix
             .container
                 a.logo(href='')
@@ -653,12 +708,12 @@ html(lang='en')
                         a(href='#') Itineraries
                     li
                         a(href='#') Travel Tips
-        a.cd-top(href='#0') Top
-        // Bootstrap core JavaScript
-        script(src='/assets/test/js/jquery.min.js')
-        script(src='/assets/test/js/slick.min.js')
-        script(src='/assets/test/js/owl.carousel.min.js')
-        script(src='/assets/test/js/bootstrap.bundle.min.js')
-        script(src='/assets/test/js/jquery.hc-sticky.min.js')
-        script(src='/assets/test/js/scroll_top.js')
-        script(src='/assets/test/js/js.js')
+            a.cd-top.cd-is-visible(href='#0') Top
+            // Bootstrap core JavaScript
+            script(src='/assets/test/js/jquery.min.js')
+            script(src='/assets/test/js/slick.min.js')
+            script(src='/assets/test/js/bootstrap.bundle.min.js')
+            script(src='/assets/test/js/owl.carousel.min.js')
+            script(src='/assets/test/js/jquery.hc-sticky.min.js')
+            script(src='/assets/test/js/scroll_top.js')
+            script(src='/assets/test/js/js.js')
