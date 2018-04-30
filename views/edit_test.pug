@@ -1,27 +1,32 @@
 doctype html
 html(lang='en')
     head
+        //
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
         meta(name='description', content='')
         meta(name='author', content='')
         title
-        link(href='/assets/test/css/bootstrap.min.css', rel='stylesheet')
+        link(href='/assets/css/bootstrap.min.css', rel='stylesheet')
         // Custom fonts for this template
         link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
-        link(href='/assets/test/css/slick.css' rel='stylesheet')
-        link(href='/assets/test/css/owl.carousel.min.css', rel='stylesheet')
-        link(href='/assets/test/css/owl.theme.default.min.css', rel='stylesheet')
-        link(href='/stylesheets/style_test.css', rel='stylesheet')
+        link(href='/assets/css/slick.css', rel='stylesheet')
+        link(href='/assets/css/owl.carousel.min.css', rel='stylesheet')
+        link(href='/assets/css/owl.theme.default.min.css', rel='stylesheet')
+        link(href='/stylesheets/style_test2.css', rel='stylesheet')
+        link(href='/assets/js/datepicker/css/datepicker.css', rel='stylesheet')
+        // <link href="js/bootstrap-datetimepicker-1-master/css/bootstrap-datetimepicker.css" rel="stylesheet">
+        link(href='/assets/js/bootstrap-datetimepicker-master/bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.css', rel='stylesheet')
+        //if lt IE 9
+         script(src='/assets/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+         script(src='/assets/https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')
     body.edit(id='')
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.fixed-top
             .container
-                a.logo(href='')
-                    | Travel
-                    br
-                    | Route
+                .logo Travel Route 	 
                 button.navbar-toggler.navbar-toggler-left.menu(data-target='#navbarResponsive', aria-controls='navbarResponsive', type='button', data-toggle='collapse')
                     span
                     span
@@ -38,13 +43,12 @@ html(lang='en')
                             ul.navbar-nav.ml-auto
                                 li.mx-0.mx-lg-1
                                     a.itineraries.nav-link.py-3.px-0.px-lg-2(href='')
-                                        i
-                                            img(src='/assets/img/test/gpu.png', alt='')
-                                        |  My Itineraries
+                                        // i><img src="img/gpu.png" alt=""></i
+                                        | My Itineraries
                                 li.mx-0.mx-lg-1
                                     a.create.button_big.nav-link.py-3.px-3.px-lg-4(href='')
                                         i
-                                            img(src='/assets/img/test/plus.png', alt='')
+                                            img(src='/assets/img/plus.png', alt='')
                                         |  Create Itinerary
                         li.nav-item.mx-0.mx-lg-1
                             a.nav-link.py-3.px-0.px-lg-1(href='') Sign up
@@ -53,654 +57,1104 @@ html(lang='en')
         // Header
         header
             .container
-        section.highlights
+        section.highlights.highlights_padding
             .container
                 .row
                     .col-md-12
                         .wrapper_slider
                             .slider.owl-carousel.owl-theme
                                 .item
-                                    img(src='/assets/img/test/slide_1.jpg', alt='')
+                                    img(src='/assets/img/slide_1.jpg', alt='')
                                 .item
-                                    img(src='/assets/img/test/slide_2.jpg', alt='')
+                                    img(src='/assets/img/slide_2.jpg', alt='')
                                 .item
-                                    img(src='/assets/img/test/slide_3.jpg', alt='')
+                                    img(src='/assets/img/slide_3.jpg', alt='')
                                 .item
-                                    img(src='/assets/img/test/slide_4.jpg', alt='')
+                                    img(src='/assets/img/slide_4.jpg', alt='')
                                 .item
-                                    img(src='/assets/img/test/slide_5.jpg', alt='')
+                                    img(src='/assets/img/slide_5.jpg', alt='')
                 .select_start_date
                     .row
                         .col-lg-5.col-md-12
                             .items_in
-                                p Select start date
+                                p Select Start Date:
                                 .date_time_picker
-                                    input(type='text')
+                                    input.form-control.form-control_js.date-picker(type='text', value='10/05/2016', data-datepicker-color='primary')
                                     .icon_calendar
                         .col-lg-7.col-md-12
                             button.save Save
+                            button.save.cancel Cancel
                 .about_travel
                     .row
                         .col-md-12.col-lg-5
                             .content-in-item-travel
-                                .item-about
-                                    h3 TITLE:
-                                    p Barcelona, Madrid, Andalucia
+                                //
+                                 div class="item-about">
+                                 <h3>TITLE:</h3>
+                                 <p>Barcelona, Madrid, Andalucia</p>
+                                 </div
                                 .item-about
                                     h3 DAYS:
                                     p 14 Days (12 Full Days); 13 Nights
                                 .item-about
-                                    h3 FEATURING:
+                                    h3 FEATURING: 
                                     p Barcelona, Madrid, Cordoba, Seville, Granada
                                 .item-about
                                     h3 THEMES:
                                     p Romantic, Beach, Active Adventure
                         .col-md-12.col-lg-7
                             .content-in-item-travel
-                                h2 Trip highlights:
+                                h2 Trip highlights: 
                                 p
                                     | E.g. Let the passions of Spain's history and people ignite your spirit as you take in Gaudi’s architecture in Barcelona, tour mystical Alhambra Palace in Granada, feast on Spanish tapas in Madrid & much more.
         .section.locations_days
             .container
                 .row
                     .col-md-12.col-lg-3.order-lg-2
-                        .all_scroll_map
+                        .all_scroll_map(data-margin-top='100')
                             .map_go_to
                                 .map_slider
-                                    .item(data-index='1')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                    .item.active(data-index='1')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='2')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='3')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='4')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='5')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='6')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='7')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='8')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='9')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='10')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
+                                    .item(data-index='11')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                             .travel_for_mar
                                 .wtat_kind.clearfix
-                                    span map by days
+                                    span
+                                        | map by days
+                                        img.style_wtat_kind_img(src='/assets/img/travel_in_map3.png')
+                                        | view
                                     // <span></span>
                             .days_map
                                 .all_go_t
-                                    .count_dayse.map_slider_littlee
-                                        .go_to_sl.go_to_sl_1.active All
-                                        .go_to_sl.go_to_sl_2 2
-                                        .go_to_sl.go_to_sl_3 3
-                                        .go_to_sl.go_to_sl_4 4
-                                        .go_to_sl.go_to_sl_5 5
-                                        .go_to_sl.go_to_sl_6 6
-                                        .go_to_sl.go_to_sl_7 7
-                                        .go_to_sl.go_to_sl_8 8
-                                        .go_to_sl.go_to_sl_9 9
-                                        .go_to_sl.go_to_sl_10 10
-                    .col-md-12.col-lg-9
+                                    .count_dayse.map_slider_littlee.addstyle_map_slider_littlee
+                                        .map_slider_littlee_prev
+                                        .map_slider_littlee_box
+                                            .go_to_sl.go_to_sl_1.active(data-index='1') All
+                                            .go_to_sl.go_to_sl_2(data-index='2') 1
+                                            .go_to_sl.go_to_sl_3(data-index='3') 2
+                                            .go_to_sl.go_to_sl_4(data-index='4') 3
+                                            .go_to_sl.go_to_sl_5(data-index='5') 4
+                                            .go_to_sl.go_to_sl_6(data-index='6') 5
+                                            .go_to_sl.go_to_sl_7(data-index='7') 6
+                                            .go_to_sl.go_to_sl_8(data-index='8') 7
+                                            .go_to_sl.go_to_sl_9(data-index='9') 8
+                                            .go_to_sl.go_to_sl_10(data-index='10') 9
+                                            .go_to_sl.go_to_sl_11(data-index='11') 10
+                                            //
+                                             div class="go_to_sl go_to_sl_12" data-index="12">1</div>
+                                             <div class="go_to_sl go_to_sl_13" data-index="13">2</div>
+                                             <div class="go_to_sl go_to_sl_14" data-index="14">3</div>
+                                             <div class="go_to_sl go_to_sl_15" data-index="15">4</div>
+                                             <div class="go_to_sl go_to_sl_16" data-index="16">5</div>
+                                             <div class="go_to_sl go_to_sl_17" data-index="17">6</div>
+                                             <div class="go_to_sl go_to_sl_18" data-index="18">7</div>
+                                             <div class="go_to_sl go_to_sl_19"  data-index="19">8</div>
+                                             <div class="go_to_sl go_to_sl_20" data-index="20">9</div>
+                                             <div class="go_to_sl go_to_sl_21" data-index="21">10</div
+                                        .map_slider_littlee_next
+                            .box_element.display_none(data-index_id='7', data-index_id_min='3')
+                                .box_element_conteiner
+                            //
+                             div class="days_map">
+                             <div class="all_go_t">
+                             <div class="count_dayse map_slider_littlee">
+                             <div class="go_to_sl go_to_sl_1 active">All</div>
+                             <div class="go_to_sl go_to_sl_2">2</div>
+                             <div class="go_to_sl go_to_sl_3">3</div>
+                             <div class="go_to_sl go_to_sl_4">4</div>
+                             <div class="go_to_sl go_to_sl_5">5</div>
+                             <div class="go_to_sl go_to_sl_6">6</div>
+                             <div class="go_to_sl go_to_sl_7">7</div>
+                             <div class="go_to_sl go_to_sl_8">8</div>
+                             <div class="go_to_sl go_to_sl_9">9</div>
+                             <div class="go_to_sl go_to_sl_10">10</div>
+                             </div>
+                             </div>
+                             </div
+                    .col-md-12.col-lg-9.board_1
                         .exp-col
                             span.spa_1.active Expand All
-                            |  /
+                            |  / 
                             span.spa_2 Collapse
-                        .day.day1.clearfix
-                            .time_line
-                                p Day 1
-                            .all_in_head
-                                .edit_block
-                                    .delete
-                                        img(src='/assets/img/test/basket.png', alt='')
-                                    .drag
-                                        img(src='/assets/img/test/drag.png', alt='')
-                                .head
-                                    img(src='/assets/img/test/city1.jpg', alt='')
-                                    h3 Arrival
-                                    p Location(s): Barcelona
-                                    p Overnight: Barcelona
-                            .event.active
-                                .edit_block
-                                    .delete
-                                        img(src='/assets/img/test/basket_grey.png', alt='')
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .icon
-                                    img(src='/assets/img/test/icon1.png', alt='')
-                                .content
-                                    h3
-                                        b Arrival - Barcelona
-                                        br
-                                        | Welcome to the start point of your itinerary and let the adventure begin!
-                                    .hidden_part.active
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less.active(href='')
-                                            span Show Less
-                                            i
-                                                img(src='/assets/img/test/show.png', alt='')
-                            .event.active
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .icon
-                                    img(src='/assets/img/test/icon2.png', alt='')
-                                .content
-                                    h3
-                                        b Check-in
-                                        br
-                                        | Check-in at Stay and make yourself comfortable
-                                    .hidden_part.active
-                                        p.notes
-                                            b Notes:
-                                            |  Discover medieval past of Barcelona by taking a free walking tour of Gothic Quarter. The tour will walk you trough the maze of charming narrow.
-                                        table
-                                            tr
-                                                td Lodging Name:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Check in:
-                                                td
-                                                    | 12/31/1899 2:00:00 PM
-                                                    .date
-                                            tr
-                                                td Check out:
-                                                td
-                                                    | 12/31/1899 11:00:00 AM
-                                                    .date
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='img/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less.active(href='')
-                                            span Show Less
-                                            i
-                                                img(src='/assets/img/test/show.png', alt='')
-                            .event
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .icon
-                                    img(src='/assets/img/test/icon3.png', alt='')
-                                .content
-                                    h3
-                                        b Dinner - Tapas Stroll
-                                        br
-                                        | Take part in the traditional "el paseo" stroll at night, hopping from bar to bar and trying different  "tapas" appetizers. This is a greate way to sample local food and make new friends.
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                            .event
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .icon
-                                    img(src='/assets/img/test/icon4.png', alt='')
-                                .content
-                                    h3
-                                        b Optional: Street Performance of Spanish Guitar or Jazz
-                                        br
-                                        | At night, Barcelona's streets, squares and parks come alive with music.
-                                        br
-                                        | Catch a live outdoor performance.
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        p.free Free
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                        .edit_events.clearfix
-                            .event_editor
-                                .event_add + Add more
-                                .event_day Days
-                                .event_event Events
-                        .day.day2.clearfix
-                            .time_line
-                                p Day 2
-                            .all_in_head
-                                .edit_block
-                                    .delete
-                                        img(src='/assets/img/test/basket.png', alt='')
-                                    .drag
-                                        img(src='/assets/img/test/drag.png', alt='')
-                                .head
-                                    img(src='/assets/img/test/city2.jpg', alt='')
-                                    h3 Barcelona: Gothic Quarter, Sagrada Familia
-                                    p Location(s): Barcelona
-                                    p Overnight: Barcelona
-                            .event.with_go_to
-                                .edit_block
-                                    .delete
-                                        img(src='/assets/img/test/basket_grey.png', alt='')
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .time_for_timeline
-                                    .hours 10:00
-                                    .time_all_for 3h 50m
-                                .icon
-                                    img(src='/assets/img/test/icon5.jpg', alt='')
-                                .content
-                                    h3
-                                        b Gothic Quarter Walking Tour (Free)
-                                        br
-                                        | Discover medieval past of Barcelona by taking a free walking tour of the Gothic Quarter. The tour will walk you trough the maze of charming narrow streets, old squares and magnificent cathedrals.
-                                    .quantity.clearfix
-                                        .feed
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star
-                                            .kol (37489)
-                                        .cost_of Free (based on tips)
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                                .go_to
-                                    i
-                                        img(src='/assets/img/test/man.png', alt='')
-                                    | 0.2 km, 3 minutes
-                            .event
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .time_for_timeline
-                                    .hours 13:00
-                                    .time_all_for 1h
-                                .icon
-                                    img(src='/assets/img/test/icon3.png', alt='')
-                                .content
-                                    h3
-                                        b Lunch - El Born Area
-                                        br
-                                        | Аdjoining the Gothic Quarter, the El  Born neighbourhood is home of the most trendy and atmospheric bars, cafes, and restaurants. Pick one to you taste.
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                            .event
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .time_for_timeline
-                                    .hours 14:00
-                                    .time_all_for 2h
-                                .icon
-                                    img(src='/assets/img/test/icon6.png', alt='')
-                                .content
-                                    h3
-                                        b Time at Leisure / Siesta
-                                        br
-                                        | Follow the tradition of Siesta and take some rest to avoid the mid-afternoon heat. Get refreshed before the evening acivities.
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                            .event.with_go_to
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .time_for_timeline
-                                    .hours 17:00
-                                    .time_all_for 3h
-                                .icon
-                                    img(src='/assets/img/test/icon7.jpg', alt='')
-                                .content
-                                    h3
-                                        b Sagrada Familia
-                                        br
-                                        | La Sagrada Familia Cathedral is arguably Barcelona’s the most celebrated attraction. Designed by genious Antoni Gaudi, this unfinished masterpiece is still under construction. Funded by...
-                                    .quantity.clearfix
-                                        .feed
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star
-                                            .kol (37489)
-                                        .cost_of Free (based on tips)
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        p.free Free
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                                .go_to
-                                    i
-                                        img(src='/assets/img/test/train.png', alt='')
-                                    | 2.4 km, 22 minutes
-                            .event.with_go_to
-                                .edit_block
-                                    .drag
-                                        img(src='img/drag_grey.png', alt='')
-                                .time_for_timeline
-                                    .hours 19:00
-                                    .time_all_for 1h
-                                .icon
-                                    img(src='/assets/img/test/icon3.png', alt='')
-                                .content
-                                    h3
-                                        b Dinner - Eixample Area
-                                        br
-                                        | Treat yourself with  a dinner in the very hart of Barcelona - stylish Eixample neighbourhood.
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                                .go_to
-                                    i
-                                        img(src='/assets/img/test/car.png', alt='')
-                                    | 2.4 km, 8 minutes
-                            .event
-                                .edit_block
-                                    .drag
-                                        img(src='/assets/img/test/drag_grey.png', alt='')
-                                .time_for_timeline
-                                    .hours 20:00
-                                    .time_all_for 1h 30m
-                                .icon
-                                    img(src='/assets/img/test/icon8.jpg', alt='')
-                                .content
-                                    h3
-                                        b Optional: Magic Fountains
-                                        br
-                                        | After dark, admire the show of dancing water.
-                                    .quantity.clearfix
-                                        .feed
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star.gold
-                                            span.star
-                                            .kol (37489)
-                                        .cost_of
-                                            span Thur, Fr, Sat
-                                            |  Free
-                                    .hidden_part
-                                        table
-                                            tr
-                                                td Airport:
-                                                td CUN
-                                            tr
-                                                td Confirmation #:
-                                                td HSU4A7
-                                            tr
-                                                td Flight #:
-                                                td UA432
-                                            tr
-                                                td Airline:
-                                                td United Airlines
-                                            tr
-                                                td Terminal:
-                                                td 3
-                                            tr
-                                                td Gate:
-                                                td B10
-                                            tr
-                                                td Booked Through:
-                                                td Expedia
-                                        a.voucher(href='', download='')
-                                            i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
-                                    .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
-                                            span Show More
-                                            i
-                                                img(src='/assets/img/test/hide.png', alt='')
-                        .edit_events.clearfix
-                            .event_editor
-                                .event_add + Add more
-                                .event_day Days
-                                .event_event Events
+                        #days_box.days_box
+                            #days1.days(draggable='true')
+                                .day.day1.clearfix
+                                    .time_line
+                                        p Day 1
+                                    .all_in_head
+                                        .edit_block
+                                            .delete
+                                                img(src='/assets/img/basket_day.png', alt='')
+                                            .drag.drag_days
+                                                img(src='/assets/img/drah_day.png', alt='')
+                                        .head
+                                            img(src='/assets/img/city1.jpg', alt='')
+                                            .time_line_span_box
+                                                span.time_line_span 10/05/2016
+                                            h3 Arrival
+                                            p Location(s): Barcelona
+                                            p Overnight: Barcelona
+                                    .event_box
+                                        #day1_event_1.event.active(data-index='1')
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .icon
+                                                img(src='/assets/img/icon1.png', alt='')
+                                            .content
+                                                h3
+                                                    b Arrival - Barcelona
+                                                    br
+                                                    | Welcome to the start point of your itinerary and let the adventure begin!
+                                                .hidden_part.active
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less.active(href='')
+                                                        span Show Less
+                                                        i
+                                                            img(src='/assets/img/show.png', alt='')
+                                        #day1_event_2.event.active
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .icon
+                                                img(src='/assets/img/icon2.png', alt='')
+                                            .content
+                                                h3
+                                                    b Check-in
+                                                    br
+                                                    | Check-in at Stay and make yourself comfortable
+                                                .hidden_part.active
+                                                    p.notes
+                                                        b Notes:
+                                                        |  Discover medieval past of Barcelona by taking a free walking tour of Gothic Quarter. The tour will walk you trough the maze of charming narrow.
+                                                    table
+                                                        tr
+                                                            td Lodging Name: 
+                                                            td CUN 
+                                                        tr
+                                                            td Confirmation #: 
+                                                            td HSU4A7 
+                                                        tr
+                                                            td Check in: 
+                                                            td.add_width(style='font-size:0')
+                                                                input.form-control.timepicker.timepicker_style(type='text', name='cron', required='')
+                                                                .time_icon_box
+                                                                input.form-control.form-control_check.date-picker1(type='text', value='12/31/1899', data-datepicker-color='primary')
+                                                                .date
+                                                        tr
+                                                            td Check out: 
+                                                            td.add_width(style='font-size:0')
+                                                                input.form-control.timepicker.timepicker_style(type='text', required='', name='cron')
+                                                                .time_icon_box
+                                                                input.form-control.form-control_check.date-picker2(type='text', value='12/31/1899', data-datepicker-color='primary')
+                                                                .date
+                                                        tr
+                                                            td Booked Through: 
+                                                            td Expedia 
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less.active(href='')
+                                                        span Show Less
+                                                        i
+                                                            img(src='/assets/img/show.png', alt='')
+                                        #day1_event_3.event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .icon
+                                                img(src='/assets/img/icon3.png', alt='')
+                                            .content
+                                                h3
+                                                    b Dinner - Tapas Stroll
+                                                    br
+                                                    | Take part in the traditional "el paseo" stroll at night, hopping from bar to bar and trying different  "tapas" appetizers. This is a greate way to sample local food and make new friends.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                        .event
+                                            #day1_event_4.temp
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .icon
+                                                img(src='/assets/img/icon4.png', alt='')
+                                            .content
+                                                h3
+                                                    b Optional: Street Performance of Spanish Guitar or Jazz
+                                                    br
+                                                    | At night, Barcelona's streets, squares and parks come alive with music. 
+                                                    br
+                                                    | Catch a live outdoor performance.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    p.free Free
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                .edit_events.clearfix(style='clear:both;')
+                                    .event_editor
+                                        .event_add + Add more
+                                        .event_day Days
+                                        .event_event Events
+                            #days2.days(draggable='true')
+                                .day.day2.clearfix
+                                    .time_line
+                                        p Day 2
+                                    .all_in_head
+                                        .edit_block
+                                            .delete
+                                                img(src='/assets/img/basket_day.png', alt='')
+                                            .drag.drag_days
+                                                img(src='/assets/img/drah_day.png', alt='')
+                                        .head
+                                            img(src='/assets/img/city2.jpg', alt='')
+                                            .time_line_span_box
+                                                span.time_line_span 10/05/2016
+                                            h3 Barcelona: Gothic Quarter, Sagrada Familia
+                                            p Location(s): Barcelona
+                                            p Overnight: Barcelona
+                                    .event_box
+                                        .event.with_go_to
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 10:00
+                                                .time_all_for 3h 50m
+                                            .icon
+                                                img(src='/assets/img/icon5.jpg', alt='')
+                                            .content
+                                                h3
+                                                    b Gothic Quarter Walking Tour (Free)
+                                                    br
+                                                    | Discover medieval past of Barcelona by taking a free walking tour of the Gothic Quarter. The tour will walk you trough the maze of charming narrow streets, old squares and magnificent cathedrals.
+                                                .quantity.clearfix
+                                                    .feed
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star
+                                                        .kol (37489)
+                                                    .cost_of Free (based on tips)
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                            .go_to
+                                                i
+                                                    img(src='/assets/img/man.png', alt='')
+                                                | 0.2 km, 3 minutes
+                                        .event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 13:00
+                                                .time_all_for 1h
+                                            .icon
+                                                img(src='/assets/img/icon3.png', alt='')
+                                            .content
+                                                h3
+                                                    b Lunch - El Born Area
+                                                    br
+                                                    | Аdjoining the Gothic Quarter, the El  Born neighbourhood is home of the most trendy and atmospheric bars, cafes, and restaurants. Pick one to you taste.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                        .event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 14:00
+                                                .time_all_for 2h
+                                            .icon
+                                                img(src='/assets/img/icon6.png', alt='')
+                                            .content
+                                                h3
+                                                    b Time at Leisure / Siesta 
+                                                    br
+                                                    | Follow the tradition of Siesta and take some rest to avoid the mid-afternoon heat. Get refreshed before the evening acivities.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                        .event.with_go_to
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 17:00
+                                                .time_all_for 3h
+                                            .icon
+                                                img(src='/assets/img/icon7.jpg', alt='')
+                                            .content
+                                                h3
+                                                    b Sagrada Familia
+                                                    br
+                                                    | La Sagrada Familia Cathedral is arguably Barcelona’s the most celebrated attraction. Designed by genious Antoni Gaudi, this unfinished masterpiece is still under construction. Funded by...
+                                                .quantity.clearfix
+                                                    .feed
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star
+                                                        .kol (37489)
+                                                    .cost_of Free (based on tips)
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    p.free Free
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                            .go_to
+                                                i
+                                                    img(src='/assets/img/train.png', alt='')
+                                                | 2.4 km, 22 minutes
+                                        .event.with_go_to
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 19:00
+                                                .time_all_for 1h
+                                            .icon
+                                                img(src='/assets/img/icon3.png', alt='')
+                                            .content
+                                                h3
+                                                    b Dinner - Eixample Area
+                                                    br
+                                                    | Treat yourself with  a dinner in the very hart of Barcelona - stylish Eixample neighbourhood.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                            .go_to
+                                                i
+                                                    img(src='/assets/img/car.png', alt='')
+                                                | 2.4 km, 8 minutes
+                                        .event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 20:00
+                                                .time_all_for 1h 30m
+                                            .icon
+                                                img(src='/assets/img/icon8.jpg', alt='')
+                                            .content
+                                                h3
+                                                    b Optional: Magic Fountains
+                                                    br
+                                                    | After dark, admire the show of dancing water.
+                                                .quantity.clearfix
+                                                    .feed
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star
+                                                        .kol (37489)
+                                                    .cost_of
+                                                        span Thur, Fr, Sat
+                                                        |  Free
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                .edit_events.clearfix
+                                    .event_editor
+                                        .event_add + Add more
+                                        .event_day Days
+                                        .event_event Events
+                            #days3.days(draggable='true')
+                                .day.day2.clearfix
+                                    .time_line
+                                        p Day 3
+                                    .all_in_head
+                                        .edit_block
+                                            .delete
+                                                img(src='/assets/img/basket_day.png', alt='')
+                                            .drag.drag_days
+                                                img(src='/assets/img/drah_day.png', alt='')
+                                        .head
+                                            img(src='/assets/img/city2.jpg', alt='')
+                                            .time_line_span_box
+                                                span.time_line_span 10/05/2016
+                                            h3 Barcelona: Gothic Quarter, Sagrada Familia
+                                            p Location(s): Barcelona
+                                            p Overnight: Barcelona
+                                    .event_box
+                                        .event.with_go_to
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 10:00
+                                                .time_all_for 3h 50m
+                                            .icon
+                                                img(src='/assets/img/icon5.jpg', alt='')
+                                            .content
+                                                h3
+                                                    b Gothic Quarter Walking Tour (Free)
+                                                    br
+                                                    | Discover medieval past of Barcelona by taking a free walking tour of the Gothic Quarter. The tour will walk you trough the maze of charming narrow streets, old squares and magnificent cathedrals.
+                                                .quantity.clearfix
+                                                    .feed
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star
+                                                        .kol (37489)
+                                                    .cost_of Free (based on tips)
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                            .go_to
+                                                i
+                                                    img(src='/assets/img/man.png', alt='')
+                                                | 0.2 km, 3 minutes
+                                        .event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 13:00
+                                                .time_all_for 1h
+                                            .icon
+                                                img(src='/assets/img/icon3.png', alt='')
+                                            .content
+                                                h3
+                                                    b Lunch - El Born Area
+                                                    br
+                                                    | Аdjoining the Gothic Quarter, the El  Born neighbourhood is home of the most trendy and atmospheric bars, cafes, and restaurants. Pick one to you taste.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                        .event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 14:00
+                                                .time_all_for 2h
+                                            .icon
+                                                img(src='/assets/img/icon6.png', alt='')
+                                            .content
+                                                h3
+                                                    b Time at Leisure / Siesta 
+                                                    br
+                                                    | Follow the tradition of Siesta and take some rest to avoid the mid-afternoon heat. Get refreshed before the evening acivities.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                        .event.with_go_to
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 17:00
+                                                .time_all_for 3h
+                                            .icon
+                                                img(src='/assets/img/icon7.jpg', alt='')
+                                            .content
+                                                h3
+                                                    b Sagrada Familia
+                                                    br
+                                                    | La Sagrada Familia Cathedral is arguably Barcelona’s the most celebrated attraction. Designed by genious Antoni Gaudi, this unfinished masterpiece is still under construction. Funded by...
+                                                .quantity.clearfix
+                                                    .feed
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star
+                                                        .kol (37489)
+                                                    .cost_of Free (based on tips)
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    p.free Free
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                            .go_to
+                                                i
+                                                    img(src='/assets/img/train.png', alt='')
+                                                | 2.4 km, 22 minutes
+                                        .event.with_go_to
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 19:00
+                                                .time_all_for 1h
+                                            .icon
+                                                img(src='/assets/img/icon3.png', alt='')
+                                            .content
+                                                h3
+                                                    b Dinner - Eixample Area
+                                                    br
+                                                    | Treat yourself with  a dinner in the very hart of Barcelona - stylish Eixample neighbourhood.
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                            .go_to
+                                                i
+                                                    img(src='/assets/img/car.png', alt='')
+                                                | 2.4 km, 8 minutes
+                                        .event
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_grey.png', alt='')
+                                                .drag
+                                                    img(src='/assets/img/drag_grey.png', alt='')
+                                            .time_for_timeline
+                                                .hours 20:00
+                                                .time_all_for 1h 30m
+                                            .icon
+                                                img(src='/assets/img/icon8.jpg', alt='')
+                                            .content
+                                                h3
+                                                    b Optional: Magic Fountains
+                                                    br
+                                                    | After dark, admire the show of dancing water.
+                                                .quantity.clearfix
+                                                    .feed
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star.gold
+                                                        span.star
+                                                        .kol (37489)
+                                                    .cost_of
+                                                        span Thur, Fr, Sat
+                                                        |  Free
+                                                .hidden_part
+                                                    table
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline: 
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                    a.voucher(href='', download='')
+                                                        i
+                                                            img(src='/assets/img/paper.png', alt='')
+                                                        | PDF
+                                                .bottom_row.clearfix
+                                                    a.book_now(href='#') Book Now
+                                                    a.show_less(href='')
+                                                        span Show More
+                                                        i
+                                                            img(src='/assets/img/hide.png', alt='')
+                                .edit_events.clearfix
+                                    .event_editor
+                                        .event_add + Add more
+                                        .event_day Days
+                                        .event_event Events
                         .clearfix
-                        a.save_btn(href='') Save
+                        a.save_btn.save_btn_style(href='') Save
+                        button.save_btn.save_btn_style.cancel.cancel_content Cancel
+        //
+         <ol class="simple_with_animation vertical">
+         <li>Item 1</li>
+         <li>Item 2</li>
+         <li>Item 3</li>
+         <li>Item 4</li>
+         <li>Item 5</li>
+         <li>Item 6</li>
+         </ol>
+        //
+         <footer class="clearfix">
+         <div class="container">
+         <a href="" class="logo">Travel <br>Route</a>
+         <ul>
+         <li><a href="#">Home</a></li>
+         <li><a href="#">Itineraries</a></li>
+         <li><a href="#">Travel Tips</a></li>
+         </ul>
+         </div>
+         <div class="bootstrap-datetimepicker-widget top dropdown-menu usetwentyfour">
+         <ul class="list-unstyled"><li class="picker-switch accordion-toggle"><table class="table-condensed"><tbody><tr></tr></tbody></table></li><li><div class="timepicker"><div class="timepicker-picker"><table class="table-condensed"><tbody><tr><td><a href="#" tabindex="-1" title="Increment Hour" class="btn" data-action="incrementHours"><span class="glyphicon glyphicon-chevron-up"></span></a></td><td class="separator"></td><td><a href="#" tabindex="-1" title="Increment Minute" class="btn" data-action="incrementMinutes"><span class="glyphicon glyphicon-chevron-up"></span></a></td></tr><tr><td><span class="timepicker-hour" data-time-component="hours" title="Pick Hour" data-action="showHours">18</span></td><td class="separator">:</td><td><span class="timepicker-minute" data-time-component="minutes" title="Pick Minute" data-action="showMinutes">17</span></td></tr><tr><td><a href="#" tabindex="-1" title="Decrement Hour" class="btn" data-action="decrementHours"><span class="glyphicon glyphicon-chevron-down"></span></a></td><td class="separator"></td><td><a href="#" tabindex="-1" title="Decrement Minute" class="btn" data-action="decrementMinutes"><span class="glyphicon glyphicon-chevron-down"></span></a></td></tr></tbody></table></div><div class="timepicker-hours" style="display: none;"><table class="table-condensed"><tbody><tr><td data-action="selectHour" class="hour">00</td><td data-action="selectHour" class="hour">01</td><td data-action="selectHour" class="hour">02</td><td data-action="selectHour" class="hour">03</td></tr><tr><td data-action="selectHour" class="hour">04</td><td data-action="selectHour" class="hour">05</td><td data-action="selectHour" class="hour">06</td><td data-action="selectHour" class="hour">07</td></tr><tr><td data-action="selectHour" class="hour">08</td><td data-action="selectHour" class="hour">09</td><td data-action="selectHour" class="hour">10</td><td data-action="selectHour" class="hour">11</td></tr><tr><td data-action="selectHour" class="hour">12</td><td data-action="selectHour" class="hour">13</td><td data-action="selectHour" class="hour">14</td><td data-action="selectHour" class="hour">15</td></tr><tr><td data-action="selectHour" class="hour">16</td><td data-action="selectHour" class="hour">17</td><td data-action="selectHour" class="hour">18</td><td data-action="selectHour" class="hour">19</td></tr><tr><td data-action="selectHour" class="hour">20</td><td data-action="selectHour" class="hour">21</td><td data-action="selectHour" class="hour">22</td><td data-action="selectHour" class="hour">23</td></tr></tbody></table></div><div class="timepicker-minutes" style="display: none;"><table class="table-condensed"><tbody><tr><td data-action="selectMinute" class="minute">00</td><td data-action="selectMinute" class="minute">05</td><td data-action="selectMinute" class="minute">10</td><td data-action="selectMinute" class="minute">15</td></tr><tr><td data-action="selectMinute" class="minute">20</td><td data-action="selectMinute" class="minute">25</td><td data-action="selectMinute" class="minute">30</td><td data-action="selectMinute" class="minute">35</td></tr><tr><td data-action="selectMinute" class="minute">40</td><td data-action="selectMinute" class="minute">45</td><td data-action="selectMinute" class="minute">50</td><td data-action="selectMinute" class="minute">55</td></tr></tbody></table></div></div></li></ul>
+         </div>
         footer.clearfix
             .container
-                a.logo(href='')
-                    | Travel
-                    br
-                    | Route
+                .logo Travel Route
                 ul
                     li
                         a(href='#') Home
@@ -708,12 +1162,51 @@ html(lang='en')
                         a(href='#') Itineraries
                     li
                         a(href='#') Travel Tips
-            a.cd-top.cd-is-visible(href='#0') Top
-            // Bootstrap core JavaScript
-            script(src='/assets/test/js/jquery.min.js')
-            script(src='/assets/test/js/slick.min.js')
-            script(src='/assets/test/js/bootstrap.bundle.min.js')
-            script(src='/assets/test/js/owl.carousel.min.js')
-            script(src='/assets/test/js/jquery.hc-sticky.min.js')
-            script(src='/assets/test/js/scroll_top.js')
-            script(src='/assets/test/js/js.js')
+        a.cd-top.cd-is-visible(href='#0') Top
+        // Bootstrap core JavaScript
+        //
+         <script src="js/jquery.min.js"></script>
+        // <script src="js/jquery-1.11.3.js"></script>
+        script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')
+        script(src='/assets/js/bootstrap-datetimepicker.min.js')
+        script(src='/assets/js/slick.min.js')
+        script(src='/assets/js/owl.carousel.min.js')
+        // <script src="js/jquery.hc-sticky.min.js"></script>
+        script(src='/assets/js/sticky1.min.js')
+        script(src='/assets/js/bootstrap.bundle.min.js')
+        script(src='/assets/js/moment.js')
+        script(src='/assets/js/datepicker/js/bootstrap-datepicker.js')
+        // <script src="js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+        script(src='/assets/js/bootstrap-datetimepicker-master/bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')
+        script(src='/assets/js/add_datepicker.js')
+        //
+         <script src="js/jquery.ui.touch-punch.min.js"></script>
+         <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
+         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.css" />
+         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+         <script src="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.js"></script>
+        script(src='/assets/js/jquery-sortable.js')
+        script(src='https://code.jquery.com/ui/1.11.3/jquery-ui.min.js')
+        script(src='/assets/js/scroll_top.js')
+        script(src='/assets/js/js.js')
+        script.
+            if(window.innerWidth > 768){
+                var sticky = new Sticky('.all_scroll_map');
+            }
+        script(type='text/javascript').
+            $(function () {
+                $('.timepicker').datetimepicker({
+                    format: 'HH:mm',
+                });
+                /*$('body').on('click', function(e){
+                if(!$('input.timepicker').on('click') ){
+                $('input.timepicker').blur();
+                }
+                })*/
+            });
+        script(language='javascript').
+            /* IE11 Fix for SP2010 */
+            if (typeof(UserAgentInfo) != 'undefined' && !window.addEventListener)
+            {
+                UserAgentInfo.strBrowser=1;
+            }

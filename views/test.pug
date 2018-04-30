@@ -10,18 +10,15 @@ html(lang='en')
         // Custom fonts for this template
         link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
-        link(href='/assets/test/css/slick.css' rel='stylesheet')
-        link(href='/assets/test/css/owl.carousel.min.css', rel='stylesheet')
-        link(href='/assets/test/css/owl.theme.default.min.css', rel='stylesheet')
-        link(href='/stylesheets/style_test.css', rel='stylesheet')
+        link(href='/assets/css/slick.css', rel='stylesheet')
+        link(href='/assets/css/owl.carousel.min.css', rel='stylesheet')
+        link(href='/assets/css/owl.theme.default.min.css', rel='stylesheet')
+        link(href='/stylesheets/style_test2.css', rel='stylesheet')
     body(id='')
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.fixed-top
             .container
-                a.logo(href='')
-                    | Travel
-                    br
-                    | Route
+                .logo Travel Route
                 button.navbar-toggler.navbar-toggler-left.menu(data-target='#navbarResponsive', aria-controls='navbarResponsive', type='button', data-toggle='collapse')
                     span
                     span
@@ -29,27 +26,25 @@ html(lang='en')
                 #navbarResponsive.collapse.navbar-collapse
                     ul.navbar-nav.ml-auto
                         li.nav-item.mx-0.mx-lg-1
-                            a.nav-link.py-3.px-0.px-lg-1(href='') Home
+                            a.nav-link.py-3.px-0.px-lg-1(href='/assets/') Home
                         li.nav-item.mx-0.mx-lg-1
-                            a.nav-link.py-3.px-0.px-lg-1(href='') Itineraries
+                            a.nav-link.py-3.px-0.px-lg-1(href='/assets/') Itineraries
                         li.nav-item.mx-0.mx-lg-1
-                            a.nav-link.py-3.px-0.px-lg-1(href='') Travel Tips
+                            a.nav-link.py-3.px-0.px-lg-1(href='/assets/') Travel Tips
                         li.nav-item.mx-0.mx-lg-5
                             ul.navbar-nav.ml-auto
                                 li.mx-0.mx-lg-1
-                                    a.itineraries.nav-link.py-3.px-0.px-lg-2(href='')
-                                        i
-                                            img(src='/assets/img/test/gpu.png', alt='')
-                                        |  My Itineraries
+                                    a.itineraries.nav-link.py-3.px-0.px-lg-2(href='/assets/')
+                                        | My Itineraries
                                 li.mx-0.mx-lg-1
-                                    a.create.button_big.nav-link.py-3.px-3.px-lg-4(href='')
+                                    a.create.button_big.nav-link.py-3.px-3.px-lg-4(href='/assets/')
                                         i
-                                            img(src='/assets/img/test/plus.png', alt='')
+                                            img(src='/assets/img/plus.png', alt='')
                                         |  Create Itinerary
                         li.nav-item.mx-0.mx-lg-1
-                            a.nav-link.py-3.px-0.px-lg-1(href='') Sign up
+                            a.nav-link.py-3.px-0.px-lg-1(href='/assets/') Sign up
                         li.nav-item.mx-0.mx-lg-1
-                            a.nav-link.py-3.px-0.px-lg-1(href='') Log In
+                            a.nav-link.py-3.px-0.px-lg-1(href='/assets/') Log In
         // Header
         header
             .container
@@ -59,23 +54,20 @@ html(lang='en')
                     .col-md-12
                         .wrapper_slider
                             .slider.owl-carousel.owl-theme
-                                .item(data-big_slide='/assets/img/test/background_1.jpg')
-                                    img(src='/assets/img/test/slide_1.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/bg_2.jpg')
-                                    img(src='/assets/img/test/slide_2.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/background_1.jpg')
-                                    img(src='/assets/img/test/slide_3.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/bg_2.jpg')
-                                    img(src='/assets/img/test/slide_4.jpg', alt='')
-                                .item(data-big_slide='/assets/img/test/background_1.jpg')
-                                    img(src='/assets/img/test/slide_5.jpg', alt='')
+                                .item(data-big_slide='img/background_1.jpg')
+                                    img(src='/assets/img/slide_1.jpg', alt='')
+                                .item(data-big_slide='img/bg_2.jpg')
+                                    img(src='/assets/img/slide_2.jpg', alt='')
+                                .item(data-big_slide='img/background_1.jpg')
+                                    img(src='/assets/img/slide_3.jpg', alt='')
+                                .item(data-big_slide='img/bg_2.jpg')
+                                    img(src='/assets/img/slide_4.jpg', alt='')
+                                .item(data-big_slide='img/background_1.jpg')
+                                    img(src='/assets/img/slide_5.jpg', alt='')
                 .about_travel
                     .row
                         .col-md-12.col-lg-5
                             .content-in-item-travel
-                                .item-about
-                                    h3 TITLE:
-                                    p Barcelona, Madrid, Andalucia
                                 .item-about
                                     h3 DAYS:
                                     p 14 Days (12 Full Days); 13 Nights
@@ -94,46 +86,68 @@ html(lang='en')
             .container
                 .row
                     .col-md-12.col-lg-3.order-lg-2
-                        .all_scroll_map
+                        .all_scroll_map(data-margin-top='100')
                             .map_go_to
                                 .map_slider
-                                    .item(data-index='1')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                    .item.active(data-index='1')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='2')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='3')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='4')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='5')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='6')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='7')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='8')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='9')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                                     .item(data-index='10')
-                                        img(src='/assets/img/test/map_sidebar.png', alt='')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
+                                    .item(data-index='11')
+                                        img(src='/assets/img/map_sidebar.png', alt='')
                             .travel_for_mar
-                                .wtat_kind.clearfix
-                                    span map by days
+                                .wtat_kind.clearfix.style_wtat_kind
+                                    span
+                                        | map by days
+                                        img.style_wtat_kind_img(src='/assets/img/travel_in_map3.png')
+                                        | view
                                     // <span></span>
                             .days_map
                                 .all_go_t
-                                    .count_dayse.map_slider_littlee
-                                        .go_to_sl.go_to_sl_1.active All
-                                        .go_to_sl.go_to_sl_2 2
-                                        .go_to_sl.go_to_sl_3 3
-                                        .go_to_sl.go_to_sl_4 4
-                                        .go_to_sl.go_to_sl_5 5
-                                        .go_to_sl.go_to_sl_6 6
-                                        .go_to_sl.go_to_sl_7 7
-                                        .go_to_sl.go_to_sl_8 8
-                                        .go_to_sl.go_to_sl_9 9
-                                        .go_to_sl.go_to_sl_10 10
+                                    .count_dayse.map_slider_littlee.addstyle_map_slider_littlee
+                                        .map_slider_littlee_prev
+                                        .map_slider_littlee_box
+                                            .go_to_sl.go_to_sl_1.active(data-index='1') All
+                                            .go_to_sl.go_to_sl_2(data-index='2') 1
+                                            .go_to_sl.go_to_sl_3(data-index='3') 2
+                                            .go_to_sl.go_to_sl_4(data-index='4') 3
+                                            .go_to_sl.go_to_sl_5(data-index='5') 4
+                                            .go_to_sl.go_to_sl_6(data-index='6') 5
+                                            .go_to_sl.go_to_sl_7(data-index='7') 6
+                                            .go_to_sl.go_to_sl_8(data-index='8') 7
+                                            .go_to_sl.go_to_sl_9(data-index='9') 8
+                                            .go_to_sl.go_to_sl_10(data-index='10') 9
+                                            .go_to_sl.go_to_sl_11(data-index='11') 10
+                                            //
+                                              div class="go_to_sl go_to_sl_12" data-index="12">1</div>
+                                              <div class="go_to_sl go_to_sl_13" data-index="13">2</div>
+                                              <div class="go_to_sl go_to_sl_14" data-index="14">3</div>
+                                              <div class="go_to_sl go_to_sl_15" data-index="15">4</div>
+                                              <div class="go_to_sl go_to_sl_16" data-index="16">5</div>
+                                              <div class="go_to_sl go_to_sl_17" data-index="17">6</div>
+                                              <div class="go_to_sl go_to_sl_18" data-index="18">7</div>
+                                              <div class="go_to_sl go_to_sl_19"  data-index="19">8</div>
+                                              <div class="go_to_sl go_to_sl_20" data-index="20">9</div>
+                                              <div class="go_to_sl go_to_sl_21" data-index="21">10</div
+                                        .map_slider_littlee_next
+                            .box_element.display_none(data-index_id='7', data-index_id_min='3')
+                                .box_element_conteiner
                     .col-md-12.col-lg-9
                         .exp-col
                             span.spa_1.active Expand All
@@ -142,15 +156,15 @@ html(lang='en')
                         .day.day1
                             .time_line
                                 p Day 1
-                            .all_in_head
+                            .all_in_head.all_in_head_js
                                 .head
-                                    img(src='/assets/img/test/city1.jpg', alt='')
+                                    img(src='/assets/img/city1.jpg', alt='')
                                     h3 Arrival
                                     p Location(s): Barcelona
                                     p Overnight: Barcelona
                             .event.active
                                 .icon
-                                    img(src='/assets/img/test/icon1.png', alt='')
+                                    img(src='/assets/img/icon1.png', alt='')
                                 .content
                                     h3
                                         b Arrival - Barcelona
@@ -179,20 +193,20 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less.active(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less.active(href='/assets/')
                                             span Show Less
                                             i
-                                                img(src='/assets/img/test/show.png', alt='')
+                                                img(src='/assets/img/show.png', alt='')
                                     .clearfix
                             .event
                                 .icon
-                                    img(src='/assets/img/test/icon2.png', alt='')
+                                    img(src='/assets/img/icon2.png', alt='')
                                 .content
                                     h3
                                         b Check-in
@@ -221,20 +235,20 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                             .event
                                 .icon
-                                    img(src='/assets/img/test/icon3.png', alt='')
+                                    img(src='/assets/img/icon3.png', alt='')
                                 .content
                                     h3
                                         b Dinner - Tapas Stroll
@@ -263,20 +277,20 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                             .event
                                 .icon
-                                    img(src='/assets/img/test/icon4.png', alt='')
+                                    img(src='/assets/img/icon4.png', alt='')
                                 .content
                                     h3
                                         b Optional: Street Performance of Spanish Guitar or Jazz
@@ -307,23 +321,23 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
                                         p.free Free
-                                        a.show_less(href='')
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                         .day.day2
                             .time_line
                                 p Day 2
-                            .all_in_head
+                            .all_in_head.all_in_head_js
                                 .head
-                                    img(src='/assets/img/test/city2.jpg', alt='')
+                                    img(src='/assets/img/city2.jpg', alt='')
                                     h3 Barcelona: Gothic Quarter, Sagrada Familia
                                     p Location(s): Barcelona
                                     p Overnight: Barcelona
@@ -332,7 +346,7 @@ html(lang='en')
                                     .hours 10:00
                                     .time_all_for 3h 50m
                                 .icon
-                                    img(src='/assets/img/test/icon5.jpg', alt='')
+                                    img(src='/assets/img/icon5.jpg', alt='')
                                 .content
                                     h3
                                         b Gothic Quarter Walking Tour (Free)
@@ -370,27 +384,27 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                                 .go_to
                                     i
-                                        img(src='/assets/img/test/man.png', alt='')
+                                        img(src='/assets/img/man.png', alt='')
                                     | 0.2 km, 3 minutes
                             .event
                                 .time_for_timeline
                                     .hours 13:00
                                     .time_all_for 1h
                                 .icon
-                                    img(src='/assets/img/test/icon3.png', alt='')
+                                    img(src='/assets/img/icon3.png', alt='')
                                 .content
                                     h3
                                         b Lunch - El Born Area
@@ -419,23 +433,23 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                             .event
                                 .time_for_timeline
                                     .hours 14:00
                                     .time_all_for 2h
                                 .icon
-                                    img(src='/assets/img/test/icon6.png', alt='')
+                                    img(src='/assets/img/icon6.png', alt='')
                                 .content
                                     h3
                                         b Time at Leisure / Siesta
@@ -464,23 +478,23 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                             .event.with_go_to
                                 .time_for_timeline
                                     .hours 17:00
                                     .time_all_for 3h
                                 .icon
-                                    img(src='/assets/img/test/icon7.jpg', alt='')
+                                    img(src='/assets/img/icon7.jpg', alt='')
                                 .content
                                     h3
                                         b Sagrada Familia
@@ -518,27 +532,27 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
                                         p.free Free
-                                        a.show_less(href='')
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                                 .go_to
                                     i
-                                        img(src='/assets/img/test/train.png', alt='')
+                                        img(src='/assets/img/train.png', alt='')
                                     | 2.4 km, 22 minutes
                             .event.with_go_to
                                 .time_for_timeline
                                     .hours 19:00
                                     .time_all_for 1h
                                 .icon
-                                    img(src='/assets/img/test/icon3.png', alt='')
+                                    img(src='/assets/img/icon3.png', alt='')
                                 .content
                                     h3
                                         b Dinner - Eixample Area
@@ -567,27 +581,27 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                                 .go_to
                                     i
-                                        img(src='/assets/img/test/car.png', alt='')
+                                        img(src='/assets/img/car.png', alt='')
                                     | 2.4 km, 8 minutes
                             .event
                                 .time_for_timeline
                                     .hours 20:00
                                     .time_all_for 1h 30m
                                 .icon
-                                    img(src='/assets/img/test/icon8.jpg', alt='')
+                                    img(src='/assets/img/icon8.jpg', alt='')
                                 .content
                                     h3
                                         b Optional: Magic Fountains
@@ -627,38 +641,61 @@ html(lang='en')
                                             tr
                                                 td Booked Through:
                                                 td Expedia
-                                        a.voucher(href='', download='')
+                                        a.voucher(href='/assets/', download='')
                                             i
-                                                img(src='/assets/img/test/paper.png', alt='')
-                                            | Sample-Voucher.pdf
+                                                img(src='/assets/img/paper.png', alt='')
+                                            | PDF
                                     .bottom_row.clearfix
-                                        a.book_now(href='#') Book Now
-                                        a.show_less(href='')
+                                        a.book_now(href='/assets/#') Book Now
+                                        a.show_less(href='/assets/')
                                             span Show More
                                             i
-                                                img(src='/assets/img/test/hide.png', alt='')
+                                                img(src='/assets/img/hide.png', alt='')
                                     .clearfix
                         .clearfix
-                        a.save_btn(href='') Save to my itineraries & customize
+                        a.save_btn(href='/assets/') Save to my Itineraries & Customize
         footer.clearfix
             .container
-                a.logo(href='')
-                    | Travel
-                    br
-                    | Route
+                .logo Travel Route
                 ul
                     li
-                        a(href='#') Home
+                        a(href='/assets/#') Home
                     li
-                        a(href='#') Itineraries
+                        a(href='/assets/#') Itineraries
                     li
-                        a(href='#') Travel Tips
-        a.cd-top(href='#0') Top
+                        a(href='/assets/#') Travel Tips
+        a.cd-top(href='/assets/#0') Top
         // Bootstrap core JavaScript
-        script(src='/assets/test/js/jquery.min.js')
-        script(src='/assets/test/js/slick.min.js')
-        script(src='/assets/test/js/owl.carousel.min.js')
-        script(src='/assets/test/js/bootstrap.bundle.min.js')
-        script(src='/assets/test/js/jquery.hc-sticky.min.js')
-        script(src='/assets/test/js/scroll_top.js')
-        script(src='/assets/test/js/js.js')
+        //
+          <script src="js/jquery.min.js"></script>
+          <script src="js/slick.min.js"></script>
+          <script src="js/owl.carousel.min.js"></script>
+          <script src="js/bootstrap.bundle.min.js"></script>
+          <script src="js/jquery.hc-sticky.min.js"></script>
+          <script src="js/scroll_top.js"></script>
+          <script src="js/js.js"></script>
+        // Bootstrap core JavaScript
+        //
+          <script src="js/jquery.min.js"></script>
+        script(src='/assets/js/jquery-1.11.3.js')
+        script(src='/assets/js/slick.min.js')
+        script(src='/assets/js/owl.carousel.min.js')
+        script(src='/assets/js/bootstrap.bundle.min.js')
+        // <script src="js/jquery.hc-sticky.min.js"></script>
+        script(src='/assets/js/sticky1.min.js')
+        script(src='/assets/js/datepicker/js/bootstrap-datepicker.js')
+        script(src='/assets/js/add_datepicker.js')
+        script(src='/assets/js/jquery-sortable.js')
+        script(src='https://code.jquery.com/ui/1.11.3/jquery-ui.min.js')
+        script(src='/assets/js/scroll_top.js')
+        script(src='/assets/js/js.js')
+        script.
+            if(window.innerWidth > 768){
+                var sticky = new Sticky('.all_scroll_map');
+            }
+        script(language='javascript').
+            /* IE11 Fix for SP2010 */
+            if (typeof(UserAgentInfo) != 'undefined' && !window.addEventListener)
+            {
+                UserAgentInfo.strBrowser=1;
+            }
