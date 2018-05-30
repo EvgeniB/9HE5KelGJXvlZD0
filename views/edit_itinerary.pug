@@ -2,130 +2,340 @@ extends layout
 
 block content
 
-    form(method='POST')
-        // , action='/edit_itineraries'
-        ul
-            li
-                ul
-                    // each day in itinerary.Days.length ? itinerary.Days : ['There are no values']
-                    li
-                        ul
-                            // each event in itinerary.Events.length ? values : ['There are no values']
-                            li
-                                p Label:
-                                input(type='text')
-                            li
-                                ul
-                                    //each type in event.Type.length ? values : ['There are no values']
-                                    li
-                                        p Type:
-                                        input(type='text')
-                            li
-                                p Time:
-                                input(type='text')
-                            li
-                                p Description:
-                                input(type='text')
-                            li
-                                p Tips:
-                                input(type='text')
-                            li
-                                p Photo:
-                                input(type='text')
-                            li
-                                p Price:
-                                input(type='text')
-                            li
-                                p Hours:
-                                input(type='text')
-                            li
-                                p Address:
-                                input(type='text')
-                            li
-                                p Phone:
-                                input(type='text')
-                            li
-                                p Website:
-                                input(type='text')
-                            li
-                                p AudioGuides:
-                                input(type='text')
-                            li
-                                p BookLink:
-                                input(type='text')
-                            li
-                                p Transportation:
-                                input(type='text')
-                            li
-                                p Reviews:
-                                input(type='text')
-                    li
-                        p Title:
-                        input(type='text')
-                    li
-                        p Date:
-                        input(type='text')
-                    li
-                        ul
-                            // each country in day.Countries.length ? values : ['There are no values']
-                            li
-                                p Country:
-                                input(type='text')
-                    li
-                        ul
-                            // each location in day.Locations.length ? values : ['There are no values']
-                            li
-                                p Location:
-                                input(type='text')
-                    li
-                        p Overnight:
-                        input(type='text')
-            li
-                p Title:
-                input(type='text', name='title', value=itinerary.Title)
-            li
-                p Description:
-                input(type='text', name='description', value=itinerary.Description)
-            li
-                ul
-                    // each country in itinerary.Countries.length ? values : ['There are no values']
-                    li
-                        p Country:
-                        input(type='text')
-            li
-                ul
-                    // each location in itinerary.Locations.length ? values : ['There are no values']
-                    li
-                        p Location:
-                        input(type='text')
-            li
-                ul
-                    //each feature in itinerary.Featuring.length ? values : ['There are no values']
-                    li
-                        p Feature:
-                        input(type='text')
-            li
-                p Day Length:
-                input(type='text')
-            li
-                p Night Length:
-                input(type='text')
-            li
-                ul
-                    //each theme in itinerary.Theme.length ? values : ['There are no values']
-                    li
-                        p Theme:
-                        input(type='text')
-            li
-                p Image Url:
-                input(type='text', name='imageurl', value=itinerary.ImageUrl)
-            li
-                ul
-                    //each user in itinerary.User.length ? values : ['There are no values']
-                    li
-                        p User:
-                        input(type='text')
-            br
-            input(type='submit', value='Save')
-            a(href='/edit_itineraries')
-                input(type='button', value='Cancel')
+    section.highlights.highlights_padding
+        .container
+            .row
+                .col-md-12
+                    .wrapper_slider
+                        .slider.owl-carousel.owl-theme
+                            .item
+                                img(src='/assets/img/slide_1.jpg', alt='')
+                            .item
+                                img(src='/assets/img/slide_2.jpg', alt='')
+                            .item
+                                img(src='/assets/img/slide_3.jpg', alt='')
+                            .item
+                                img(src='/assets/img/slide_4.jpg', alt='')
+                            .item
+                                img(src='/assets/img/slide_5.jpg', alt='')
+            .select_start_date
+                .row
+                    .col-lg-5.col-md-12
+                        .items_in
+                            p Select Start Date:
+                            .date_time_picker
+                                input.form-control.form-control_js.date-picker(type='text', value='#{ itinerary.Start_Date }', data-datepicker-color='primary')
+                                .icon_calendar
+                    .col-lg-7.col-md-12
+                        button.save Save
+                        button.save.cancel Cancel
+            .about_travel
+                .row
+                    .col-md-12.col-lg-5
+                        .content-in-item-travel
+                            //
+                             div class="item-about">
+                             <h3>TITLE:</h3>
+                             <p>Barcelona, Madrid, Andalucia</p>
+                             </div
+                            .item-about
+                                h3 DAYS:
+                                if itinerary
+                                    p #{itinerary.DayLength} Days (#{itinerary.DayLength} Full Days); #{itinerary.DayLength - 1} Nights
+                            .item-about
+                                h3 FEATURING:
+                                if itinerary
+                                    p Barcelona, Madrid, Cordoba, Seville, Granada
+                            .item-about
+                                h3 THEMES:
+                                if itinerary
+                                    - var themes = "";
+                                    each theme, index in itinerary.Theme ? itinerary.Theme : []
+                                        if index == 0
+                                            - themes = theme
+                                        else
+                                            - themes = themes + ", " + theme
+                                    p #{themes}
+                    .col-md-12.col-lg-7
+                        .content-in-item-travel
+                            h2 Trip highlights:
+                            if itinerary
+                                p #{ itinerary.Description }
+    .section.locations_days
+        .container
+            .row
+                .col-md-12.col-lg-3.order-lg-2
+                    .all_scroll_map(data-margin-top='100')
+                        .map_go_to
+                            .map_slider
+                                .item.active(data-index='1')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='2')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='3')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='4')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='5')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='6')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='7')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='8')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='9')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='10')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                                .item(data-index='11')
+                                    img(src='/assets/img/map_sidebar.png', alt='')
+                        .travel_for_mar
+                            .wtat_kind.clearfix
+                                span
+                                    | map by days
+                                    img.style_wtat_kind_img(src='/assets/img/travel_in_map3.png')
+                                    | view
+                                // <span></span>
+                        .days_map
+                            .all_go_t
+                                .count_dayse.map_slider_littlee.addstyle_map_slider_littlee
+                                    .map_slider_littlee_prev
+                                    .map_slider_littlee_box
+                                        .go_to_sl.go_to_sl_1.active(data-index='1') All
+                                        .go_to_sl.go_to_sl_2(data-index='2') 1
+                                        .go_to_sl.go_to_sl_3(data-index='3') 2
+                                        .go_to_sl.go_to_sl_4(data-index='4') 3
+                                        .go_to_sl.go_to_sl_5(data-index='5') 4
+                                        .go_to_sl.go_to_sl_6(data-index='6') 5
+                                        .go_to_sl.go_to_sl_7(data-index='7') 6
+                                        .go_to_sl.go_to_sl_8(data-index='8') 7
+                                        .go_to_sl.go_to_sl_9(data-index='9') 8
+                                        .go_to_sl.go_to_sl_10(data-index='10') 9
+                                        .go_to_sl.go_to_sl_11(data-index='11') 10
+                                    .map_slider_littlee_next
+                        .box_element.display_none(data-index_id='7', data-index_id_min='3')
+                            .box_element_conteiner
+                .col-md-12.col-lg-9.board_1
+                    .exp-col
+                        span.spa_1.active Expand All
+                        |  /
+                        span.spa_2 Collapse
+
+
+                    form(method='POST')
+                        input(type='hidden', id='itinerary', name='itinerary', value='')
+
+                        #days_box.days_box
+                        if itinerary
+                            each day, index in itinerary.Days ? itinerary.Days : []
+                                #days1.days(draggable='true')
+                                    .day.day1.clearfix
+                                        .time_line
+                                            p Day #{index + 1}
+                                        .all_in_head
+                                            .edit_block
+                                                .delete
+                                                    img(src='/assets/img/basket_day.png', alt='')
+                                                .drag.drag_days
+                                                    img(src='/assets/img/drah_day.png', alt='')
+                                            .head
+                                                img(src='/assets/img/city1.jpg', alt='')
+                                                .time_line_span_box
+                                                    span.time_line_span 10/05/2016
+                                                h3 #{day.Title}
+                                                p Location(s): #{day.Day_Locations}
+                                                p Overnight: #{day.Overnight}
+                                        if day.Events
+                                            .event_box
+                                            each event, index1 in day.Events ? day.Events : []
+                                                if index1 == 0
+                                                    #day1_event_1.event.active(data-index='1')
+                                                        .edit_block
+                                                            .delete
+                                                                img(src='/assets/img/basket_grey.png', alt='')
+                                                            .drag
+                                                                img(src='/assets/img/drag_grey.png', alt='')
+                                                        .icon
+                                                            if event.EventType == 'Flight'
+                                                                img(src='/assets/img/icon1.png', alt='')
+                                                            else if event.EventType == 'Hotel'
+                                                                img(src='/assets/img/icon2.png', alt='')
+                                                            else if event.EventType == 'Meal'
+                                                                img(src='/assets/img/icon3.png', alt='')
+                                                            else if event.EventType == 'Rest'
+                                                                img(src='/assets/img/icon6.png', alt='')
+                                                            else if event.EventType == 'Location'
+                                                                img(src='/assets/img/icon5.png', alt='')
+                                                            else if event.EventType == 'Optional'
+                                                                img(src='/assets/img/icon4.png', alt='')
+                                                        .content
+                                                            h3
+                                                                b #{event.EventType} - #{event.Label}
+                                                                br
+                                                                | #{event.Description}
+                                                            .hidden_part.active
+                                                                if event.EventType == 'Flight'
+                                                                    table
+                                                                        tr
+                                                                            td Airport:
+                                                                            td #{ event.Airport }
+                                                                        tr
+                                                                            td Confirmation #:
+                                                                            td #{ event.Confirmation }
+                                                                        tr
+                                                                            td Flight #:
+                                                                            td #{ event.Flight }
+                                                                        tr
+                                                                            td Airline:
+                                                                            td #{ event.Airline }
+                                                                        tr
+                                                                            td Terminal:
+                                                                            td #{ event.Terminal }
+                                                                        tr
+                                                                            td Gate:
+                                                                            td #{ event.Gate }
+                                                                        tr
+                                                                            td Booked Through:
+                                                                            td #{ event.Booked_Through }
+                                                                else if event.EventType == 'Hotel'
+                                                                    p.notes
+                                                                        b #{ event.Description }
+                                                                    table
+                                                                        tbody
+                                                                            tr
+                                                                                td Lodging Name:
+                                                                                td #{ event.Name }
+                                                                            tr
+                                                                                td Confirmation #:
+                                                                                td #{ event.Confirmation }
+                                                                            tr
+                                                                                td Check in:
+                                                                                td.add_width(style='font-size:0')
+                                                                                    input.form-control.timepicker.timepicker_style(type='text', name='cron', required='')
+                                                                                    .time_icon_box
+                                                                                    input.form-control.form-control_check.date-picker1(type='text', value='#{ event.Check_in }', data-datepicker-color='primary')
+                                                                                    .date
+                                                                            tr
+                                                                                td Check out:
+                                                                                td.add_width(style='font-size:0')
+                                                                                    input.form-control.timepicker.timepicker_style(type='text', required='', name='cron')
+                                                                                    .time_icon_box
+                                                                                    input.form-control.form-control_check.date-picker2(type='text', value='#{ event.Check_out }', data-datepicker-color='primary')
+                                                                                    .date
+                                                                            tr
+                                                                                td Booked Through:
+                                                                                td #{ event.Booked_Through }
+
+                                                                a.voucher(href='', download='')
+                                                                    i
+                                                                        img(src='/assets/img/paper.png', alt='')
+                                                                    | PDF
+                                                            .bottom_row.clearfix
+                                                                a.book_now(href='#') Book Now
+                                                                a.show_less.active(href='')
+                                                                    span Show Less
+                                                                    i
+                                                                        img(src='/assets/img/show.png', alt='')
+                                                else
+                                                    #day1_event_1.event.active(data-index='1')
+                                                        .edit_block
+                                                            .delete
+                                                                img(src='/assets/img/basket_grey.png', alt='')
+                                                            .drag
+                                                                img(src='/assets/img/drag_grey.png', alt='')
+                                                        .icon
+                                                            img(src='/assets/img/icon1.png', alt='')
+                                                        .content
+                                                            h3
+                                                                b Arrival - Barcelona
+                                                                br
+                                                                | Welcome to the start point of your itinerary and let the adventure begin!
+                                                            .hidden_part.active
+                                                                table
+                                                                    tr
+                                                                        td Airport:
+                                                                        td CUN
+                                                                    tr
+                                                                        td Confirmation #:
+                                                                        td HSU4A7
+                                                                    tr
+                                                                        td Flight #:
+                                                                        td UA432
+                                                                    tr
+                                                                        td Airline:
+                                                                        td United Airlines
+                                                                    tr
+                                                                        td Terminal:
+                                                                        td 3
+                                                                    tr
+                                                                        td Gate:
+                                                                        td B10
+                                                                    tr
+                                                                        td Booked Through:
+                                                                        td Expedia
+                                                                a.voucher(href='', download='')
+                                                                    i
+                                                                        img(src='/assets/img/paper.png', alt='')
+                                                                    | PDF
+                                                            .bottom_row.clearfix
+                                                                a.book_now(href='#') Book Now
+                                                                a.show_less.active(href='')
+                                                                    span Show Less
+                                                                    i
+                                                                        img(src='/assets/img/show.png', alt='')
+                            .edit_events.clearfix(style='clear:both;')
+                                .event_editor
+                                    .event_add + Add more
+                                    .event_day Days
+                                    .event_event Events
+                    .clearfix
+                    a.save_btn.save_btn_style(href='') Save
+                    button.save_btn.save_btn_style.cancel.cancel_content Cancel
+
+    // Bootstrap core JavaScript
+    //
+     <script src="js/jquery.min.js"></script>
+    // <script src="js/jquery-1.11.3.js"></script>
+    script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/assets/js/bootstrap-datetimepicker.min.js')
+    script(src='/assets/js/slick.min.js')
+    script(src='/assets/js/owl.carousel.min.js')
+    // <script src="js/jquery.hc-sticky.min.js"></script>
+    script(src='/assets/js/sticky1.min.js')
+    script(src='/assets/js/bootstrap.bundle.min.js')
+    script(src='/assets/js/moment.js')
+    script(src='/assets/js/datepicker/js/bootstrap-datepicker.js')
+    // <script src="js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+    script(src='/assets/js/bootstrap-datetimepicker-master/bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')
+    script(src='/assets/js/add_datepicker.js')
+    //
+     <script src="js/jquery.ui.touch-punch.min.js"></script>
+     <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
+     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.css" />
+     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+     <script src="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.js"></script>
+    script(src='/assets/js/jquery-sortable.js')
+    script(src='https://code.jquery.com/ui/1.11.3/jquery-ui.min.js')
+    script(src='/assets/js/scroll_top.js')
+    script(src='/assets/js/js.js')
+    script.
+        if (window.innerWidth > 768) {
+            var sticky = new Sticky('.all_scroll_map');
+        }
+    script(type='text/javascript').
+        $(function () {
+            $('.timepicker').datetimepicker({
+                format: 'HH:mm',
+            });
+            /*$('body').on('click', function(e){
+            if(!$('input.timepicker').on('click') ){
+            $('input.timepicker').blur();
+            }
+            })*/
+        });
+    script(language='javascript').
+        /* IE11 Fix for SP2010 */
+        if (typeof(UserAgentInfo) != 'undefined' && !window.addEventListener) {
+            UserAgentInfo.strBrowser = 1;
+        }

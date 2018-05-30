@@ -1,14 +1,15 @@
 extends layout
 
 block content
-    a(href='/edit_users') Edit Users
-    br
-    a(href='/edit_itineraries') Edit Itineraries
-    br
-    a(href='/edit_countries') Edit Countries
-    br
-    a(href='/edit_locations') Edit Locations
-    br
-    a(href='/edit_event_types') Edit Event Types
-    br
-    a(href='/edit_tags') Edit Tags
+    .admin
+        a(class="rect_orange_button" href='/edit_users') Edit Users
+            br
+        a(class="rect_orange_button" href='/edit_itineraries') Edit Itineraries
+            br
+        a(class="rect_orange_button" href='/edit_countries') Edit Countries
+            br
+        a(class="rect_orange_button" href='/edit_locations') Edit Locations
+            br
+        a(class="rect_orange_button" href='/edit_event_types') Edit Event Types
+            br
+        a(class="rect_orange_button" href='/edit_tags') Edit Tags

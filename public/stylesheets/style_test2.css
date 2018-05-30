@@ -2143,3 +2143,110 @@ body .bootstrap-datetimepicker-widget.usetwentyfour td.hour {
         width: 95px;
     }
 }
+
+.content-center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 15px;
+    color: #FFFFFF;
+    width: 100%;
+    max-width: 880px;
+}
+
+.white {
+    color: white;
+}
+
+.orange_button {
+    font-size: 1em;
+    border-radius: 0.25rem;
+    padding: 15px 48px;
+    background-color: #f96332;
+    color: #FFFFFF;
+    border-width: 2px;
+    font-weight: 400;
+    line-height: 1.35em;
+    margin: 5px 1px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 0.25rem;
+    padding: 15px 48px;
+    padding-top: 15px;
+    padding-right: 48px;
+    padding-bottom: 15px;
+    padding-left: 48px;
+    width: 300px;
+}
+
+.awesome_button {
+    font-size: 1em;
+    padding: 15px 48px;
+    border-width: 1px;
+    border-radius: 30px !important;
+    margin: 5px 1px;
+    border: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #fa7a50;
+    color: #FFFFFF;
+}
+
+.tell_more_button {
+    padding: 14px 47px;
+    color: #f96332;
+    border-color: #f96332;
+    font-size: 1em;
+    border: 1px solid;
+    line-height: 1.35em;
+    margin: 5px 1px;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 30px !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+}
+
+.admin {
+    padding: 30px;
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 27px 0px rgba(200, 200, 200, 0.56);
+    margin-top: 10px;
+    position: relative;
+    margin: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.rect_orange_button {
+    display: block;
+    font-size: 12px;
+    background: #f7643c;
+    border-radius: 4px;
+    color: #fff;
+    line-height: 1.2;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: 400;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #f7643c;
+    margin-bottom: 20px;
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+}

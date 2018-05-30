@@ -1,0 +1,170 @@
+extends layout
+
+block content
+    include mixings/view_itinerary_mixings
+        +day_m()
+
+    section.highlights
+        .container
+            .row
+                .col-md-12
+                    .wrapper_slider
+                        .slider.owl-carousel.owl-theme
+                            .item(data-big_slide='img/background_1.jpg')
+                                img(src='/assets/img/slide_1.jpg', alt='')
+                            .item(data-big_slide='img/bg_2.jpg')
+                                img(src='/assets/img/slide_2.jpg', alt='')
+                            .item(data-big_slide='img/background_1.jpg')
+                                img(src='/assets/img/slide_3.jpg', alt='')
+                            .item(data-big_slide='img/bg_2.jpg')
+                                img(src='/assets/img/slide_4.jpg', alt='')
+                            .item(data-big_slide='img/background_1.jpg')
+                                img(src='/assets/img/slide_5.jpg', alt='')
+            .about_travel
+                .row
+                    .col-md-12.col-lg-5
+                        .content-in-item-travel
+                            .item-about
+                                h3 DAYS:
+                                p 14 Days (12 Full Days); 13 Nights
+                            .item-about
+                                h3 FEATURING:
+                                p Barcelona, Madrid, Cordoba, Seville, Granada
+                            .item-about
+                                h3 THEMES:
+                                p Romantic, Beach, Active Adventure
+                    .col-md-12.col-lg-7
+                        .content-in-item-travel
+                            h2 Trip highlights:
+                            p
+                                | E.g. Let the passions of Spain's history and people ignite your spirit as you take in Gaudi’s architecture in Barcelona, tour mystical Alhambra Palace in Granada, feast on Spanish tapas in Madrid & much more.
+
+    //form(method='POST')
+        // , action='/edit_itineraries'
+    ul
+        li
+            ul
+                // each day in itinerary.Days.length ? itinerary.Days : ['There are no values']
+                li
+                    ul
+                        // each event in itinerary.Events.length ? values : ['There are no values']
+                        li
+                            p Label:
+                            input(type='text')
+                        li
+                            ul
+                                //each type in event.Type.length ? values : ['There are no values']
+                                li
+                                    p Type:
+                                    input(type='text')
+                        li
+                            p Time:
+                            input(type='text')
+                        li
+                            p Description:
+                            input(type='text')
+                        li
+                            p Tips:
+                            input(type='text')
+                        li
+                            p Photo:
+                            input(type='text')
+                        li
+                            p Price:
+                            input(type='text')
+                        li
+                            p Hours:
+                            input(type='text')
+                        li
+                            p Address:
+                            input(type='text')
+                        li
+                            p Phone:
+                            input(type='text')
+                        li
+                            p Website:
+                            input(type='text')
+                        li
+                            p AudioGuides:
+                            input(type='text')
+                        li
+                            p BookLink:
+                            input(type='text')
+                        li
+                            p Transportation:
+                            input(type='text')
+                        li
+                            p Reviews:
+                            input(type='text')
+                li
+                    p Title:
+                    input(type='text')
+                li
+                    p Date:
+                    input(type='text')
+                li
+                    ul
+                        // each country in day.Countries.length ? values : ['There are no values']
+                        li
+                            p Country:
+                            input(type='text')
+                li
+                    ul
+                        // each location in day.Locations.length ? values : ['There are no values']
+                        li
+                            p Location:
+                            input(type='text')
+                li
+                    p Overnight:
+                    input(type='text')
+
+                include mixings/view_itinerary_mixings
+                +day_m
+        li
+            p Title:
+            input(type='text', name='title', value=itinerary.Title)
+        li
+            p Description:
+            input(type='text', name='description', value=itinerary.Description)
+        li
+            ul
+                // each country in itinerary.Countries.length ? values : ['There are no values']
+                li
+                    p Country:
+                    input(type='text')
+        li
+            ul
+                // each location in itinerary.Locations.length ? values : ['There are no values']
+                li
+                    p Location:
+                    input(type='text')
+        li
+            ul
+                //each feature in itinerary.Featuring.length ? values : ['There are no values']
+                li
+                    p Feature:
+                    input(type='text')
+        li
+            p Day Length:
+            input(type='text')
+        li
+            p Night Length:
+            input(type='text')
+        li
+            ul
+                //each theme in itinerary.Theme.length ? values : ['There are no values']
+                li
+                    p Theme:
+                    input(type='text')
+        li
+            p Image Url:
+            input(type='text', name='imageurl', value=itinerary.ImageUrl)
+        li
+            ul
+                //each user in itinerary.User.length ? values : ['There are no values']
+                li
+                    p User:
+                    input(type='text')
+        br
+
+    block footer

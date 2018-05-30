@@ -1,0 +1,316 @@
+extends layout
+append head
+    script.
+        var cs = "#{countries}";
+    //script(type='text/javascript', src='http://code.jquery.com/jquery-1.7.1.min.js')
+    script(src='/javascripts/jquery-3.3.1.min.js')
+    script(src='/javascripts/add_itinerary.js')
+block content
+
+    form(method='POST')
+        input(type='hidden', id='itinerary', name='itinerary', value='')
+        if itinerary
+            p Id: #{itinerary._id}
+        p Days:
+        if itinerary
+            p itinerary: #{itinerary}
+        ul(id='days_list')
+            if itinerary
+                each day, index in itinerary.Days ? itinerary.Days : []
+                    li(class='day')
+                        // This is the day list, Day 0..1..n
+                        ul
+                            // Day detail lists
+                            li
+                                button(onclick='delete_day(this)', type='button') Delete
+                                p day.Events: #{day.Events}
+                            li
+                                ul(id='event_list', class='event_list')
+                                    // This is the event list
+                                    li
+                                        button(type='button', onclick="add_event(this)") Add
+                                    if day.Events
+                                        each event in day.Events ? day.Events : []
+                                            li(class='event')
+                                                // Event 0..1...n
+                                                ul
+                                                    // Event details
+                                                    li
+                                                        button(onclick='delete_event(this)', type='button') Delete
+                                                    li
+                                                        p Label:
+                                                        input(class='event_label', type='text', value=event.Label)
+                                                    li
+                                                        ul
+                                                            if event.Type
+                                                                each type in event.Type.length ? values : ['There are no values']
+                                                                    li
+                                                                        p Type:
+                                                                        input(type='text')
+                                                    li
+                                                        p Time:
+                                                        input(class='event_time', type='text', value=event.Time)
+                                                    li
+                                                        p Description:
+                                                        input(class='event_description', type='text', value=event.Description)
+                                                    li
+                                                        p Tips:
+                                                        input(class='event_tips', type='text', value=event.Tips)
+                                                    li
+                                                        p Photo:
+                                                        input(class='event_photo', type='text', value=event.Photo)
+                                                    li
+                                                        p Price:
+                                                        input(class='event_price', type='text', value=event.Price)
+                                                    li
+                                                        p Hours:
+                                                        input(class='event_hours', type='text', value=event.Hours)
+                                                    li
+                                                        p Address:
+                                                        input(class='event_address', type='text', value=event.Address)
+                                                    li
+                                                        p Phone:
+                                                        input(class='event_phone', type='text', value=event.Phone)
+                                                    li
+                                                        p Website:
+                                                        input(class='event_website', type='text', value=event.Website)
+                                                    li
+                                                        p AudioGuides:
+                                                        input(class='event_audioguides', type='text', value=event.AudioGuides)
+                                                    li
+                                                        p BookLink:
+                                                        input(class='event_booklink', type='text', value=event.BookLink)
+                                                    li
+                                                        p Transportation:
+                                                        input(class='event_transportation', type='text', value=event.Transportation)
+                                                    li
+                                                        p Reviews:
+                                                        input(class='event_reviews', type='text', value=event.Reviews)
+                            li
+                                p Title:
+                                input(class='day_title', type='text', id='day_title'+index, name='day_title'+index, value=day.Title)
+                            li
+                                p Date:
+                                input(class='day_date', type='text', id='day_date'+index, name='day_date'+index, value=day.Date)
+                            li
+                                p Itinerary countries: #{day.Day_Countries}
+                                p Countries: #{countries}
+                                div.day_countries
+                                    if countries
+                                        each country in countries ? countries : []
+                                            div
+                                                p Country: #{country.Name}
+                                                - country_check = false
+                                                if day
+                                                    if day.Day_Countries
+                                                        each c in day.Day_Countries
+                                                            if country._id.toString() == c.toString()
+                                                                - country_check = true
+                                                input(id=country._id, name=country._id, type="checkbox", value=country._id, checked=(country_check ? "checked" : undefined),
+                                                class='list_child')
+                            li
+                                p Itinerary locations: #{day.Day_Locations}
+                                p Locations #{locations}
+                                div.day_locations
+                                    if locations
+                                        each location in locations ? locations : []
+                                            div
+                                                p location: #{location.Name}
+                                                - location_check = false
+                                                if day
+                                                    if day.Day_Locations
+                                                        each c in day.Day_Locations
+                                                            if location._id.toString() == c.toString()
+                                                                - location_check = true
+                                                input(id=location._id, name=location._id, type="checkbox", value=location._id, checked=(location_check ? "checked" : undefined),
+                                                class='list_child')
+                            li
+                                p Overnight:
+                                input(type='text', class='day_overnight', id='day_overnight'+index, name='day_overnight'+index, value=day.Overnight)
+        button(type='button', onclick="add_day()") Add
+        li
+            p Title:
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Title
+            input(type='text', id='title', name='title', value=t)
+        li
+            p Description:
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Description
+            input(type='text', id='description', name='description', value=t)
+        li
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Countries
+            //p Itinerary countries: #{t}
+            p Countries
+            div(id='country_list')
+                if countries
+                    each country in countries ? countries : []
+                        div
+                            p Country: #{country.Name}
+                            - country_check = false
+                            if itinerary
+                                if itinerary.Countries
+                                    each c in itinerary.Countries
+                                        //p Check going itinerary country #{ c }
+                                        if country._id.toString() == c.toString()
+                                            - country_check = true
+                                            //p Check passed
+                            //p Check is #{country_check}
+                            input(id=country._id, name=country._id, type="checkbox", value=country._id, checked=(country_check ? "checked" : undefined))
+        li
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Locations
+            //p Itinerary locations: #{t}
+            p Locations
+            div(id='location_list')
+                if locations
+                    each location in locations ? locations : []
+                        p location: #{location.Name}
+                        - location_check = false
+                        if itinerary
+                            if itinerary.locations
+                                each c in itinerary.locations
+                                    if location._id.toString() == c.toString()
+                                        - location_check = true
+                        input(id=location._id, name=location._id, type="checkbox", value=location._id, checked=(location_check ? "checked" : undefined))
+        li
+            p Day Length:
+            - var t = ''
+            if itinerary
+                - var t = itinerary.DayLength
+            input(type='text', id='daylength', name='daylength', value=t)
+        li
+            p Night Length:
+            input(type='text')
+        li
+            - var t = ''
+            if itinerary
+                - var t = itinerary.Theme
+            p Themes
+            div(id='theme_list')
+                if themes
+                    each theme in themes ? themes : []
+                        div
+                            p Theme: #{theme.Name}
+                            - theme_check = false
+                            if itinerary
+                                if itinerary.Theme
+                                    each c in itinerary.Theme
+                                        if theme._id.toString() == c.toString()
+                                            - theme_check = true
+                            input(id=theme._id, name=theme._id, type="checkbox", value=theme._id, checked=(theme_check ? "checked" : undefined))
+        li
+            p Image Url:
+            - var t = ''
+            if itinerary
+                - var t = itinerary.ImageUrl
+            input(type='text', id='imageurl', name='imageurl', value=t)
+        br
+        //input(type='button', value='Save', onclick='make_itinerary()')
+        //input(type='submit', value='Save')
+        input(type='button', onclick='make_itinerary()', value='Save')
+        a(href='/' + cancel_uri)
+            input(type='button', value='Cancel')
+
+    div(hidden='')
+        li(id="stock_day", class='day')
+            // This is the day list, Day 0..1..n
+            ul
+                // Day detail lists
+                li
+                    button(onclick='delete_day(this)', type='button') Delete
+                    p day.Events
+                li
+                    ul(id='events_list', class='event_list')
+                        // This is the event list
+                        li
+                            button(type='button', onclick="add_event(this)") Add
+                li
+                    p Title:
+                    input(class='day_title', type='text')
+                li
+                    p Date:
+                    input(class='day_date', type='text')
+                li
+                    p Countries: #{countries}
+                    div.day_countries
+                        if countries
+                            each country in countries ? countries : []
+                                div
+                                    p Country: #{country.Name}
+                                    input(id=country._id, name=country._id, type="checkbox", value=country._id)
+                li
+                    p Locations #{locations}
+                    div.day_locations
+                        if locations
+                            each location in locations ? locations : []
+                                div
+                                    p location: #{location.Name}
+                                    input(id=location._id, name=location._id, type="checkbox", value=location._id)
+                li
+                    p Overnight:
+                    input(type='text', class='day_overnight')
+
+    div(hidden='')
+        li(id="stock_event", class='event')
+            // Event 0..1...n
+            ul
+                // Event details
+                li
+                    button(onclick='delete_event(this)', type='button') Delete
+                li
+                    p Debug Event #{event}
+                li
+                    p Label:
+                    input(class='event_label', type='text')
+                li
+                    //ul
+                        if event.Type
+                            each type in event.Type.length ? values : ['There are no values']
+                                li
+                                    p Type:
+                                    input(type='text')
+                li
+                    p Time:
+                    input(type='text')
+                li
+                    p Description:
+                    input(type='text')
+                li
+                    p Tips:
+                    input(type='text')
+                li
+                    p Photo:
+                    input(type='text')
+                li
+                    p Price:
+                    input(type='text')
+                li
+                    p Hours:
+                    input(type='text')
+                li
+                    p Address:
+                    input(type='text')
+                li
+                    p Phone:
+                    input(type='text')
+                li
+                    p Website:
+                    input(type='text')
+                li
+                    p AudioGuides:
+                    input(type='text')
+                li
+                    p BookLink:
+                    input(type='text')
+                li
+                    p Transportation:
+                    input(type='text')
+                li
+                    p Reviews:
+                    input(type='text')

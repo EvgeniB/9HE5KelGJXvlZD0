@@ -1,6 +1,7 @@
 extends layout
 
 
+
 block wrapper
     // There used to be 'block content' here
 
@@ -10,28 +11,28 @@ block wrapper
         .container
             .content-center.brand
                 img.n-logo(src='./assets/img/now-logo.png', alt='')
-                h1.h1-seo Travel Route
-                h3 Less Headache, More Travel
-                button.btn.btn-primary.btn-lg Choose your adventure
+                h1.h1-seo.white Travel Route
+                h3.white Less Headache, More Travel
+                button.orange_button Choose your adventure
 append content
     .section.section-nucleo-icons
         .container
             .row
                 .col-lg-6.col-md-12
-                    h2.title What is Travel Route?
+                    h2.title(style="padding-top: 20px;") What is Travel Route?
                     h5.description
                         | Here at Travel Route we have one mission - worry free adventures of a lifetime, for less. We believe that travellers should travel, so go out and immerse yourself in the culture, cuisine and wonders of your dream destination, while we take care of all the nitty gritty details ahead of time. All you have to do is follow. Are you in?
                     //
                       <div class="nucleo-container">
                       <img src="assets/img/nucleo.svg" alt="">
                       </div>
-                    a.btn.btn-primary.btn-round.btn-lg(href='nucleo-icons.html', target='_blank') Awesome!
-                    a.btn.btn-primary.btn-simple.btn-round.btn-lg(href='https://nucleoapp.com/?ref=1712', target='_blank') Tell me more...
+                    a.awesome_button(href='nucleo-icons.html', target='_blank') Awesome!
+                    a.tell_more_button(href='https://nucleoapp.com/?ref=1712', target='_blank') Tell me more...
                 .col-lg-6.col-md-12
                     img(src='http://www.opyd.com/press/wp-content/gallery/china_2/brian-opyd-travel-photography-china-li-river.jpg')
     .section.section-tabs
         .container
-            .row
+            .row(style="margin-bottom: 20px;")
                 .row.text-center.mt-5
                     .col-md-8.ml-auto.mr-auto
                         h2 How does it work?
@@ -66,30 +67,4 @@ append content
                                 #home.tab-pane.active(role='tabpanel')
                                     p
                                         | Pack your bags, make sure your stove is off, grab your boarding passes and let's set out on an epic adventure. Travel Route will be by your side to guide you the entire time! Access your itineraries online, save them to your personal devices or print them for convenient, organized travel. So, what are you waiting for? A worry free epic trip of a lifetime awaits you!
-    // End Modal
-    footer.footer(data-background-color='black')
-        .container
-            nav
-                ul
-                    li
-                        a(href='#')
-                            | TRAVEL ROUTE
-                    li
-                        a(href='#')
-                            | About Us
-                    li
-                        a(href='#')
-                            | Blog
-                    li
-                        a(href='#')
-                            | Itineraries
-            .copyright
-                | ©
-                script.
-                    document.write(new Date().getFullYear())
-                | , Designed by
-                a(href='#', target='_blank') Nik N
-                | . Coded by
-                a(href='#', target='_blank') Yauheni B
-                | .
-    // End Main Canvas
+

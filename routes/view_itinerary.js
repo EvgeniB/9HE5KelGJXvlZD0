@@ -31,7 +31,7 @@ router.get('/:id', function(req, res, next) {
 
                 Tag.find({}, function(err, themes) {
 
-                    res.render('add_itinerary', {
+                    res.render('view_itinerary', {
                         itinerary: itinerary,
                         countries: countries,
                         locations: locations,
