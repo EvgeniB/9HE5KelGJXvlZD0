@@ -2250,3 +2250,7 @@ body .bootstrap-datetimepicker-widget.usetwentyfour td.hour {
     margin-left: auto;
     margin-right: auto;
 }
+
+.red-hover:hover {
+    color: red;
+}

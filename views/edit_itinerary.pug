@@ -24,7 +24,7 @@ block content
                         .items_in
                             p Select Start Date:
                             .date_time_picker
-                                input.form-control.form-control_js.date-picker(type='text', value='#{ itinerary.Start_Date }', data-datepicker-color='primary')
+                                input.form-control.form-control_js.date-picker(type='text', value=itinerary.Start_Date, data-datepicker-color='primary')
                                 .icon_calendar
                     .col-lg-7.col-md-12
                         button.save Save
@@ -40,27 +40,47 @@ block content
                              </div
                             .item-about
                                 h3 DAYS:
-                                if itinerary
-                                    p #{itinerary.DayLength} Days (#{itinerary.DayLength} Full Days); #{itinerary.DayLength - 1} Nights
+                                form(id='day_form')
+                                    if itinerary
+                                        input(type='text', class="days_top_number", value=itinerary.DayLength)
+                                        h3 Days (#{itinerary.DayLength} Full Days);
+                                        input(type='text', class="nights_top_number", value=(itinerary.DayLength - 1))
+                                        h3 Nights
+                                    else
+                                        input(type='text', class="days_top_number", value=itinerary.DayLength)
+                                        h3 Days (#{itinerary.DayLength} Full Days);
+                                        input(type='text', class="nights_top_number", value=(itinerary.DayLength - 1))
+                                        h3 Nights
                             .item-about
                                 h3 FEATURING:
                                 if itinerary
-                                    p Barcelona, Madrid, Cordoba, Seville, Granada
+                                    - var features = "";
+                                    each theme, index in itinerary.Feature ? itinerary.Feature : []
+                                        if index == 0
+                                            - features = feature
+                                        else
+                                            - features = features + ", " + feature
+                                    p(class='features') #{features}
                             .item-about
                                 h3 THEMES:
                                 if itinerary
                                     - var themes = "";
                                     each theme, index in itinerary.Theme ? itinerary.Theme : []
                                         if index == 0
-                                            - themes = theme
+                                            - themes = "<span> " + theme.Name + " <i class='fa fa-close close-theme red-hover'></i></span>"
                                         else
-                                            - themes = themes + ", " + theme
-                                    p #{themes}
+                                            - themes = themes + "<span>, " + theme.Name + " <i class='fa fa-close close-theme red-hover'></i></span>"
+                                    p(class='themes') !{ themes }
+                                    select(class='theme-dropdown')
+                                        option(value="empty") --
+                                        each theme in Themes ? Themes : []
+                                            option(value=theme.Name) #{ theme.Name }
                     .col-md-12.col-lg-7
                         .content-in-item-travel
                             h2 Trip highlights:
+                            textarea #{ itinerary.Description }
                             if itinerary
-                                p #{ itinerary.Description }
+                                input(type='hidden', value=itinerary.Description)
     .section.locations_days
         .container
             .row
@@ -130,7 +150,7 @@ block content
                         if itinerary
                             each day, index in itinerary.Days ? itinerary.Days : []
                                 #days1.days(draggable='true')
-                                    .day.day1.clearfix
+                                    div(class="day day" + (index + 1) + " clearfix")
                                         .time_line
                                             p Day #{index + 1}
                                         .all_in_head
@@ -142,15 +162,19 @@ block content
                                             .head
                                                 img(src='/assets/img/city1.jpg', alt='')
                                                 .time_line_span_box
-                                                    span.time_line_span 10/05/2016
+                                                    span.time_line_span #{ day.Date }
                                                 h3 #{day.Title}
-                                                p Location(s): #{day.Day_Locations}
-                                                p Overnight: #{day.Overnight}
+                                                - var locations = "";
+                                                    each location in day.Day_Locations ? day.Day_Locations : []
+                                                        - locations = locations + location.Name;
+                                                p Location(s): #{ locations }
+                                                p Overnight: #{ day.Overnight }
                                         if day.Events
                                             .event_box
                                             each event, index1 in day.Events ? day.Events : []
                                                 if index1 == 0
-                                                    #day1_event_1.event.active(data-index='1')
+                                                    div(id="day" + (index + 1) + "_event_" + (index1 + 1), class="event active", data-index='1')
+                                                        //#day1_event_1.event.active(data-index='1')
                                                         .edit_block
                                                             .delete
                                                                 img(src='/assets/img/basket_grey.png', alt='')
@@ -238,7 +262,7 @@ block content
                                                                     i
                                                                         img(src='/assets/img/show.png', alt='')
                                                 else
-                                                    #day1_event_1.event.active(data-index='1')
+                                                    div(id="day" + (index + 1) + "_event_" + (index1 + 1), class="event", data-index='1')
                                                         .edit_block
                                                             .delete
                                                                 img(src='/assets/img/basket_grey.png', alt='')
@@ -290,52 +314,11 @@ block content
                                     .event_day Days
                                     .event_event Events
                     .clearfix
-                    a.save_btn.save_btn_style(href='') Save
+                    form(method='POST' action='/edit_itinerary')
+                        input#form_content.form-control(type='hidden', name='form_content', value='')
+                    a.save_btn.save_btn_style.save(href='') Save
                     button.save_btn.save_btn_style.cancel.cancel_content Cancel
 
-    // Bootstrap core JavaScript
-    //
-     <script src="js/jquery.min.js"></script>
-    // <script src="js/jquery-1.11.3.js"></script>
-    script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')
-    script(src='/assets/js/bootstrap-datetimepicker.min.js')
-    script(src='/assets/js/slick.min.js')
-    script(src='/assets/js/owl.carousel.min.js')
-    // <script src="js/jquery.hc-sticky.min.js"></script>
-    script(src='/assets/js/sticky1.min.js')
-    script(src='/assets/js/bootstrap.bundle.min.js')
-    script(src='/assets/js/moment.js')
-    script(src='/assets/js/datepicker/js/bootstrap-datepicker.js')
-    // <script src="js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-    script(src='/assets/js/bootstrap-datetimepicker-master/bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')
-    script(src='/assets/js/add_datepicker.js')
-    //
-     <script src="js/jquery.ui.touch-punch.min.js"></script>
-     <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
-     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.css" />
-     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-     <script src="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.js"></script>
-    script(src='/assets/js/jquery-sortable.js')
-    script(src='https://code.jquery.com/ui/1.11.3/jquery-ui.min.js')
-    script(src='/assets/js/scroll_top.js')
-    script(src='/assets/js/js.js')
-    script.
-        if (window.innerWidth > 768) {
-            var sticky = new Sticky('.all_scroll_map');
-        }
-    script(type='text/javascript').
-        $(function () {
-            $('.timepicker').datetimepicker({
-                format: 'HH:mm',
-            });
-            /*$('body').on('click', function(e){
-            if(!$('input.timepicker').on('click') ){
-            $('input.timepicker').blur();
-            }
-            })*/
-        });
-    script(language='javascript').
-        /* IE11 Fix for SP2010 */
-        if (typeof(UserAgentInfo) != 'undefined' && !window.addEventListener) {
-            UserAgentInfo.strBrowser = 1;
-        }
+
+block append footer
+    script(src='/assets/js/edit_itinerary.js')

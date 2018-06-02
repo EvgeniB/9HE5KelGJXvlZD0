@@ -22,35 +22,42 @@ router.get('/:id', function(req, res, next) {
 
     var id = req.params.id;
 
-    Itinerary.findOne({ _id: id }, function(err, itinerary) {
-        if (err) throw err;
+    Itinerary
+        .findOne( { _id: id } )
 
-        //console.log(itinerary + '\n');
-        //console.log(JSON.parse(JSON.stringify(itinerary.Title)));
+        .populate([{ path: 'Countries', model: 'Country' },
+            { path: 'Locations', model: 'Location' },
+            { path: 'Theme', model: 'Tag' },
+            { path: 'Days.Day_Countries', model: 'Country' },
+            { path: 'Days.Day_Locations', model: 'Location' }])
+        .exec(function (err, itinerary) {
+            if (err || !itinerary) {
+                console.log("Error populating user itinerary: " + err);
+                next(err);
+            } else {
 
-        Country.find({}, function(err, countries) {
+                Country.find({}, function(err, countries) {
 
-            //console.log('countries: ' + countries);
+                    Location.find({}, function(err, locations) {
 
-            Location.find({}, function(err, locations) {
+                        Tag.find({}, function(err, themes) {
 
-                Tag.find({}, function(err, themes) {
+                            res.render('edit_itinerary', {
+                                itinerary: itinerary,
+                                countries: countries,
+                                locations: locations,
+                                Themes: themes,
+                                cancel_uri: 'edit_itineraries',
+                                _user: user
+                            });
 
-                    res.render('edit_itinerary', {
-                        itinerary: itinerary,
-                        countries: countries,
-                        locations: locations,
-                        themes: themes,
-                        cancel_uri: 'edit_itineraries',
-                        _user: user
+                        });
+
                     });
 
                 });
-
-            });
-
+            }
         });
-    });
 });
 
 router.post('/:id', function(req, res, next) {
