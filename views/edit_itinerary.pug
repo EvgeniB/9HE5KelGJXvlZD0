@@ -142,177 +142,95 @@ block content
                         |  /
                         span.spa_2 Collapse
 
+                    #days_box.days_box.ui-sortable
+                        #days1.days.ui-sortable-handle(draggable='true')
+                            .day.day1.clearfix
+                                .time_line
+                                    p Day 1
+                                .all_in_head
+                                    .edit_block
+                                        .delete
+                                            img(src='/assets/img/basket_day.png', alt='')
+                                        .drag.drag_days
+                                            img(src='/assets/img/drah_day.png', alt='')
+                                    .head
+                                        img(src='/assets/img/city1.jpg', alt='')
+                                        .time_line_span_box
+                                            span.time_line_span 10/05/2016
+                                        h3 Arrival
+                                        p Location(s): Barcelona
+                                        p Overnight: Barcelona
+                                .event_box.ui-sortable
+                                    #day1_event_1.event.active(data-index='1')
+                                        .edit_block
+                                            .delete
+                                                img(src='/assets/img/basket_grey.png', alt='')
+                                            .drag
+                                                img(src='/assets/img/drag_grey.png', alt='')
+                                        .icon
+                                            img(src='/assets/img/icon1.png', alt='')
+                                        .content
+                                            h3
+                                                b Arrival - Barcelona
+                                                br
+                                                | Welcome to the start point of your itinerary and let the adventure begin!
+                                            .hidden_part.active
+                                                table
+                                                    tbody
+                                                        tr
+                                                            td Airport:
+                                                            td CUN
+                                                        tr
+                                                            td Confirmation #:
+                                                            td HSU4A7
+                                                        tr
+                                                            td Flight #:
+                                                            td UA432
+                                                        tr
+                                                            td Airline:
+                                                            td United Airlines
+                                                        tr
+                                                            td Terminal:
+                                                            td 3
+                                                        tr
+                                                            td Gate:
+                                                            td B10
+                                                        tr
+                                                            td Booked Through:
+                                                            td Expedia
+                                                a.voucher(href='', download='')
+                                                    i
+                                                        img(src='/assets/img/paper.png', alt='')
+                                                    | PDF
+                                            .bottom_row.clearfix
+                                                a.book_now(href='#') Book Now
+                                                a.show_less.active(href='')
+                                                    span Show Less
+                                                    i
+                                                        img(src='/assets/img/show.png', alt='')
 
-                    form(method='POST')
-                        input(type='hidden', id='itinerary', name='itinerary', value='')
 
-                        #days_box.days_box
-                        if itinerary
-                            each day, index in itinerary.Days ? itinerary.Days : []
-                                #days1.days(draggable='true')
-                                    div(class="day day" + (index + 1) + " clearfix")
-                                        .time_line
-                                            p Day #{index + 1}
-                                        .all_in_head
-                                            .edit_block
-                                                .delete
-                                                    img(src='/assets/img/basket_day.png', alt='')
-                                                .drag.drag_days
-                                                    img(src='/assets/img/drah_day.png', alt='')
-                                            .head
-                                                img(src='/assets/img/city1.jpg', alt='')
-                                                .time_line_span_box
-                                                    span.time_line_span #{ day.Date }
-                                                h3 #{day.Title}
-                                                - var locations = "";
-                                                    each location in day.Day_Locations ? day.Day_Locations : []
-                                                        - locations = locations + location.Name;
-                                                p Location(s): #{ locations }
-                                                p Overnight: #{ day.Overnight }
-                                        if day.Events
-                                            .event_box
-                                            each event, index1 in day.Events ? day.Events : []
-                                                if index1 == 0
-                                                    div(id="day" + (index + 1) + "_event_" + (index1 + 1), class="event active", data-index='1')
-                                                        //#day1_event_1.event.active(data-index='1')
-                                                        .edit_block
-                                                            .delete
-                                                                img(src='/assets/img/basket_grey.png', alt='')
-                                                            .drag
-                                                                img(src='/assets/img/drag_grey.png', alt='')
-                                                        .icon
-                                                            if event.EventType == 'Flight'
-                                                                img(src='/assets/img/icon1.png', alt='')
-                                                            else if event.EventType == 'Hotel'
-                                                                img(src='/assets/img/icon2.png', alt='')
-                                                            else if event.EventType == 'Meal'
-                                                                img(src='/assets/img/icon3.png', alt='')
-                                                            else if event.EventType == 'Rest'
-                                                                img(src='/assets/img/icon6.png', alt='')
-                                                            else if event.EventType == 'Location'
-                                                                img(src='/assets/img/icon5.png', alt='')
-                                                            else if event.EventType == 'Optional'
-                                                                img(src='/assets/img/icon4.png', alt='')
-                                                        .content
-                                                            h3
-                                                                b #{event.EventType} - #{event.Label}
-                                                                br
-                                                                | #{event.Description}
-                                                            .hidden_part.active
-                                                                if event.EventType == 'Flight'
-                                                                    table
-                                                                        tr
-                                                                            td Airport:
-                                                                            td #{ event.Airport }
-                                                                        tr
-                                                                            td Confirmation #:
-                                                                            td #{ event.Confirmation }
-                                                                        tr
-                                                                            td Flight #:
-                                                                            td #{ event.Flight }
-                                                                        tr
-                                                                            td Airline:
-                                                                            td #{ event.Airline }
-                                                                        tr
-                                                                            td Terminal:
-                                                                            td #{ event.Terminal }
-                                                                        tr
-                                                                            td Gate:
-                                                                            td #{ event.Gate }
-                                                                        tr
-                                                                            td Booked Through:
-                                                                            td #{ event.Booked_Through }
-                                                                else if event.EventType == 'Hotel'
-                                                                    p.notes
-                                                                        b #{ event.Description }
-                                                                    table
-                                                                        tbody
-                                                                            tr
-                                                                                td Lodging Name:
-                                                                                td #{ event.Name }
-                                                                            tr
-                                                                                td Confirmation #:
-                                                                                td #{ event.Confirmation }
-                                                                            tr
-                                                                                td Check in:
-                                                                                td.add_width(style='font-size:0')
-                                                                                    input.form-control.timepicker.timepicker_style(type='text', name='cron', required='')
-                                                                                    .time_icon_box
-                                                                                    input.form-control.form-control_check.date-picker1(type='text', value='#{ event.Check_in }', data-datepicker-color='primary')
-                                                                                    .date
-                                                                            tr
-                                                                                td Check out:
-                                                                                td.add_width(style='font-size:0')
-                                                                                    input.form-control.timepicker.timepicker_style(type='text', required='', name='cron')
-                                                                                    .time_icon_box
-                                                                                    input.form-control.form-control_check.date-picker2(type='text', value='#{ event.Check_out }', data-datepicker-color='primary')
-                                                                                    .date
-                                                                            tr
-                                                                                td Booked Through:
-                                                                                td #{ event.Booked_Through }
-
-                                                                a.voucher(href='', download='')
-                                                                    i
-                                                                        img(src='/assets/img/paper.png', alt='')
-                                                                    | PDF
-                                                            .bottom_row.clearfix
-                                                                a.book_now(href='#') Book Now
-                                                                a.show_less.active(href='')
-                                                                    span Show Less
-                                                                    i
-                                                                        img(src='/assets/img/show.png', alt='')
-                                                else
-                                                    div(id="day" + (index + 1) + "_event_" + (index1 + 1), class="event", data-index='1')
-                                                        .edit_block
-                                                            .delete
-                                                                img(src='/assets/img/basket_grey.png', alt='')
-                                                            .drag
-                                                                img(src='/assets/img/drag_grey.png', alt='')
-                                                        .icon
-                                                            img(src='/assets/img/icon1.png', alt='')
-                                                        .content
-                                                            h3
-                                                                b Arrival - Barcelona
-                                                                br
-                                                                | Welcome to the start point of your itinerary and let the adventure begin!
-                                                            .hidden_part.active
-                                                                table
-                                                                    tr
-                                                                        td Airport:
-                                                                        td CUN
-                                                                    tr
-                                                                        td Confirmation #:
-                                                                        td HSU4A7
-                                                                    tr
-                                                                        td Flight #:
-                                                                        td UA432
-                                                                    tr
-                                                                        td Airline:
-                                                                        td United Airlines
-                                                                    tr
-                                                                        td Terminal:
-                                                                        td 3
-                                                                    tr
-                                                                        td Gate:
-                                                                        td B10
-                                                                    tr
-                                                                        td Booked Through:
-                                                                        td Expedia
-                                                                a.voucher(href='', download='')
-                                                                    i
-                                                                        img(src='/assets/img/paper.png', alt='')
-                                                                    | PDF
-                                                            .bottom_row.clearfix
-                                                                a.book_now(href='#') Book Now
-                                                                a.show_less.active(href='')
-                                                                    span Show Less
-                                                                    i
-                                                                        img(src='/assets/img/show.png', alt='')
                             .edit_events.clearfix(style='clear:both;')
                                 .event_editor
                                     .event_add + Add more
                                     .event_day Days
                                     .event_event Events
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     .clearfix
                     form(method='POST' action='/edit_itinerary')
                         input#form_content.form-control(type='hidden', name='form_content', value='')
