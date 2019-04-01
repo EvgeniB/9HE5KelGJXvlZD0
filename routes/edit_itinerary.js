@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/:id', function(req, res, next) {
     var sess=req.session;
     var user = sess.user;
-
+/*
     require('./helpers/account_system').checkAdmin(user, res);
 
     var mongoose = require('mongoose');
@@ -58,6 +58,8 @@ router.get('/:id', function(req, res, next) {
                 });
             }
         });
+        */
+        res.render('edit_itinerary');
 });
 
 router.post('/:id', function(req, res, next) {

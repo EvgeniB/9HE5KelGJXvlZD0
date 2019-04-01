@@ -5,6 +5,7 @@ router.get('/', function(req, res, next) {
     var sess=req.session;
     var user = sess.user;
 
+    res.render('my_itineraries');
     require('./helpers/account_system').checkAdmin(user, res);
 
     var mongoose = require('mongoose');
@@ -21,6 +22,7 @@ router.get('/', function(req, res, next) {
 
     //populating itineraries belonging to the user
 
+    /*
     User
     .findOne( { _id: user._id } )
     //populate('saved_itineraries').
@@ -45,6 +47,7 @@ router.get('/', function(req, res, next) {
             res.render('my_itineraries', {usr: usr, _user: user});
         }
     });
+    */
 
     //});
 });

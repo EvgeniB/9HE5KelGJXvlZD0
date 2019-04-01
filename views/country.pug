@@ -1,0 +1,344 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
+        title Travel Route
+        //if lt IE 9
+          script(src='js/html5shiv.js')
+        //if gte IE 9
+          style(type='text/css').
+            .gradient {
+            filter: none;
+            }
+        link(href='stylesheets/animate.css', rel='stylesheet', type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&subset=cyrillic', rel='stylesheet')
+        link(href='stylesheets/all.css', rel='stylesheet', type='text/css')
+        link(href='stylesheets/bootstrap.css', rel='stylesheet', type='text/css')
+        link(href='stylesheets/style.css', rel='stylesheet', type='text/css')
+        script(src='javascripts/jquery.js', type='text/javascript')
+        script(src='javascripts/scripts.js', type='text/javascript')
+        script(src='javascripts/js.js', type='text/javascript')
+    body
+        header.header
+            .wrap
+                a.logo(href='#') Travel Route
+                ul.menu
+                    li
+                        a.countries-link(href='#')
+                            span Itineraries
+                        .submenu.itineraries-submenu
+                            .window
+                                .countries-menu
+                                    .block
+                                        ul
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/FR.png)')
+                                                a(href='#') France
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/DE.png)')
+                                                a(href='#') Germany
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/GR.png)')
+                                                a(href='#') Greece
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/IT.png)')
+                                                a(href='#') Italy
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/RU.png)')
+                                                a(href='#') Russia
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/ES.png)')
+                                                a(href='#') Spain
+                    li
+                        a(href='#')
+                            span My Itineraries
+                    li.menu-button
+                        a(href='#')
+                            span + Create New
+                    li.divider-after
+                        a(href='#')
+                            span Travel Tips
+                    li
+                        a(href='#')
+                            span Sign Up
+                    li
+                        a(href='#')
+                            span Log In
+                .menu-icon.mobile-menu-btn
+                    .tcont
+                        .tcell
+                            .bars
+                                .line.line1
+                                .line.line2
+                                .line.line3
+        .all
+            section.header-section(style='background-image: url(../assets/photos/france.jpg)')
+                .tcont
+                    .tcell
+                        .box(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                            .title(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%') FRANCE
+                            .text(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%')
+                                | Get
+                                | inspired by our hand-crafted ready-to-use itineraries
+            section.section.filled-section.whiteblock-section
+                .wrap
+                    .white-block
+                        h2(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                            | Why Traveling
+                            | to France?
+                        .text(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%')
+                            p
+                                | Famous for its chic and romance, France is the most popular tourist destination on Earth!
+                            p
+                                | Just picture yourself sitting in a Parisian cafe, or admiring the Loire Valley with magnificent chateaux,
+                                | visiting wineries in Champagne and Bordeaux, or walking in lavender fields of Provence… Experience all the charm
+                                | and glamour of this country! If you are an art lover or a history buff, marvel at the collection of
+                                | Impressionists at Musee d'Orsay, pay a visit to the tomb of Napoleon, or explore the world's largest museum -
+                                | the Louvre. Adventure seekers will be thrilled skiing in the Alps and conquering its highest peak Mont Blanc
+                                | (4,808 m); while those looking for relaxation can enjoy white pebble beaches and azure-blue water of the French
+                                | Riviera. France is the birthplace of haute couture and home to reputable fashion houses, such as Dior, Hermes,
+                                | Louis Vuitton and Chanel. Gourmet food is another French specialty. Here you will find the highest number of
+                                | Michelin starred restaurants in the world. In 2010 UNESCO declared French cuisine an "intangible cultural
+                                | heritage of humanity".
+                            p Learn "Joie de vivre" - the famous French way of living... Bon Voyage!
+            section.section
+                .wrap
+                    h1(data-animate='fadeInUp', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%') Itineraries
+                    .itineraries
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/barcelona.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') BARCELONA WITH KIDS
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/ny.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') New york in summer
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.4s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/paris.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') Paris romantic path
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/london.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') London width kids
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/moscow.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') MOSOCW WITH KIDS
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.4s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/rome.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') ROME WITH KIDS
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+            section.section.filled-section.countryinfo-section
+                .wrap
+                    h1(data-animate='fadeInUp', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%') BEFORE YOU GO
+                    .subtitle(data-animate='fadeInUp', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                        | Useful
+                        | Information
+                    .vtabs
+                        ul.tabs-nav
+                            li.active
+                                a(href='#facts') Quick Facts
+                            li
+                                a(href='#top') Top Destinations
+                            li
+                                a(href='#season') Travel Season
+                            li
+                                a(href='#visa') Passport/Visa
+                        .tabs-content
+                            #facts.tab-pane.active
+                                p
+                                    | Facts. Lorem ipsum dolor sit amet, ut vim alia brute, ad pri sint atqui facilisis. Possit dicunt usu cu. Ea
+                                    | vis utroque periculis. Nostrud deserunt eum an. Nec constituam quaerendum ea, munere electram mnesarchum sit
+                                    | ne, dolorum similique mea ex. Eam noluisse praesent an, cu labores iracundia vis.
+                                p
+                                    | Copiosae mediocritatem eos ei. Nec platonem gloriatur an, novum nobis interesset at nec, exerci consectetuer
+                                    | te nec. Ei eum audiam omittam epicurei. At prima errem vivendo vix, vel in falli dicant.
+                                p
+                                    | Quo no assum delicata, qui cu semper tincidunt. Animal torquatos vis an. Duo nisl consulatu ei. Illum facete
+                                    | corrumpit id sed. Posse vivendum ne duo, et vis dolor senserit adversarium.
+                                p
+                                    | Ut quodsi suavitate sed, nam ei suas suscipiantur. Sit no enim everti malorum. Exerci nusquam salutandi vis
+                                    | cu. Has adhuc scaevola atomorum at, eu eirmod regione quo. Wisi movet consectetuer vix ex, has ut maiorum
+                                    | maiestatis, eos no illum augue praesent. Sit et iudico intellegat, eu quo equidem reformidans liberavisse.
+                            #top.tab-pane
+                                p
+                                    | Top. Copiosae mediocritatem eos ei. Nec platonem gloriatur an, novum nobis interesset at nec, exerci
+                                    | consectetuer te nec. Ei eum audiam omittam epicurei. At prima errem vivendo vix, vel in falli dicant.
+                                p
+                                    | Quo no assum delicata, qui cu semper tincidunt. Animal torquatos vis an. Duo nisl consulatu ei. Illum facete
+                                    | corrumpit id sed. Posse vivendum ne duo, et vis dolor senserit adversarium.
+                                p
+                                    | Ut quodsi suavitate sed, nam ei suas suscipiantur. Sit no enim everti malorum. Exerci nusquam salutandi vis
+                                    | cu. Has adhuc scaevola atomorum at, eu eirmod regione quo. Wisi movet consectetuer vix ex, has ut maiorum
+                                    | maiestatis, eos no illum augue praesent. Sit et iudico intellegat, eu quo equidem reformidans liberavisse.
+                                p
+                                    | Lorem ipsum dolor sit amet, ut vim alia brute, ad pri sint atqui facilisis. Possit dicunt usu cu. Ea vis
+                                    | utroque periculis. Nostrud deserunt eum an. Nec constituam quaerendum ea, munere electram mnesarchum sit ne,
+                                    | dolorum similique mea ex. Eam noluisse praesent an, cu labores iracundia vis.
+                            #season.tab-pane
+                                p
+                                    | Season. Cum no choro feugiat argumentum, primis mollis eloquentiam eam eu. Scripta utroque neglegentur eu
+                                    | mei. Mea esse brute simul an. Cu mel quem prompta, in dicit volutpat ius, dolores conclusionemque vim in.
+                                    | Utinam verear has id, vim libris sanctus definiebas cu.
+                                p
+                                    | Lorem ipsum dolor sit amet, ut vim alia brute, ad pri sint atqui facilisis. Possit dicunt usu cu. Ea vis
+                                    | utroque periculis. Nostrud deserunt eum an. Nec constituam quaerendum ea, munere electram mnesarchum sit ne,
+                                    | dolorum similique mea ex. Eam noluisse praesent an, cu labores iracundia vis.
+                                p
+                                    | Copiosae mediocritatem eos ei. Nec platonem gloriatur an, novum nobis interesset at nec, exerci consectetuer
+                                    | te nec. Ei eum audiam omittam epicurei. At prima errem vivendo vix, vel in falli dicant.
+                                p
+                                    | Quo no assum delicata, qui cu semper tincidunt. Animal torquatos vis an. Duo nisl consulatu ei. Illum facete
+                                    | corrumpit id sed. Posse vivendum ne duo, et vis dolor senserit adversarium.
+                            #visa.tab-pane
+                                p
+                                    | Visa. Quo no assum delicata, qui cu semper tincidunt. Animal torquatos vis an. Duo nisl consulatu ei. Illum
+                                    | facete corrumpit id sed. Posse vivendum ne duo, et vis dolor senserit adversarium.
+                                p
+                                    | Lorem ipsum dolor sit amet, ut vim alia brute, ad pri sint atqui facilisis. Possit dicunt usu cu. Ea vis
+                                    | utroque periculis. Nostrud deserunt eum an. Nec constituam quaerendum ea, munere electram mnesarchum sit ne,
+                                    | dolorum similique mea ex. Eam noluisse praesent an, cu labores iracundia vis.
+                                p
+                                    | Copiosae mediocritatem eos ei. Nec platonem gloriatur an, novum nobis interesset at nec, exerci consectetuer
+                                    | te nec. Ei eum audiam omittam epicurei. At prima errem vivendo vix, vel in falli dicant.
+                                p
+                                    | Cum no choro feugiat argumentum, primis mollis eloquentiam eam eu. Scripta utroque neglegentur eu mei. Mea
+                                    | esse brute simul an. Cu mel quem prompta, in dicit volutpat ius, dolores conclusionemque vim in. Utinam verear
+                                    | has id, vim libris sanctus definiebas cu.
+            footer.footer
+                .wrap
+                    ul.menu
+                        li
+                            a(href='#') Home
+                        li
+                            a.countries-link(href='#') Itineraries
+                        li.divider-after
+                            a(href='#') Travel Tips
+                        li
+                            a(href='#') Contacts
+                    a.logo(href='#')
+                        span.copyright ©
+                        |  Travel Route
+        a.cd-top(href='#')
+            i.fas.fa-angle-up
+        // start mobile modal
+        .bg-overlay
+        .mobile-menu
+            .tcont
+                .tcell
+                    ul.menu
+                        li
+                            a.countries-link(href='#') Itineraries
+                        li
+                            a(href='#') My Itineraries
+                        li.menu-button
+                            a(href='#')
+                                span + Create New
+                        li.divider-after
+                            a(href='#') Travel Tips
+                        li
+                            a(href='#') Sign Up
+                        li
+                            a(href='#') Log In
+        // end mobile modal
+        .popup.popup-countries
+            .back
+            .content-area
+                .inner
+                    .window
+                        .btn-close
+                        .countries
+                            .block
+                                ul
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/FR.png)')
+                                        a(href='#') France
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/DE.png)')
+                                        a(href='#') Germany
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/GR.png)')
+                                        a(href='#') Greece
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/IT.png)')
+                                        a(href='#') Italy
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/RU.png)')
+                                        a(href='#') Russia
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/ES.png)')
+                                        a(href='#') Spain

@@ -12,6 +12,7 @@ var cookieSession = require('cookie-session');
 var index = require('./routes/index');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
+var country = require('./routes/country');
 var search = require('./routes/search');
 var my_itineraries = require('./routes/my_itineraries');
 var edit_users = require('./routes/edit_users');
@@ -36,7 +37,7 @@ var edit_test = require('./routes/edit_test');
 var app = express();
 
 // setting port
-//app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3001);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -77,7 +78,9 @@ app.use(cookieSession({
 var mongoDB = 'mongodb://127.0.0.1/my_database';
 
 var mongoose = require('mongoose');
+mongoose.connect(mongoDB);
 
+/*
 //Set up default mongoose connection
 var fs = require('fs')
     , filename = 'db.cfg';
@@ -115,7 +118,7 @@ fs.readFile(filename, 'utf8', function(err, data) {
 
 });
 
-
+*/
 
 
 
@@ -128,6 +131,7 @@ app.use('/', index);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/search', search);
+app.use('/country', country);
 app.use('/my_itineraries', my_itineraries);
 app.use('/edit_users', edit_users);
 app.use('/add_user', add_user);
@@ -167,7 +171,7 @@ app.use(function(err, req, res, next) {
 });
 
 // make app listen on port
-//app.listen(app.get('port'));
+app.listen(app.get('port'));
 
 ///
 

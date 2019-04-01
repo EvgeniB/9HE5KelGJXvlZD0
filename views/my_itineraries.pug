@@ -1,93 +1,372 @@
-extends layout
-block head
-block content
-
-    ul
-        each itinerary in usr.saved_itineraries ? usr.saved_itineraries : []
-                li
-                    p #{itinerary._id}
-                a(href='../view_itinerary/' + itinerary._id)
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
+        title Travel Route
+        //if lt IE 9
+          script(src='js/html5shiv.js')
+        //if gte IE 9
+          style(type='text/css').
+            .gradient {
+            filter: none;
+            }
+        link(href='stylesheets/animate.css', rel='stylesheet', type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&subset=cyrillic', rel='stylesheet')
+        link(href='stylesheets/all.css', rel='stylesheet', type='text/css')
+        link(href='stylesheets/bootstrap.css', rel='stylesheet', type='text/css')
+        link(href='stylesheets/style.css', rel='stylesheet', type='text/css')
+        script(src='javascripts/jquery.js', type='text/javascript')
+        script(src='javascripts/scripts.js', type='text/javascript')
+        script(src='javascripts/js.js', type='text/javascript')
+    body
+        header.header
+            .wrap
+                a.logo(href='#') Travel Route
+                ul.menu
                     li
-                        ul
-                            p Days
-                            each day in itinerary.Days
+                        a.countries-link(href='#')
+                            span Itineraries
+                        .submenu.itineraries-submenu
+                            .window
+                                .countries-menu
+                                    .block
+                                        ul
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/FR.png)')
+                                                a(href='#') France
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/DE.png)')
+                                                a(href='#') Germany
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/GR.png)')
+                                                a(href='#') Greece
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/IT.png)')
+                                                a(href='#') Italy
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/RU.png)')
+                                                a(href='#') Russia
+                                            li
+                                                span.flag(style='background-image: url(../assets/img/flags/ES.png)')
+                                                a(href='#') Spain
+                    li
+                        a(href='#')
+                            span My Itineraries
+                    li.menu-button
+                        a(href='#')
+                            span + Create New
+                    li.divider-after
+                        a(href='#')
+                            span Travel Tips
+                    li
+                        a(href='#')
+                            span Sign Up
+                    li
+                        a(href='#')
+                            span Log In
+                .menu-icon.mobile-menu-btn
+                    .tcont
+                        .tcell
+                            .bars
+                                .line.line1
+                                .line.line2
+                                .line.line3
+        .all
+            section.header-section.header-small(style='background-image: url(../assets/img/clouds-header.jpg)')
+            section.section
+                .top-grad
+                .wrap
+                    h1(data-animate='fadeInUp', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%') My itineraries
+                    .itineraries.my
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/barcelona.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') BARCELONA WITH KIDS
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                            ul.icons
                                 li
-                                    ul
-                                        each event in day.Events
-                                            li
-                                                p #{event.Label}
-                                            li
-                                                //ul
-                                                    each type in event.Type
-                                                        li
-                                                            p #{type}
-                                            li
-                                                p Event time #{event.Time}
-                                            li
-                                                p Event description #{event.Description}
-                                            li
-                                                p Event tips #{event.Tips}
-                                            li
-                                                p Event photo #{event.Photo}
-                                            li
-                                                p Event price #{event.Price}
-                                            li
-                                                p Event hours #{event.Hours}
-                                            li
-                                                p Event address #{event.Address}
-                                            li
-                                                p Event phone #{event.Phone}
-                                            li
-                                                p Event website #{event.Website}
-                                            li
-                                                p Event audio guides #{event.AudioGuides}
-                                            li
-                                                p Event book link #{event.BookLink}
-                                            li
-                                                p Event transportation #{event.Transportation}
-                                            li
-                                                p Event reviews #{event.Reviews}
+                                    a(href='#')
+                                        i.far.fa-eye
                                 li
-                                    p Day title #{day.Title}
+                                    a.icon-edit(href='#')
+                                        i.far.fa-edit
                                 li
-                                    p Day date #{day.Date}
+                                    a(href='#')
+                                        span.icon-share
                                 li
-                                    ul
-                                        p Countries
-                                        each country in day.Day_Countries ? day.Day_Countries : []
-                                            li
-                                                p Country #{country}
+                                    a(href='#')
+                                        i.far.fa-clone
                                 li
-                                    ul
-                                        p Locations
-                                        each location in day.Day_Locations ? day.Day_Locations : []
-                                            li
-                                                p Location #{location}
+                                    a.unite(href='#')
+                                        i.far.fa-square
+                                        span.arrows
+                                            i.fas.fa-arrow-right
+                                            i.fas.fa-arrow-left
                                 li
-                                    p Day overnight #{day.Overnight}
-                    li
-                        p Title: #{itinerary.Title}
-                    li
-                        p Description: #{itinerary.Description}
-                    li
-                        ul
-                            p Countries
-                            each country in itinerary.Countries
-                                p #{country.Name}
-                    li
-                        ul
-                            p Locations
-                            each location in itinerary.Locations
-                                p #{location.Name}
-                    li
-                        p Day length #{itinerary.DayLength}
-                    li
-                        p Night length #{itinerary.NightLength}
-                    li
-                        ul
-                            p Themes
-                            each theme in itinerary.Theme
-                                p Theme #{theme}
-                    li
-                        p Image Url: #{itinerary.ImageUrl}
-                        img(src=itinerary.ImageUrl)
+                                    a(href='#')
+                                        i.far.fa-trash-alt
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/ny.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') New york in summer
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                            ul.icons
+                                li
+                                    a(href='#')
+                                        i.far.fa-eye
+                                li
+                                    a.icon-edit(href='#')
+                                        i.far.fa-edit
+                                li
+                                    a(href='#')
+                                        span.icon-share
+                                li
+                                    a(href='#')
+                                        i.far.fa-clone
+                                li
+                                    a.unite(href='#')
+                                        i.far.fa-square
+                                        span.arrows
+                                            i.fas.fa-arrow-right
+                                            i.fas.fa-arrow-left
+                                li
+                                    a(href='#')
+                                        i.far.fa-trash-alt
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.4s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/paris.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') Paris romantic path
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                            ul.icons
+                                li
+                                    a(href='#')
+                                        i.far.fa-eye
+                                li
+                                    a.icon-edit(href='#')
+                                        i.far.fa-edit
+                                li
+                                    a(href='#')
+                                        span.icon-share
+                                li
+                                    a(href='#')
+                                        i.far.fa-clone
+                                li
+                                    a.unite(href='#')
+                                        i.far.fa-square
+                                        span.arrows
+                                            i.fas.fa-arrow-right
+                                            i.fas.fa-arrow-left
+                                li
+                                    a(href='#')
+                                        i.far.fa-trash-alt
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/london.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') London width kids
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                            ul.icons
+                                li
+                                    a(href='#')
+                                        i.far.fa-eye
+                                li
+                                    a.icon-edit(href='#')
+                                        i.far.fa-edit
+                                li
+                                    a(href='#')
+                                        span.icon-share
+                                li
+                                    a(href='#')
+                                        i.far.fa-clone
+                                li
+                                    a.unite(href='#')
+                                        i.far.fa-square
+                                        span.arrows
+                                            i.fas.fa-arrow-right
+                                            i.fas.fa-arrow-left
+                                li
+                                    a(href='#')
+                                        i.far.fa-trash-alt
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/moscow.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') MOSOCW WITH KIDS
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                            ul.icons
+                                li
+                                    a(href='#')
+                                        i.far.fa-eye
+                                li
+                                    a.icon-edit(href='#')
+                                        i.far.fa-edit
+                                li
+                                    a(href='#')
+                                        span.icon-share
+                                li
+                                    a(href='#')
+                                        i.far.fa-clone
+                                li
+                                    a.unite(href='#')
+                                        i.far.fa-square
+                                        span.arrows
+                                            i.fas.fa-arrow-right
+                                            i.fas.fa-arrow-left
+                                li
+                                    a(href='#')
+                                        i.far.fa-trash-alt
+                        .item(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.4s', data-offset='90%')
+                            .back
+                                .map
+                                    iframe(style='background-image: url(../assets/photos/ny-map.png);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+                                .image(style='background-image: url(../assets/photos/rome.jpg);')
+                            a.clickable(href='#')
+                            .bottom
+                                .text
+                                    h6
+                                        a(href='#') ROME WITH KIDS
+                                    .days
+                                        a(href='#') 4 days / 3 nights (2 full days)
+                            .btn-icon.btn-map
+                                i.fas.fa-map-marked-alt
+                            .btn-icon.btn-image
+                                i.fas.fa-image
+                            ul.icons
+                                li
+                                    a(href='#')
+                                        i.far.fa-eye
+                                li
+                                    a.icon-edit(href='#')
+                                        i.far.fa-edit
+                                li
+                                    a(href='#')
+                                        span.icon-share
+                                li
+                                    a(href='#')
+                                        i.far.fa-clone
+                                li
+                                    a.unite(href='#')
+                                        i.far.fa-square
+                                        span.arrows
+                                            i.fas.fa-arrow-right
+                                            i.fas.fa-arrow-left
+                                li
+                                    a(href='#')
+                                        i.far.fa-trash-alt
+            footer.footer
+                .wrap
+                    ul.menu
+                        li
+                            a(href='#') Home
+                        li
+                            a.countries-link(href='#') Itineraries
+                        li.divider-after
+                            a(href='#') Travel Tips
+                        li
+                            a(href='#') Contacts
+                    a.logo(href='#')
+                        span.copyright ©
+                        |  Travel Route
+        a.cd-top(href='#')
+            i.fas.fa-angle-up
+        // start mobile modal
+        .bg-overlay
+        .mobile-menu
+            .tcont
+                .tcell
+                    ul.menu
+                        li
+                            a.countries-link(href='#') Itineraries
+                        li
+                            a(href='#') My Itineraries
+                        li.menu-button
+                            a(href='#')
+                                span + Create New
+                        li.divider-after
+                            a(href='#') Travel Tips
+                        li
+                            a(href='#') Sign Up
+                        li
+                            a(href='#') Log In
+        // end mobile modal
+        .popup.popup-countries
+            .back
+            .content-area
+                .inner
+                    .window
+                        .btn-close
+                        .countries
+                            .block
+                                ul
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/FR.png)')
+                                        a(href='#') France
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/DE.png)')
+                                        a(href='#') Germany
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/GR.png)')
+                                        a(href='#') Greece
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/IT.png)')
+                                        a(href='#') Italy
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/RU.png)')
+                                        a(href='#') Russia
+                                    li
+                                        span.flag(style='background-image: url(../assets/img/flags/ES.png)')
+                                        a(href='#') Spain
