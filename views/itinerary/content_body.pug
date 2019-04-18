@@ -1,0 +1,57 @@
+extends ./layout_content.pug
+
+block header_image
+    section.header-section.header-itinerary(style='background-image: url(photos/paris-header.jpg)')
+        .tcont
+            .tcell
+                .box(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                    .above-title(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0.2s', data-offset='90%') Itinerary
+                    .title(data-animate='fadeIn', data-init='hidden', data-duration='1s', data-delay='0', data-offset='90%')
+                        | Paris
+                        | with kids
+        .gallery-cont(data-animate='fadeInUp', data-init='hidden', data-duration='1s', data-delay='0.3', data-offset='90%')
+            .gallery
+                .owl-carousel.owl-theme
+                    a.item.zoom-zoom(href='photos/paris-big-1.jpg', style='background-image: url(photos/paris-small-1.jpg)', title='')
+                        img(src='photos/paris-small-1.jpg', alt='ALT')
+                    a.item.zoom-zoom(href='photos/paris-big-2.jpg', style='background-image: url(photos/paris-small-2.jpg)')
+                        img(src='photos/paris-small-2.jpg')
+                    a.item.zoom-zoom(href='photos/paris-big-3.jpg', style='background-image: url(photos/paris-small-3.jpg)')
+                        img(src='photos/paris-small-3.jpg')
+                    a.item.zoom-zoom(href='photos/paris-big-4.jpg', style='background-image: url(photos/paris-small-4.jpg)')
+                        img(src='photos/paris-small-4.jpg')
+                    a.item.zoom-zoom(href='photos/paris-big-5.jpg', style='background-image: url(photos/paris-small-5.jpg)')
+                        img(src='photos/paris-small-5.jpg')
+                    a.item.zoom-zoom(href='photos/paris-big-6.jpg', style='background-image: url(photos/paris-small-6.jpg)')
+                        img(src='photos/paris-small-6.jpg')
+                    a.item.zoom-zoom(href='photos/paris-big-2.jpg', style='background-image: url(photos/paris-small-2.jpg)')
+                        img(src='photos/paris-small-2.jpg')
+                    a.item.zoom-zoom(href='photos/paris-big-3.jpg', style='background-image: url(photos/paris-small-3.jpg)')
+                        img(src='photos/paris-small-3.jpg')
+
+block body
+    section.section.filled-section
+        .wrap
+            .itinerary-info
+                .box.box-highlights(data-animate='fadeInLeft', data-init='hidden', data-duration='1s', data-delay='0.3', data-offset='90%')
+                    h2 Trip highlights:
+                    .text
+                        | E.g. Let the passions of Spain's history and people ignite your spirit as you take in Gaudi’s architecture in
+                        | Barcelona, tour mystical Alhambra Palace in Granada, feast on Spanish tapas in Madrid & much more.
+                .space
+                .box.box-info(data-animate='fadeInRight', data-init='hidden', data-duration='1s', data-delay='0.3', data-offset='90%')
+                    .info-item
+                        h6 DAYS:
+                        div 4 Days (4 Full Days); 3 Nights
+                    .info-item
+                        h6 FEATURING:
+                        div Paris, Marcel, Leon
+                    .info-item
+                        h6 THEMES:
+                        div Romantic, Beach, Active Adventure
+    section.section
+        .wrap
+            .plans.clear
+                block map
+                block days
+    block save

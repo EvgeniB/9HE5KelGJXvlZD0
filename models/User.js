@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 // create a schema
 var userSchema = new Schema({
     name: String,
-    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    username: { type: String, required: false, unique: true },
     password: { type: String, required: true },
     admin: Boolean,
     saved_itineraries : [{ type: mongoose.Schema.ObjectId, ref: 'Itinerary' }]

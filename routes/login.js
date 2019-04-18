@@ -17,14 +17,15 @@ router.post('/', function(req, res, next) {
     var UserSchema = require('mongoose').model('User').schema;
     var User = require('mongoose').model('User', UserSchema, 'User');
 
-    var usr = req.body.username;
+    var email = req.body.email;
+    //var usr = req.body.username;
     var pw = req.body.password;
 
-    console.log(usr + " " + pw);
+    console.log(email + " " + pw);
     console.log("Login POST METHOD");
-    console.log("Type of usr " + typeof(usr) + " and type of pw " + typeof(pw));
+    console.log("Type of email " + typeof(email) + " and type of pw " + typeof(pw));
 
-    User.findOne({ username: usr, password: pw }, function (err, user) {
+    User.findOne({ email: email, password: pw }, function (err, user) {
         //if (err) throw err;
 
         // object of all the users

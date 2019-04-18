@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var multer = require('multer');
 
 //var session = require('express-session');
 //var MemoryStore = require('memorystore')(session)
@@ -12,6 +14,8 @@ var cookieSession = require('cookie-session');
 var index = require('./routes/index');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
+var register = require('./routes/register');
+var itinerary_details = require('./routes/itinerary/itinerary_details');
 var country = require('./routes/country');
 var search = require('./routes/search');
 var my_itineraries = require('./routes/my_itineraries');
@@ -22,6 +26,7 @@ var add_itinerary = require('./routes/add_itinerary');
 var edit_itinerary = require('./routes/edit_itinerary');
 var view_itinerary = require('./routes/view_itinerary');
 var add_country = require('./routes/add_country');
+var edit_country = require('./routes/edit_country');
 var edit_countries = require('./routes/edit_countries');
 var add_location = require('./routes/add_location');
 var edit_location = require('./routes/edit_location');
@@ -50,6 +55,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+/*app.use(multer({ dest: './uploads/',
+rename: function (fieldname, filename) {
+    return filename;
+},
+}));*/
 
 /*
 app.use(session({
@@ -75,17 +85,17 @@ app.use(cookieSession({
 
 
 //Import the mongoose module
-var mongoDB = 'mongodb://127.0.0.1/my_database';
+var mongoDB = 'mongodb://127.0.0.1/my_database1s';
 
 var mongoose = require('mongoose');
-mongoose.connect(mongoDB);
+//mongoose.connect(mongoDB);
 
-/*
+
 //Set up default mongoose connection
-var fs = require('fs')
-    , filename = 'db.cfg';
-fs.readFile(filename, 'utf8', function(err, data) {
-    if (err) throw err;
+//var fs = require('fs')
+//    , filename = 'db.cfg';
+//fs.readFile(filename, 'utf8', function(err, data) {
+//    if (err) throw err;
 
     if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
         mongoDB = String(data);
@@ -116,9 +126,9 @@ fs.readFile(filename, 'utf8', function(err, data) {
 
 
 
-});
+//});
 
-*/
+
 
 
 
@@ -130,8 +140,10 @@ fs.readFile(filename, 'utf8', function(err, data) {
 app.use('/', index);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/register', register);
 app.use('/search', search);
 app.use('/country', country);
+app.use('/itinerary_details', itinerary_details);
 app.use('/my_itineraries', my_itineraries);
 app.use('/edit_users', edit_users);
 app.use('/add_user', add_user);
@@ -140,6 +152,7 @@ app.use('/add_itinerary', add_itinerary);
 app.use('/edit_itinerary', edit_itinerary);
 app.use('/view_itinerary/', view_itinerary);
 app.use('/add_country', add_country);
+app.use('/edit_country', edit_country);
 app.use('/edit_countries', edit_countries);
 app.use('/add_location', add_location);
 app.use('/edit_location', edit_location);

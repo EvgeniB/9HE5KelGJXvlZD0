@@ -94,6 +94,7 @@ router.get('/admin', function(req, res, next) {
     });
 });
 
+/*
 router.get('/register', function(req, res, next) {
     sess=req.session;
 
@@ -124,7 +125,7 @@ router.post('/register', function(req, res, next) {
     res.redirect('/');
 
 });
-
+*/
 
 router.get('/details/:title', function(req, res, next) {
     sess=req.session;
@@ -245,6 +246,7 @@ router.post('/edit_itineraries', function(req, res, next) {
     }
 });
 
+/*
 router.get('/edit_country/:id', function(req, res, next) {
     sess=req.session;
     var user = sess.user;
@@ -286,7 +288,7 @@ router.post('/edit_country/:id', function(req, res, next) {
         res.redirect('/edit_countries');
     });
 });
-
+*/
 router.get('/add_event_type', function(req, res, next) {
     sess=req.session;
     var user = sess.user;

@@ -1,0 +1,1659 @@
+extends ./content_body.pug
+
+block map
+    .col-map
+        .map-widget
+            .map
+                iframe.map-container(style='background-image: url(photos/map-paris.jpg);', width='100%', height='100%', frameborder='0', allowfullscreen='')
+            .title Maps by days:
+            .days
+                span.item.active All
+                span.item 1
+                span.item 2
+                span.item 3
+                span.item 4
+                span.item 5
+                span.item 6
+                span.item 7
+                span.item 8
+                span.item 9
+                span.item 10
+                span.item 11
+                span.item 12
+                span.item 13
+                span.item 14
+                span.hidden-part
+                    span.item 15
+                    span.item 16
+                    span.item 17
+                    span.item 18
+                    span.item 19
+                    span.item 20
+                    span.item 21
+                .show-more
+                    i.fas.fa-caret-down
+block days
+    .col-timeline
+        .timeline
+            .top-toolbar
+                a.expand-link(href='#') Expand All
+                span.delimiter |
+                a.collapse-link(href='#') Collapse All
+            .oneday
+                .head
+                    .clickable-zone
+                    .num 1
+                    .day-title
+                        | Day
+                        span.num 1
+                        span.date
+                    .title
+                        textarea.extendable(rows='1', readonly='') Arrival to Paris
+                    .info
+                        span.location
+                            | Location(s):
+                            input.extendable(type='text', value='Paris, Leon', readonly='')
+                        span.delimiter |
+                        span.overnight
+                            | Overnight:
+                            input.extendable(type='text', value='Paris, Leon', readonly='')
+                    .arrow
+                        i.fas.fa-chevron-down
+                    .edit-icons
+                        span.icon.icon-edit(title='Edit day fields')
+                        span.icon.icon-delete(title='Delete')
+                        span.icon.icon-move(title='Re-order')
+                .body
+                    .item
+                        span.point
+                        .edit-icons
+                            span.icon.icon-delete(title='Delete')
+                            span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-plane
+                            .content
+                                h4.title Flight
+                                .short-text Add your flight, choosing in our booking system
+                                a.btn-add.btn-add-transport(href='#', data-radio='flight') Add Flight
+                    .item.filled.booked
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='12:00')
+                            // <input type="text" value="11:00" class="extendable input-time  input-time-start">
+                            // <input type="text" value="45 min" class="extendable input-time input-duration">
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-plane
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Flight: Paris - Leon
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about your booking
+                                .rating-and-btn
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details.form-flight
+                                        .form-item
+                                            label Departure from
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Moscow')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Arrival to
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Paris')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Airline
+                                            .input-col
+                                                input.form-control(type='text', value='Airline Name')
+                                        .form-item
+                                            label Flight #
+                                            .input-col
+                                                input.form-control(type='text', value='45D54')
+                                        .form-item
+                                            label Terminal
+                                            .input-col
+                                                input.form-control(type='text', value='20')
+                                        .form-item
+                                            label Gate #
+                                            .input-col
+                                                input.form-control(type='text', value='5')
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='CN305VP')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox', checked='')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation to email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .item.filled.booked
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='12:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-train
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Train: Paris - Leon
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about your booking
+                                .rating-and-btn
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details.form-train
+                                        .form-item
+                                            label Departure from
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Paris')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Arrival to
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Leon')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Carrier
+                                            .input-col
+                                                input.form-control(type='text', value='Carrier Name')
+                                        .form-item
+                                            label Train #
+                                            .input-col
+                                                input.form-control(type='text', value='12')
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='45')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox', checked='')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation to email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .item.filled.booked
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='15:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-cruise
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Cruise: Paris - Leon
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about your booking
+                                .rating-and-btn
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details.form-cruise
+                                        .form-item
+                                            label Departure from
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Paris')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Arrival to
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Leon')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Carrier
+                                            .input-col
+                                                input.form-control(type='text', value='Carrier Name')
+                                        .form-item
+                                            label Cabin Type
+                                            .input-col
+                                                input.form-control(type='text', value='Double')
+                                        .form-item
+                                            label Cabin #
+                                            .input-col
+                                                input.form-control(type='text', value='45')
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='CN305VP')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox', checked='')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .item.filled.booked
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='14:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-bus
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Bus: Paris - Leon
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about your booking
+                                .rating-and-btn
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details
+                                        .form-item
+                                            label Departure from
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Paris')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Arrival to
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Leon')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Carrier
+                                            .input-col
+                                                input.form-control(type='text', value='Carrier Name')
+                                        .form-item
+                                            label Number
+                                            .input-col
+                                                input.form-control(type='text', value='150')
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='CN305VP')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox', checked='')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .item.filled.booked
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='14:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-car
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Car: Paris - Leon
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about your booking
+                                .rating-and-btn
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details.form-car
+                                        .form-item
+                                            label Departure from
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Paris')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Arrival to
+                                            .input-col
+                                                input.form-control.input-place(type='text', value='Leon')
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Carrier
+                                            .input-col
+                                                input.form-control(type='text', value='Carrier Name')
+                                        .form-item
+                                            label Car type
+                                            .input-col
+                                                input.form-control(type='text', value='Sedan')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox', checked='')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .item
+                        span.point
+                        .edit-icons
+                            span.icon.icon-delete(title='Delete')
+                            span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-hotel
+                            .content
+                                h4.title Check-in
+                                .short-text Add your hotel, choosing in our booking system
+                                a.btn-add.btn-add-lodging(href='#') Add Lodging
+                    .item.filled.booked
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='12:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-hotel-2.jpg', style='background-image: url(photos/hotel-2.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Check-In: Signature St Germain des Pres (*3)
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about this hotel. Some information about this hotel.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:80%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details.form-lodging
+                                        .form-item
+                                            label Check-in
+                                            .input-col
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Check-out
+                                            .input-col
+                                                .date-field
+                                                    input.form-control.date-picker(type='text', value='10/12/2016')
+                                                    i.icon
+                                                .time-field
+                                                    input.form-control.time-picker(type='text', name='time', value='17:00')
+                                                    i.icon
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656645')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='454A1')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox', checked='')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .transport
+                        .block
+                            i.fas.fa-car
+                            |  3 km, 25 minutes
+                            a(href='#') Details
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='13:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-gothic.jpg', style='background-image: url(photos/paris-gothic.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Gothic Quarter Walking Tour
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1')
+                                        | Discover medieval past of Paris by taking a free walking tour of the Gothic Quarter. The tour will walk you trough the maze of charming narrow streets, old squares.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:80%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .tips
+                                    .form-item
+                                        .input-col
+                                            label.checkbox-item
+                                                input(type='checkbox', checked='')
+                                                span.check-text
+                                        span.value
+                                            b Free
+                                    .form-item
+                                        .input-col
+                                            input.form-control.input-special-days.extendable(type='text', placeholder='', data-placeholder='Special Days', value='Fr, Sa, Su')
+                                .hidden-part
+                                    .form-1.form-details.form-activity
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Tuesday:
+                                                            b 10:00 - 18:00
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Sunday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Monday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Tuesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Wednesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Thursday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Friday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Saturday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Adults:
+                                                            b 20$
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Children:
+                                                                        td
+                                                                            b 10$
+                                                                    tr
+                                                                        td Students:
+                                                                        td
+                                                                            b 15$
+                                                                    tr
+                                                                        td Adults:
+                                                                        td
+                                                                            b 20$
+                                                                    tr
+                                                                        td Pensioners:
+                                                                        td
+                                                                            b 10$
+                                        .form-item
+                                            label Provider
+                                            .input-col
+                                                input.form-control(type='text', value='Provider Name')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Meeting Point
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Point
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Audio-guide
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Audio-guid
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .transport
+                        .block
+                            i.fas.fa-car
+                            |  3 km, 25 minutes
+                            a(href='#') Details
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='12:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-fountan.jpg', style='background-image: url(photos/paris-fountan.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Magic Fountains
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1')
+                                        | After dark, admire the show of dancing water. After dark, admire the show of dancing water.After dark, dmire the show of dancing water. After dark, admire the show of dancing water.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:70%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .tips
+                                    .form-item
+                                        .input-col
+                                            label.checkbox-item
+                                                input(type='checkbox', checked='')
+                                                span.check-text
+                                        span.value
+                                            b Free
+                                    .form-item
+                                        .input-col
+                                            input.form-control.input-special-days.extendable(type='text', placeholder='', data-placeholder='Special Days', value='')
+                                .hidden-part
+                                    .form-1.form-details.form-activity
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field Everytime
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    b Free
+                                        .form-item
+                                            label Provider
+                                            .input-col
+                                                input.form-control(type='text', value='Provider Name')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Meeting Point
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Point
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Audio-guide
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Audio-guid
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .item
+                        span.point
+                        .edit-icons
+                            span.icon.icon-delete(title='Delete')
+                            span.icon.icon-move(title='Re-order')
+                        .inner
+                            .icon-col
+                                i.icon-food
+                            .content
+                                h4.title Dinner
+                                .short-text Add your dinner place, choosing in our booking system
+                                a.btn-add.btn-add-restaurant(href='#') Add Restaurant
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='11:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='12:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/hotel-3.jpg', style='background-image: url(photos/hotel-3.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Restaurant: Le Ciel de Paris
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1') Some information about this restaurant. Some information about this restaurant.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:80%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .hidden-part
+                                    .form-1.form-details.form-restaurant
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Tuesday:
+                                                            b 10:00 - 18:00
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Sunday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Monday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Tuesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Wednesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Thursday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Friday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Saturday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    | from
+                                                    b 20$
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='454A1')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item
+                                            label Notes
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Notes
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                .foot
+                    // <span class="add"><i class="fas fa-plus"></i></span>
+                    .btn-small.btn-add-day Add day
+                    .btn-small.btn-add-item
+                        | Add Item to Day
+                        ul.add-item-menu
+                            li.add-item-transport Transport
+                            li.add-item-lodging Lodging
+                            li.add-item-restaurant Restaurant
+                            li.add-item-activity Activity
+            .oneday
+                .head
+                    .clickable-zone
+                    .num 2
+                    .day-title
+                        | Day
+                        span.num 2
+                        span.date
+                    .title
+                        textarea.extendable(rows='1') Walking in the center
+                    .info
+                        span.location
+                            | Location(s):
+                            input.extendable(type='text', value='Paris, Leon')
+                        span.delimiter |
+                        span.overnight
+                            | Overnight:
+                            input.extendable(type='text', value='Paris, Leon')
+                    .arrow
+                        i.fas.fa-chevron-down
+                    .edit-icons
+                        span.icon.icon-edit(title='Edit day title')
+                        span.icon.icon-delete(title='Delete')
+                        span.icon.icon-move(title='Re-order')
+                .body
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-gothic.jpg', style='background-image: url(photos/paris-gothic.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Gothic Quarter Walking Tour
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1')
+                                        | Discover medieval past of Paris by taking a free walking tour of the Gothic Quarter. The tour will walk you trough the maze of charming narrow streets, old squares.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:80%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .tips
+                                    .form-item
+                                        .input-col
+                                            label.checkbox-item
+                                                input(type='checkbox', checked='')
+                                                span.check-text
+                                        span.value
+                                            b Free
+                                    .form-item
+                                        .input-col
+                                            input.form-control.input-special-days.extendable(type='text', placeholder='', data-placeholder='Special Days', value='Fr, Sa, Su')
+                                .hidden-part
+                                    .form-1.form-details.form-activity
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Tuesday:
+                                                            b 10:00 - 18:00
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Sunday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Monday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Tuesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Wednesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Thursday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Friday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Saturday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Adults:
+                                                            b 20$
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Children:
+                                                                        td
+                                                                            b 10$
+                                                                    tr
+                                                                        td Students:
+                                                                        td
+                                                                            b 15$
+                                                                    tr
+                                                                        td Adults:
+                                                                        td
+                                                                            b 20$
+                                                                    tr
+                                                                        td Pensioners:
+                                                                        td
+                                                                            b 10$
+                                        .form-item
+                                            label Provider
+                                            .input-col
+                                                input.form-control(type='text', value='Provider Name')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Meeting Point
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Point
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Audio-guide
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Audio-guid
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .transport
+                        .block
+                            i.fas.fa-car
+                            |  3 km, 25 minutes
+                            a(href='#') Details
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='20:30')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='21:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-fountan.jpg', style='background-image: url(photos/paris-fountan.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Magic Fountains
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1')
+                                        | After dark, admire the show of dancing water. After dark, admire the show of dancing water.After dark, admire the show of dancing water. After dark, admire the show of dancing water.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:70%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .tips
+                                    .form-item
+                                        .input-col
+                                            label.checkbox-item
+                                                input(type='checkbox', checked='')
+                                                span.check-text
+                                        span.value
+                                            b Free
+                                    .form-item
+                                        .input-col
+                                            input.form-control.input-special-days.extendable(type='text', placeholder='', data-placeholder='Special Days', value='')
+                                .hidden-part
+                                    .form-1.form-details.form-activity
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field Everytime
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    b Free
+                                        .form-item
+                                            label Provider
+                                            .input-col
+                                                input.form-control(type='text', value='Provider Name')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Meeting Point
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Point
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Audio-guide
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Audio-guid
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more
+                                span.more-text Show more
+                                span.less-text Show less
+                .foot
+                    // <span class="add"><i class="fas fa-plus"></i></span>
+                    .btn-small.btn-add-day Add day
+                    .btn-small.btn-add-item
+                        | Add Item to Day
+                        ul.add-item-menu
+                            li.add-item-transport Transport
+                            li.add-item-lodging Lodging
+                            li.add-item-restaurant Restaurant
+                            li.add-item-activity Activity
+            .oneday
+                .head
+                    .clickable-zone
+                    .num 3
+                    .day-title
+                        | Day
+                        span.num 3
+                        span.date
+                    .title
+                        textarea.extendable(rows='1') Seine River Cruise
+                    .info
+                        span.location
+                            | Location(s):
+                            input.extendable(type='text', value='Paris, Leon')
+                        span.delimiter |
+                        span.overnight
+                            | Overnight:
+                            input.extendable(type='text', value='Paris, Leon')
+                    .arrow
+                        i.fas.fa-chevron-down
+                    .edit-icons
+                        span.icon.icon-edit(title='Edit day title')
+                        span.icon.icon-delete(title='Delete')
+                        span.icon.icon-move(title='Re-order')
+                .body
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-gothic.jpg', style='background-image: url(photos/paris-gothic.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Gothic Quarter Walking Tour
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1')
+                                        | Discover medieval past of Paris by taking a free walking tour of the Gothic Quarter. The tour will walk you trough the maze of charming narrow streets, old squares.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:80%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .tips
+                                    .form-item
+                                        .input-col
+                                            label.checkbox-item
+                                                input(type='checkbox', checked='')
+                                                span.check-text
+                                        span.value
+                                            b Free
+                                    .form-item
+                                        .input-col
+                                            input.form-control.input-special-days.extendable(type='text', placeholder='', data-placeholder='Special Days', value='Fr, Sa, Su')
+                                .hidden-part
+                                    .form-1.form-details.form-activity
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Tuesday:
+                                                            b 10:00 - 18:00
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Sunday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Monday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Tuesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Wednesday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Thursday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Friday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                                                    tr
+                                                                        td Saturday:
+                                                                        td
+                                                                            b 10:00 - 18:00
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    .extendable-info
+                                                        .showed-block
+                                                            | Adults:
+                                                            b 20$
+                                                        .hidden-block
+                                                            table
+                                                                tbody
+                                                                    tr
+                                                                        td Children:
+                                                                        td
+                                                                            b 10$
+                                                                    tr
+                                                                        td Students:
+                                                                        td
+                                                                            b 15$
+                                                                    tr
+                                                                        td Adults:
+                                                                        td
+                                                                            b 20$
+                                                                    tr
+                                                                        td Pensioners:
+                                                                        td
+                                                                            b 10$
+                                        .form-item
+                                            label Provider
+                                            .input-col
+                                                input.form-control(type='text', value='Provider Name')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Meeting Point
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Point
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Audio-guide
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Audio-guid
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more.more
+                                span.more-text Show more
+                                span.less-text Show less
+                    .transport
+                        .block
+                            i.fas.fa-car
+                            |  3 km, 25 minutes
+                            a(href='#') Details
+                    .item.filled
+                        span.point
+                        .top-bar
+                            .time-field
+                                input.time-picker.input-time.input-time-start(type='text', value='18:00')
+                            span.tire –
+                            .time-field
+                                input.time-picker.input-time.input-time-end(type='text', value='19:00')
+                            .edit-icons
+                                span.icon.icon-edit(title='Edit item fields')
+                                span.icon.icon-delete(title='Delete')
+                                span.icon.icon-move(title='Re-order')
+                        .inner
+                            .image-col
+                                a.image.zoom-zoom(href='photos/paris-fountan.jpg', style='background-image: url(photos/paris-fountan.jpg)')
+                            .content
+                                h4.title
+                                    textarea.extendable.input-title(rows='1') Magic Fountains
+                                .short-text
+                                    textarea.extendable.input-short-text(rows='1')
+                                        | After dark, admire the show of dancing water. After dark, admire the show of dancing water.After dark, admire the show of dancing water. After dark, admire the show of dancing water.
+                                .rating-and-btn
+                                    .stars(title='10155 reviews')
+                                        span.selected(style='width:70%')
+                                    .btn-cont
+                                        .booked-label
+                                            i.fas.fa-check
+                                            |  Booked
+                                        a.btn-small.btn-booked(href='#', target='_blank') Book
+                                .tips
+                                    .form-item
+                                        .input-col
+                                            label.checkbox-item
+                                                input(type='checkbox', checked='')
+                                                span.check-text
+                                        span.value
+                                            b Free
+                                    .form-item
+                                        .input-col
+                                            input.form-control.input-special-days.extendable(type='text', placeholder='', data-placeholder='Special Days', value='')
+                                .hidden-part
+                                    .form-1.form-details.form-activity
+                                        .form-item
+                                            label Hours
+                                            .input-col
+                                                .info-field Everytime
+                                        .form-item
+                                            label Price
+                                            .input-col
+                                                .info-field
+                                                    b Free
+                                        .form-item
+                                            label Provider
+                                            .input-col
+                                                input.form-control(type='text', value='Provider Name')
+                                        .form-item
+                                            label Address
+                                            .input-col
+                                                textarea.form-control.extendable Street Name
+                                        .form-item
+                                            label Meeting Point
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Point
+                                        .form-item
+                                            label Phone
+                                            .input-col
+                                                input.form-control(type='text', value='+3730656565')
+                                        .form-item
+                                            label Website
+                                            .input-col
+                                                a.url(href='http://www.site.com') http://www.site.com
+                                                input.form-control.form-url(type='text', value='http://www.site.com')
+                                        .form-item
+                                            label Audio-guide
+                                            .input-col
+                                                textarea.form-control.extendable(rows='1') Audio-guid
+                                        .form-item
+                                            label Confirmation #
+                                            .input-col
+                                                input.form-control(type='text', value='4545A')
+                                        .form-item
+                                            label Attachments
+                                            .input-col
+                                                input.stylized(type='file', multiple='')
+                                                .files
+                                                    .file
+                                                        a(href='file1.doc') file1.doc
+                                                        span.closer
+                                                    .file
+                                                        a(href='file2.doc') file2.doc
+                                                        span.closer
+                                        .form-item.one-line
+                                            label Booked
+                                            .input-col
+                                                label.checkbox-item
+                                                    input.checkbox-booked(type='checkbox')
+                                                    span.check-text
+                                        .autofill-block
+                                            a.autofill-link(href='#') Fill in automatically by forwarding booking confirmation email
+                        .bottom-bar
+                            .btn-more
+                                span.more-text Show more
+                                span.less-text Show less
+                .foot
+                    // <span class="add"><i class="fas fa-plus"></i></span>
+                    .btn-small.btn-add-day Add day
+                    .btn-small.btn-add-item
+                        | Add Item to Day
+                        ul.add-item-menu
+                            li.add-item-transport Transport
+                            li.add-item-lodging Lodging
+                            li.add-item-restaurant Restaurant
+                            li.add-item-activity Activity
+block save
+    .stiky-bar-container
+        .section.sticky-bar
+            .wrap
+                .inner
+                    button.btn(type='submit') Save to My Itineraries & Edit

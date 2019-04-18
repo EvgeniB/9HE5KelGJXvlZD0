@@ -1,13 +1,42 @@
-extends layout
-block head
-    //script(type='text/javascript', src='http://code.jquery.com/jquery-1.7.1.min.js')
-    //script(src='/javascripts/add_itinerary.js')
+extends ./layout.pug
+
 block content
 
-    form(method='POST', action='/add_country')
+    br
+    br
+    br
+    br
+    br
+
+    form(method='POST', enctype="multipart/form-data")
+        br
         p Name:
-        input(type='text', name='name', value='')
+        input(type='text', name='name')
+        br
+        p Subtitle:
+        input(type='text', name='subtitle')
+        br
+        p WhyText:
+        input(type='text', name='whytext')
+        br
+        p Images:
+        input(type='file', name='image')
+        br
+        p QuickFacts:
+        input(type='text', name='quickfacts')
+        br
+        p TopDestinations:
+        input(type='text', name='topdestinations')
+        br
+        p TravelSeason:
+        input(type='text', name='travelseason')
+        br
+        p PasswordVisa:
+        input(type='text', name='passportvisa')
+        br
+        p RelatedItineraries:
+
         br
         input(type='submit', value='Save')
-        a(href='/edit_countries')
+        a(href='/edit_itineraries')
             input(type='button', value='Cancel')

@@ -23,12 +23,12 @@ html(lang='en')
         .inner.login-signup
             h1.title Travelroute
             .window
-                form(action='?', method='POST')
+                form(action='/register', method='POST')
                     .form-item
-                        input.form-control(type='text', placeholder='Enter Email')
+                        input.form-control(name="email", type='text', placeholder='Enter Email')
                     .form-item
-                        input.form-control(type='password', placeholder='Enter Password')
-                    button.btn.btn-signup Sign Up
+                        input.form-control(name="password", type='password', placeholder='Enter Password')
+                    input.btn.btn-signup(type="submit" value="Sign Up")
                     .text-between OR
                     button.btn.btn-facebook Sign Up with Facebook
                     button.btn.btn-google Sign Up with Google

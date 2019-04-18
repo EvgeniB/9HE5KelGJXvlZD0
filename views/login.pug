@@ -23,12 +23,12 @@ html(lang='en')
         .inner.login-signup
             h1.title Travelroute
             .window
-                form(action='?', method='POST')
+                form(action='/login', method='POST')
                     .form-item
-                        input.form-control(type='text', placeholder='Email')
+                        input.form-control(type='email', name='email', placeholder='Email')
                     .form-item
-                        input.form-control(type='password', placeholder='Password')
-                    button.btn.btn-login Log In
+                        input.form-control(type='password', name='password', placeholder='Password')
+                    input.btn.btn-login(type="submit", value="Log In")
                     .text-between
                         a(href='#') Forgot your Password?
                     button.btn.btn-facebook Log In with Facebook

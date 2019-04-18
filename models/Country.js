@@ -4,7 +4,19 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var countrySchema = new Schema({
-    Name: String
+    Name: String,
+    Subtitle: String,
+    WhyText: String,
+    HeaderImage: { type: Schema.Types.Buffer },
+    Images: [{
+        Filename: String,
+        Content: { type: Schema.Types.Buffer } // mongoose.Schema.Buffer
+    }],
+    QuickFacts: String,
+    TopDestinations: String,
+    TravelSeason: String,
+    PassportVisa: String,
+    RelatedItineraries: [{ type: Schema.Types.ObjectId, ref: 'Itinerary' }]
 });
 
 // the schema is useless so far

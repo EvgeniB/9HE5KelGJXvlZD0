@@ -1,11 +1,41 @@
-extends layout
+extends ./layout.pug
 
 block content
 
-    form(method='POST')
+    br
+    br
+    br
+    br
+    br
+
+    form(method='POST', enctype="multipart/form-data")
         br
         p Name:
         input(type='text', name='name', value=country.Name)
+        br
+        p Subtitle:
+        input(type='text', name='subtitle', value=country.Subtitle)
+        br
+        p WhyText:
+        input(type='text', name='whytext', value=country.WhyText)
+        br
+        p Images:
+        input(type='file', name='image')
+        br
+        p QuickFacts:
+        input(type='text', name='quickfacts', value=country.QuickFacts)
+        br
+        p TopDestinations:
+        input(type='text', name='topdestinations', value=country.TopDestinations)
+        br
+        p TravelSeason:
+        input(type='text', name='travelseason', value=country.TravelSeason)
+        br
+        p PasswordVisa:
+        input(type='text', name='passportvisa', value=country.PassportVisa)
+        br
+        p RelatedItineraries:
+
         br
         input(type='submit', value='Save')
         a(href='/edit_itineraries')

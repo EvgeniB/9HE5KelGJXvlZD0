@@ -59,7 +59,7 @@ router.get('/:id', function(req, res, next) {
             }
         });
         */
-        res.render('edit_itinerary');
+        res.render('itinerary/edit_itinerary');
 });
 
 router.post('/:id', function(req, res, next) {

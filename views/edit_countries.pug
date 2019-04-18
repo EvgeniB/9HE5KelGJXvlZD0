@@ -1,6 +1,13 @@
 extends layout
 
 block content
+
+    br
+    br
+    br
+    br
+    br
+
     ul
         each country in countries ? countries : []
             a(href='edit_country/' + country._id)
@@ -13,4 +20,8 @@ block content
     a(href='/add_country')
         button Add new
 
-
+    br
+    br
+    br
+    br
+    br

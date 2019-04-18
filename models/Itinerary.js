@@ -13,11 +13,21 @@ var itinerarySchema = new Schema({
                 default: 'Custom'
             },
             Time: String, //Date
+            Start_Time: String,
+            End_Time: String,
             Description: String,
             Tips: String,
             Photo: String,
             Price: String,
             Hours: String,
+            Departure_From: String,
+            Arrival_To: String,
+            Carrier_Name: String,
+            Plane_N: Number,
+            Train_N: Number,
+            Confirmation_N: Number,
+            Notes: String,
+            Booked: Boolean,
             Address: String,
             Phone: String, //Number
             Website: String,
@@ -26,7 +36,7 @@ var itinerarySchema = new Schema({
             Transportation: String,
             Reviews: String,
             Name: String,
-            Confirmation: String,
+            //Confirmation: String,
             Flight: String,
             Airline: String,
             Terminal: String,
@@ -34,7 +44,11 @@ var itinerarySchema = new Schema({
             Booked_Through: String,
             Check_in: String,
             Check_out: String,
-            Icon: String
+            Icon: String,
+            Attachments: [{
+                Filename: String,
+                Content: { type: Schema.Types.Buffer }
+            }]
         }],
         Title: String,
         Date: Date,
@@ -52,7 +66,13 @@ var itinerarySchema = new Schema({
     NightLength: Number,
     Theme: [{ type: Schema.Types.ObjectId, ref: 'Tag'}],
     Features: [{ type: Schema.Types.ObjectId, ref: 'Feature'}],
-    ImageUrl: String
+    ImageUrl: String,
+    TripHighlights: String,
+    HeaderImage: { type: Schema.Types.Buffer },
+    Images: [{
+        Filename: String,
+        Content: { type: Schema.Types.Buffer }
+    }],
 });
 
 // the schema is useless so far
